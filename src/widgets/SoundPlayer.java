@@ -8,12 +8,13 @@ import java.io.*;
 /*----------This class is made with the JLayer library, an add-on from Swing------------*/
 
 /**
- * Create a sound player wich play a unique sound.
+ * Create a sound player which play a unique sound.
  * <br/>This sound can be paused, resumed, stopped, reinitialised and looped.
- * <br/>Using this class need the JLayer library :
+ * <br/>To use this class, the JLayer library is necessary:
  * <br/><a href="https://openjfx.io/">Download JLayer here</a>
  * <br/><a href="https://github.com/umjammer/jlayer">Find JLayer github project here</a>
  * @author Mathilde LASSEIGNE
+ * @version 1.0
  */
 public class SoundPlayer {
 
@@ -27,7 +28,7 @@ public class SoundPlayer {
     private long totalLength;
     private long pause;
 
-    /**Main componment of sound**/
+    /**Main component of sound**/
     private Player player;
 
     private PlayingAudio runningSound = null;
@@ -42,7 +43,7 @@ public class SoundPlayer {
     /**
      * Create a sound player which play a unique sound.
      * <br/>This sound can be paused, resumed, stopped and reinitialised.
-     * @param file the file countaining the sound
+     * @param file the file containing the sound
      * @param looping is the sound looping ?
      */
     public SoundPlayer(File file, boolean looping){
@@ -61,19 +62,19 @@ public class SoundPlayer {
     }
 
     /**
-     * Create a sound player wich play a unique sound.
+     * Create a sound player which play a unique sound.
      * <br/>This sound can be paused, resumed, stopped and reinitialised.
-     * <br/> By default, the sound isnt looping.
-     * @param file the file countaining the sound
+     * <br/> By default, the sound isn't looping.
+     * @param file the file containing the sound
      */
     public SoundPlayer(File file){
         init(file, false);
     }
 
     /**
-     * Create a sound player wich play a unique sound.
+     * Create a sound player which play a unique sound.
      * <br/>This sound can be paused, resumed, stopped and reinitialised.
-     * <br/> By default, the sound isnt looping.
+     * <br/> By default, the sound isn't looping.
      * @param path the path from where the file can be extracted
      */
     public SoundPlayer(String path){
@@ -131,7 +132,7 @@ public class SoundPlayer {
 
     /**
      * Check if the sound is paused
-     * @return
+     * @return true if paused else false
      */
     public boolean isPaused() {
         return enPause;
@@ -139,7 +140,7 @@ public class SoundPlayer {
 
     /**
      * Check if the sound is playing, meaning it is neither stopped nor paused nor completed.
-     * @return
+     * @return true if playing else false
      */
     public boolean isSoundPlaying(){
         return !enPause && !stopped && !isCompleted();
@@ -148,7 +149,7 @@ public class SoundPlayer {
     /**
      * Check if the sound is completed.
      * <br/> If looping, always false
-     * @return
+     * @return true if completed else false
      */
     public boolean isCompleted(){
         if(player != null && !looping){
@@ -158,15 +159,15 @@ public class SoundPlayer {
     }
 
     /**
-     * Return the main componment of the sound
-     * @return
+     * Return the main component of the sound
+     * @return the player from the JLayer library
      */
     public Player getPlayer(){
         return this.player;
     }
 
     /**
-     * Play the sound from the begining.
+     * Play the sound from the beginning.
      */
     public void play(){
         if(playing){
@@ -206,7 +207,7 @@ public class SoundPlayer {
 
 
 
-/*-----------------------------------------Classe interne-----------------------------------------------------*/
+/*-----------------------------------------Class intern-----------------------------------------------------*/
 
 
 
