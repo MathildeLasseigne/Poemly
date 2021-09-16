@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="SoundPlayer">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/src/library/SoundPlayer.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="file://$PROJECT_DIR$/src/library/javadocSoundPlayer/index.html" />
+    </JAVADOC>
+    <SOURCES />
+  </library>
+</component>
