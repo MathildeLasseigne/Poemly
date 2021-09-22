@@ -39,6 +39,8 @@ public class SoundPlayer {
     private boolean stopped = false;
     /**The sound is looping**/
     private boolean looping;
+    /**Is the SoundPlayer definitively closed**/
+    private boolean isClosed = false;
 
     /**
      * Create a sound player which play a unique sound.
@@ -96,11 +98,13 @@ public class SoundPlayer {
 
     /**
      * Stop definitively the SoundPlayer
+     * @see SoundPlayer#isClosed()
      */
     public void close() {
         if (player != null) player.close();
         if(runningSound != null) runningSound.stopRun();
         this.playing = false;
+        this.isClosed = true;
     }
 
     /**
@@ -146,6 +150,15 @@ public class SoundPlayer {
      */
     public boolean isSoundPlaying(){
         return !enPause && !stopped && !isCompleted();
+    }
+
+    /**
+     * Check if the SoundPlayer was definitively closed by the close method
+     * @return true if closed else false
+     * @see SoundPlayer#close()
+     */
+    public boolean isClosed() {
+        return isClosed;
     }
 
     /**
