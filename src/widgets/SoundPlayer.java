@@ -47,6 +47,7 @@ public class SoundPlayer {
      * @param looping is the sound looping ?
      */
     public SoundPlayer(File file, boolean looping){
+        setId();
         init(file, looping);
     }
 
@@ -57,6 +58,7 @@ public class SoundPlayer {
      * @param looping is the sound looping ?
      */
     public SoundPlayer(String path, boolean looping){
+        setId();
         File f = new File(path);
         init(f, looping);
     }
@@ -270,4 +272,54 @@ public class SoundPlayer {
             } catch (Exception e) { System.out.println(e); }
         }
     }
+
+
+
+    /*-------------------Identification----------------------------------*/
+
+    /**The name of the SoundPlayer**/
+    private String name = "";
+
+    /**
+     * Set the name of the SoundPlayer
+     * @param name
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * Get the name of the SoundPlayer
+     * @return
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**The number of SoundPlayers created in this project*/
+    private static int nbSoundPlayersCreated = 0;
+    /**The personal id of this SoundPlayer*/
+    private int id;
+
+    /**Set the id of this SoundPlayer. It is unique*/
+    private void setId(){
+        this.id = nbSoundPlayersCreated;
+        nbSoundPlayersCreated ++;
+    }
+
+    /**
+     * Return the id of this SoundPlayer.
+     * <br/> Its id consist of its name and its serial number :
+     * <br/> ex : "myFirstSoundPlayer-1"
+     * <br/> If the SoundPlayer doesn't have a name, its id will be its serial number
+     * @return the id of the sound player
+     */
+    public String getID(){
+        if(getName() != "" & getName() != null){
+            return getName()+"-"+this.id;
+        } else {
+            return Integer.toString(this.id);
+        }
+    }
+
 }
