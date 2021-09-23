@@ -4,7 +4,7 @@ import widgets.tools.FileListManager;
 
 import java.util.ArrayList;
 
-class Poem extends Encodable {
+public class Poem extends Encodable {
 
     /**The name of the poem**/
     private String name;
