@@ -122,7 +122,7 @@ public class Song extends Encodable{
      * Decode the encoded data to fill the song data
      * @param encodedDataLine
      */
-    private void decodeDataLine(String encodedDataLine){
+    protected void decodeDataLine(String encodedDataLine){
         String[] decode = encodedDataLine.replaceAll(header, "").replaceAll("\n", "").split(";");
         this.name = decode[0];
         this.path = decode[1];

@@ -34,7 +34,5 @@ public abstract class Encodable {
      *
      * @param encodedDataLine
      */
-    private void decodeDataLine(String encodedDataLine) {
-
-    }
+    protected abstract void decodeDataLine(String encodedDataLine);
 }

@@ -1,5 +1,7 @@
 package model;
 
+import widgets.tools.FileListManager;
+
 import java.util.ArrayList;
 
 class Poem extends Encodable {
@@ -72,6 +74,17 @@ class Poem extends Encodable {
     }
 
 
+    /**
+     * Change the path and write the poem into the new file
+     * <br/> The name of the file will be the name of the song.
+     * @param newDirectoryPath the path toward the directory where the new file will be created
+     */
+    protected void createNewFile(String newDirectoryPath){
+        String path = newDirectoryPath + this.name + ".txt";
+        this.path = newDirectoryPath;
+        FileListManager.writeFileFromList(path, true, this.getText());
+    }
+
     /*----------Data---------------*/
 
 
@@ -98,7 +111,7 @@ class Poem extends Encodable {
      * Decode the encoded data to fill the poem data
      * @param encodedDataLine
      */
-    private void decodeDataLine(String encodedDataLine){
+    protected void decodeDataLine(String encodedDataLine){
         String[] decode = encodedDataLine.replaceAll(header, "").replaceAll("\n", "").split(";");
         this.name = decode[0];
         this.path = decode[1];
