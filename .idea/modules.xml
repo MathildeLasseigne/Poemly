@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Poemly.iml" filepath="$PROJECT_DIR$/Poemly.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Poemly.iml" filepath="$PROJECT_DIR$/.idea/Poemly.iml" />
     </modules>
   </component>
 </project>
