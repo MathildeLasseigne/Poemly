@@ -23,6 +23,7 @@ public class Poem extends Encodable {
     public Poem(String name, String path){
         super("#Poem#");
         this.name = name;
+        setText();
     }
 
     /**
@@ -33,6 +34,7 @@ public class Poem extends Encodable {
     public Poem(String encodedDataLine){
         super("#Poem#");
         decodeDataLine(encodedDataLine);
+        setText();
     }
 
     /**
@@ -73,6 +75,13 @@ public class Poem extends Encodable {
         return (ArrayList<String>) text.clone();
     }
 
+    /**
+     * Set the text from the file from the path
+     */
+    private void setText(){
+        this.text = FileListManager.readFileInList(this.path);
+        cleanText();
+    }
 
     /**
      * Change the path and write the poem into the new file
