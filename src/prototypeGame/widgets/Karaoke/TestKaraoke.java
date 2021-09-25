@@ -3,6 +3,12 @@ package prototypeGame.widgets.Karaoke;
 public class TestKaraoke {
 
     public static void main(String[] args){
+
+        testParse();
+
+    }
+
+    static void testParse(){
         String s = " Hello, my name is Blanc! I'm a student. " +
                 "I am new here, so please help me adapt. Can you help me? Thanks." ;
 
