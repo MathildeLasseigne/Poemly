@@ -79,7 +79,7 @@ public class Poem extends Encodable {
      * Set the text from the file from the path
      */
     private void setText(){
-        this.text = FileListManager.readFileInList(this.path);
+        this.text = (ArrayList<String>) FileListManager.readFileInList(this.path);
         cleanText();
     }
 
