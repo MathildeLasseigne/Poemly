@@ -46,7 +46,7 @@ public class Poem extends Encodable {
     }
 
     /**
-     * Delete all empty lines of the text
+     * Delete all empty lines of the text and trim the lines
      * @see Poem#getText()
      */
     public void cleanText(){
@@ -54,7 +54,10 @@ public class Poem extends Encodable {
             String str = this.text.get(i);
             if(str == ""){
                 this.text.remove(i);
+            } else {
+                str.trim();
             }
+
         }
     }
 
