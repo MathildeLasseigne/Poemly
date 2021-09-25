@@ -192,7 +192,7 @@ public class SoundPlayer {
                 runningSound.stopRun();
             }
 
-            runningSound = new PlayingAudio(false, looping);
+            runningSound = new PlayingAudio(false);
 
             runningSound.start();
         }
@@ -209,7 +209,7 @@ public class SoundPlayer {
                 if(runningSound != null){
                     runningSound.stopRun();
                 }
-                runningSound = new PlayingAudio(true, looping);
+                runningSound = new PlayingAudio(true);
 
                 runningSound.start();
 
@@ -220,7 +220,13 @@ public class SoundPlayer {
 
     }
 
-
+    /**
+     * Set the looping property of the SoundPlayer.
+     * @param looping is the sound looping ?
+     */
+    public void setLooping(boolean looping){
+        this.looping = looping;
+    }
 
 /*-----------------------------------------Class intern-----------------------------------------------------*/
 
@@ -234,16 +240,13 @@ public class SoundPlayer {
         /**Flag to stop the thread**/
         private boolean run = true;
 
-        private boolean looping;
 
         /**
          * Allow looping sounds and restarting from a point
          * @param isRestarting is the sound resuming
-         * @param looping must the sound loop ?
          */
-        public PlayingAudio(boolean isRestarting, boolean looping){
+        public PlayingAudio(boolean isRestarting){
             restart = isRestarting;
-            this.looping = looping;
         }
 
         /**
@@ -275,7 +278,7 @@ public class SoundPlayer {
                     player.play();
                     if(restart)
                         restart = false;
-                } while (this.looping && !enPause && !stopped && this.run);
+                } while (looping && !enPause && !stopped && this.run);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (JavaLayerException e) {
