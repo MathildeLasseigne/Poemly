@@ -201,16 +201,16 @@ int test = 0;
         boolean notFound = true;
         //if(this.karaoke.difficulty == Difficulty.DifficultyLevel.Hard)
         newSeparator++;
-        char newChar = getCharAt(newSeparator);
 
         do {
+            char newChar = getCharAt(newSeparator);
             //Space is treated differently. Do not select space if before punctuation
             if(newChar != ' ') {
                 if(this.karaoke.difficulty == Difficulty.DifficultyLevel.Hard){
                     notFound = false; //return the newSeparator
                 } else { //Do not take punctuation
                     switch (newChar) {
-                        case '.': case '!': case '?': case ':': case ';':  //List of punctuation
+                        case '.': case '!': case '?': case ':': case ';': case ',':  //List of punctuation
                             newSeparator++; //Skip the punctuation
                             break;
                         default: //If 'a' for exemple

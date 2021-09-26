@@ -40,11 +40,13 @@ public class TestKaraoke extends Application {
         Karaoke karaoke = setKaraoke();
         //testParse();
 
-        Timer timer = new Timer(1000, new ActionListener() {
+        Timer timer = new Timer(300, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(! karaoke.isFinished().get()){
                     karaoke.next();
+                } else {
+                    System.out.println("Finished");
                 }
             }
         });
@@ -70,7 +72,7 @@ public class TestKaraoke extends Application {
 
         Poem poem = new Poem("Test Poem", "src/assets/tests/testReader.txt");
 
-        return new Karaoke(poem, Difficulty.DifficultyLevel.Easy);
+        return new Karaoke(poem, Difficulty.DifficultyLevel.Hard);
 
     }
 
