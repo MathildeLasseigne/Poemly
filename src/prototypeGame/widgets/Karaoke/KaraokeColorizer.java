@@ -106,11 +106,11 @@ public class KaraokeColorizer {
      */
     public void colorize() {
 
+        int currentIdx = 0; //To check the separator
         for(String str : this.text){
 
             String[] words = parseInputToWordsArray(str);
             FlowPane line = new FlowPane(); //Line box
-            int currentIdx = 0; //To check the separator
             for(int i = 0; i< words.length; i++){
                 char[] character = parseInputToCharacterArray(words[i]);
                 HBox word = new HBox(); //Word box. Words are in an HBox to prevent warping in the middle of a word
