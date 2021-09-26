@@ -1,9 +1,14 @@
 package prototypeGame.widgets.Karaoke;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.scene.Parent;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import model.Difficulty;
 import model.Poem;
+
+import java.io.IOException;
+import java.net.URL;
 
 public class Karaoke extends AnchorPane {
 
@@ -18,6 +23,15 @@ public class Karaoke extends AnchorPane {
         this.difficulty = difficulty;
 
         this.karaokeController = new KaraokeController(this);
+
+        Parent p = null;
+        try {
+            p = this.karaokeController.loadFXMLWithController(getClass().getResource("KaraokeUI.fxml"));
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+        this.getChildren().add(p);
     }
 
 
@@ -26,6 +40,14 @@ public class Karaoke extends AnchorPane {
      */
     public void next(){
         this.karaokeController.nextSeparatorChar();
+    }
+
+    /**
+     * Check if the karaoke is finished
+     * @return
+     */
+    public BooleanProperty isFinished(){
+        return this.karaokeController.isFinished();
     }
 
     /**

@@ -118,11 +118,11 @@ public class KaraokeColorizer {
                 for(int j = 0; j< character.length; j++){
                     Text c = null;
                     if(currentIdx < this.separatorIdx){
-                        c = this.renderBefore.customize(String.valueOf(character[i]));
+                        c = this.renderBefore.customize(String.valueOf(character[j]));
                     } else if(currentIdx == this.separatorIdx){
-                        c = this.renderSeparator.customize(String.valueOf(character[i]));
+                        c = this.renderSeparator.customize(String.valueOf(character[j]));
                     } else if(currentIdx > this.separatorIdx){
-                        c = this.renderAfter.customize(String.valueOf(character[i]));
+                        c = this.renderAfter.customize(String.valueOf(character[j]));
                     }
 
                     word.getChildren().add(c);

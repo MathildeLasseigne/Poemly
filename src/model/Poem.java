@@ -24,8 +24,10 @@ public class Poem extends Encodable {
      */
     public Poem(String name, String path){
         super("#Poem#");
+        this.path = path;
         this.name = name;
         setText();
+        setLenght();
     }
 
     /**

@@ -15,8 +15,13 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import model.Difficulty;
+import model.Poem;
 
-import java.awt.*;
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 
 public class TestKaraoke extends Application {
 
@@ -29,11 +34,23 @@ public class TestKaraoke extends Application {
         root.prefWidth(275);
         primaryStage.setTitle("Hello World");
 
-        Scene scene = new Scene(root, 300, 275);
 
-        testKeyEvent(scene);
+        //testKeyEvent(scene);
 
+        Karaoke karaoke = setKaraoke();
         //testParse();
+
+        Timer timer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(! karaoke.isFinished().get()){
+                    karaoke.next();
+                }
+            }
+        });
+        timer.start();
+
+        Scene scene = new Scene(karaoke, 1000, 650);
 
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -43,6 +60,17 @@ public class TestKaraoke extends Application {
 
         launch(args);
 
+
+    }
+
+
+
+
+    public Karaoke setKaraoke(){
+
+        Poem poem = new Poem("Test Poem", "src/assets/tests/testReader.txt");
+
+        return new Karaoke(poem, Difficulty.DifficultyLevel.Easy);
 
     }
 

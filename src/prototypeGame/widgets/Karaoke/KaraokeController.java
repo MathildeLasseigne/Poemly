@@ -1,6 +1,7 @@
 package prototypeGame.widgets.Karaoke;
 
 import controller.FXMLController;
+import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
@@ -9,6 +10,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import model.Difficulty;
 import widgets.tools.Utilities;
 
@@ -42,9 +44,11 @@ public class KaraokeController extends FXMLController {
         this.karaoke = karaoke;
 
         this.poemText = this.karaoke.poem.getText();
-        KaraokeColorizer.TextRender before = new KaraokeColorizer.TextRender(Color.DARKRED);
-        KaraokeColorizer.TextRender separator = new KaraokeColorizer.TextRender(Color.DARKBLUE);
-        KaraokeColorizer.TextRender after = new KaraokeColorizer.TextRender(Color.DARKGREEN);
+        Font globalFont = new Font("Comic Sans MS", 25);
+
+        KaraokeColorizer.TextRender before = new KaraokeColorizer.TextRender(Color.DARKRED, globalFont);
+        KaraokeColorizer.TextRender separator = new KaraokeColorizer.TextRender(Color.DARKBLUE, globalFont);
+        KaraokeColorizer.TextRender after = new KaraokeColorizer.TextRender(Color.DARKGREEN, globalFont);
         this.karaokeColorizer = new KaraokeColorizer(poemText, before, separator, after);
 
 
@@ -64,20 +68,26 @@ public class KaraokeController extends FXMLController {
      * Add all text from the poem into poemContainer
      */
     private void updateKaroke(){
-        int widthParagraph = 285;
-        //remove old lines from VBOX
-        if(this.currentRenderedPoemLines != null){
-            for(FlowPane fp : currentRenderedPoemLines){
-                this.poemContainer.getChildren().remove(fp);
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                int widthParagraph = 285;
+                //remove old lines from VBOX
+                if(currentRenderedPoemLines != null){
+                    for(FlowPane fp : currentRenderedPoemLines){
+                        poemContainer.getChildren().remove(fp);
+                    }
+                }
+                ArrayList<FlowPane> newPoem = karaokeColorizer.getRenderedText();
+                for(FlowPane line : newPoem){
+                    line.setPrefWidth(widthParagraph); //Set widt of new lines
+                    line.setMaxWidth(widthParagraph);
+                    poemContainer.getChildren().add(line);
+                }
+                currentRenderedPoemLines = newPoem; //Register new lines
             }
-        }
-        ArrayList<FlowPane> newPoem = karaokeColorizer.getRenderedText();
-        for(FlowPane line : newPoem){
-            line.setPrefWidth(widthParagraph); //Set widt of new lines
-            line.setMaxWidth(widthParagraph);
-            this.poemContainer.getChildren().add(line);
-        }
-        this.currentRenderedPoemLines = newPoem; //Register new lines
+        });
+
     }
 
     /**
