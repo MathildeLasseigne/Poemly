@@ -14,6 +14,8 @@ public class Poem extends Encodable {
 
     private ArrayList<String> text = new ArrayList<>();
 
+    private int lenght = 0;
+
 
     /**
      * Construct a poem containing its name, path & text
@@ -35,6 +37,7 @@ public class Poem extends Encodable {
         super("#Poem#");
         decodeDataLine(encodedDataLine);
         setText();
+        setLenght();
     }
 
     /**
@@ -86,6 +89,12 @@ public class Poem extends Encodable {
         cleanText();
     }
 
+    private void setLenght(){
+        for(String line : this.text){
+            this.lenght += line.length();
+        }
+    }
+
     /**
      * Change the path and write the poem into the new file
      * <br/> The name of the file will be the name of the song.
@@ -127,5 +136,13 @@ public class Poem extends Encodable {
         String[] decode = encodedDataLine.replaceAll(header, "").replaceAll("\n", "").split(";");
         this.name = decode[0];
         this.path = decode[1];
+    }
+
+    /**
+     * Return the lenght of the poem text
+     * @return
+     */
+    public int getLenght() {
+        return lenght;
     }
 }
