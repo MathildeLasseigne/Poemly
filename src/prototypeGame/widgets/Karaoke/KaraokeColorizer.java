@@ -168,18 +168,33 @@ public class KaraokeColorizer {
         private final Color color;
         private final Font font;
 
-        public TextRender(Color color, Font font){
+        private final boolean underline;
+
+        public TextRender(Color color, Font font, boolean underline){
 
             this.color = color;
             this.font = font;
+            this.underline = underline;
+        }
+
+        public TextRender(Color color, Font font){
+            this(color, font, false);
         }
 
         public TextRender(Color color){
-            this(color, null);
+            this(color, null, false);
+        }
+
+        public TextRender(Color color, boolean underline){
+            this(color, null, underline);
         }
 
         public TextRender(Font font){
-            this(null, font);
+            this(null, font, false);
+        }
+
+        public TextRender(Font font, boolean underline){
+            this(null, font, underline);
         }
 
         /**
@@ -194,6 +209,8 @@ public class KaraokeColorizer {
             if(this.font != null){
                 renderedText.setFont(this.font);
             }
+            renderedText.setUnderline(this.underline);
+
         }
 
         /**
