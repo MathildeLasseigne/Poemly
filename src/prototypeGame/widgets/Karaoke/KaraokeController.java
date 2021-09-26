@@ -65,7 +65,6 @@ public class KaraokeController extends FXMLController {
         updateKaroke();//Initialize
     }
 
-int test = 0;
 
     /**
      * Add all text from the poem into poemContainer

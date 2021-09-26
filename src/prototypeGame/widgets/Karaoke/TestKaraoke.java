@@ -2,18 +2,10 @@ package prototypeGame.widgets.Karaoke;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
-import javafx.scene.control.DialogPane;
-import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import model.Difficulty;
 import model.Poem;
@@ -43,11 +35,14 @@ public class TestKaraoke extends Application {
         Timer timer = new Timer(300, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(! karaoke.isFinished().get()){
+                /*if(! karaoke.isFinished().get()){
                     karaoke.next();
                 } else {
                     System.out.println("Finished");
                 }
+
+                 */
+                karaoke.next();
             }
         });
         timer.start();
