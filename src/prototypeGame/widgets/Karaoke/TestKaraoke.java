@@ -1,11 +1,68 @@
 package prototypeGame.widgets.Karaoke;
 
-public class TestKaraoke {
+import javafx.application.Application;
+import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.DialogPane;
+import javafx.scene.image.Image;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
+
+import java.awt.*;
+
+public class TestKaraoke extends Application {
+
+
+
+    @Override
+    public void start(Stage primaryStage) throws Exception{
+        Parent root = new AnchorPane();
+        root.prefWidth(300);
+        root.prefWidth(275);
+        primaryStage.setTitle("Hello World");
+
+        Scene scene = new Scene(root, 300, 275);
+
+        testKeyEvent(scene);
+
+        //testParse();
+
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
 
     public static void main(String[] args){
 
-        testParse();
+        launch(args);
 
+
+    }
+
+    static void testKeyEvent(Scene node){
+        /*node.setOnKeyTyped(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                System.out.println(event.getCharacter());
+
+            }
+        });
+
+         */
+        node.addEventFilter(KeyEvent.KEY_TYPED, new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                System.out.println(event.getCharacter());
+
+            }
+        });
     }
 
     static void testParse(){
