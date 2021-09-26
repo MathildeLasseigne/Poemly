@@ -19,7 +19,7 @@
       </ImageView>
       <VBox fx:id="poemContainer" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="643.0" prefWidth="337.0">
          <children>
-            <StackPane prefWidth="337.0">
+            <StackPane fx:id="poemTitlePane" prefWidth="337.0">
                <children>
                   <Label fx:id="poemName" alignment="CENTER" prefWidth="285.0" text="Poem name is really looong. But not that much" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS" underline="true" wrapText="true">
                      <font>

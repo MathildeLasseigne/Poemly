@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -24,8 +25,6 @@ public class KaraokeController extends FXMLController {
 
     private ArrayList<String> poemText;
 
-    private ArrayList<FlowPane> currentRenderedPoemLines; //To be able to remove old ones from the VBox
-
     private BooleanProperty finished = new SimpleBooleanProperty(false);
 
 
@@ -39,6 +38,9 @@ public class KaraokeController extends FXMLController {
 
     @FXML
     private VBox poemContainer;
+
+    @FXML
+    private StackPane poemTitlePane;
 
     KaraokeController(Karaoke karaoke){
         this.karaoke = karaoke;
@@ -63,29 +65,32 @@ public class KaraokeController extends FXMLController {
         updateKaroke();//Initialize
     }
 
+int test = 0;
 
     /**
      * Add all text from the poem into poemContainer
      */
     private void updateKaroke(){
+
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
                 int widthParagraph = 285;
-                //remove old lines from VBOX
-                if(currentRenderedPoemLines != null){
-                    for(FlowPane fp : currentRenderedPoemLines){
-                        poemContainer.getChildren().remove(fp);
-                    }
-                }
+
+                poemContainer.getChildren().clear();
+
+
+                poemContainer.getChildren().add(poemTitlePane);
                 ArrayList<FlowPane> newPoem = karaokeColorizer.getRenderedText();
                 for(FlowPane line : newPoem){
                     line.setPrefWidth(widthParagraph); //Set widt of new lines
                     line.setMaxWidth(widthParagraph);
                     poemContainer.getChildren().add(line);
                 }
-                currentRenderedPoemLines = newPoem; //Register new lines
+
+
             }
+
         });
 
     }

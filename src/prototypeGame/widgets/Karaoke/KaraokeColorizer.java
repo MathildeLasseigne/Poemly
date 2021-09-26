@@ -106,6 +106,8 @@ public class KaraokeColorizer {
      */
     public void colorize() {
 
+        this.lineOutList.clear();
+
         int currentIdx = 0; //To check the separator
         for(String str : this.text){
 
