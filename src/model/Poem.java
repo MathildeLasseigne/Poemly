@@ -26,7 +26,9 @@ public class Poem extends Encodable {
         super("#Poem#");
         this.path = path;
         this.name = name;
-        setText();
+        if(! path.isBlank()){
+            setText();
+        }
         setLenght();
     }
 
