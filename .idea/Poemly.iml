@@ -9,5 +9,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="JLayer1.0.1" level="application" />
     <orderEntry type="library" exported="" name="OpenJavaFX 11" level="application" />
+    <orderEntry type="library" name="javafx-swt" level="project" />
   </component>
 </module>
