@@ -1,12 +1,13 @@
 package controller;
 
+import javafx.scene.layout.Pane;
 import model.*;
 import view.GameUI;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class Game extends JPanel {
+public class Game extends Pane {
 
     private GameModele gameModele;
 
@@ -15,7 +16,7 @@ public class Game extends JPanel {
     public Game(Poem poem, Song song, Difficulty.DifficultyLevel difficultyLevel){
         this.gameModele = new GameModele(this);
         this.gameUI = new GameUI(this);
-        this.add(this.gameUI);
+        this.getChildren().add(this.gameUI);
     }
 
     /**
