@@ -1,10 +1,11 @@
 package view;
 
 import controller.Game;
+import javafx.scene.layout.Pane;
 
 import javax.swing.*;
 
-public class GameUI extends JPanel {
+public class GameUI extends Pane {
 
     private Game game;
 
