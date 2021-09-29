@@ -54,8 +54,8 @@ public class Karaoke extends AnchorPane {
      * Check if the key is the same as the current character depending on difficulty
      * @param keyEvent
      */
-    public void checkKey(KeyEvent keyEvent){
-        //TODO
+    public boolean checkKey(KeyEvent keyEvent) throws Exception {
+        return keyEvent.getCharacter() == String.valueOf(this.karaokeController.getCurrentChar());
     }
 
     /**
