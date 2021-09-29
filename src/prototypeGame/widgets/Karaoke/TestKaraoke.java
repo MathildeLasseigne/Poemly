@@ -65,8 +65,8 @@ public class TestKaraoke extends Application {
 
     public Karaoke setKaraoke(){
 
-        Poem poem = new Poem("Test Poem", "src/assets/tests/testReader.txt");
-
+        //Poem poem = new Poem("Test Poem", "src/assets/tests/LoremIpsum.txt");
+        Poem poem = new Poem("Test Poem", "C:\\Users\\mathilde\\Documents\\Cours\\M1HCI\\Adv programmation of ISO\\Project\\Poemly\\src\\assets\\tests\\testReader.txt");
         return new Karaoke(poem, Difficulty.DifficultyLevel.Hard);
 
     }

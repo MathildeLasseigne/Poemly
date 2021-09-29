@@ -48,9 +48,9 @@ public class KaraokeController extends FXMLController {
         this.poemText = this.karaoke.poem.getText();
         Font globalFont = new Font("Comic Sans MS", 25);
 
-        KaraokeColorizer.TextRender before = new KaraokeColorizer.TextRender(Color.DARKRED, globalFont);
-        KaraokeColorizer.TextRender separator = new KaraokeColorizer.TextRender(Color.DARKBLUE, globalFont, true);
-        KaraokeColorizer.TextRender after = new KaraokeColorizer.TextRender(Color.DARKGREEN, globalFont);
+        KaraokeColorizer.TextRender before = new KaraokeColorizer.TextRender(Color.GREEN, globalFont);
+        KaraokeColorizer.TextRender separator = new KaraokeColorizer.TextRender(Color.BLUE, globalFont, true);
+        KaraokeColorizer.TextRender after = new KaraokeColorizer.TextRender(Color.RED, globalFont);
         this.karaokeColorizer = new KaraokeColorizer(poemText, before, separator, after);
 
 
