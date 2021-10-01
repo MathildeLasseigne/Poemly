@@ -1,4 +1,11 @@
 package prototypeGame.controller;
 
-public class GamePanelController {
+import controller.FXMLController;
+
+public class GamePanelController extends FXMLController {
+
+
+    public GamePanelController(){
+
+    }
 }

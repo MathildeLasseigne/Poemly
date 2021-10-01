@@ -1,9 +1,15 @@
 package prototypeGame.view;
 
-import javax.swing.*;
+import javafx.scene.layout.Pane;
+
 
 /**
  * The panel containg the tiles & the bar
  */
-public class GamePanel extends JPanel {
+public class GamePanel extends Pane {
+
+    public GamePanel(){
+
+    }
+
 }

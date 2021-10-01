@@ -8,4 +8,9 @@ package prototypeGame.controller;
  * </ul>
  */
 public class FallingTiles {
+
+    public FallingTiles(){
+
+    }
+
 }
