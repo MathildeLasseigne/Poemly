@@ -97,4 +97,16 @@ public class Bar {
         support.removePropertyChangeListener(pcl);
     }
 
+
+
+    /*Example :
+    public class PCLNewsChannel implements PropertyChangeListener {
+
+    private String news;
+
+    public void propertyChange(PropertyChangeEvent evt) {
+        this.setNews((String) evt.getNewValue());
+    }
+}
+     */
 }
