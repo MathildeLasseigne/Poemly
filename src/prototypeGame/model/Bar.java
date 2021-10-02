@@ -84,7 +84,7 @@ public class Bar {
      * <br/>Fire property change to Bar listener if current Tile was changed
      * @return the tile that was removed. Null if no tile was removed
      */
-    public Tile updateTile(){
+    public Tile update(){
         boolean mod = false;
         Tile tmp = null;
         for(int i = 0; i<this.tileContained.size(); i++){
