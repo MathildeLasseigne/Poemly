@@ -1,7 +1,6 @@
 package prototypeGame.model;
 
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.geometry.Bounds;
 
 import java.beans.PropertyChangeListener;
@@ -44,8 +43,8 @@ public class Bar {
     /**
      * Try to add a tile to the list if it is not already in the list.
      * <br/>Select a new current tile if necessary
-     * @param tile
-     * @return
+     * @param tile the Tile to add
+     * @return false if the tile is already in the bar or do not intersect the bar
      */
     public boolean tryAddTile(Tile tile){
         if(! tileContained.contains(tile)){
@@ -80,9 +79,6 @@ public class Bar {
         return this.currentTile;
     }
 
-    /**
-     *
-     */
     /**
      * Remove tiles that aren't in the bar anymore. Update the currentTile var if necessary
      * <br/>Fire property change to Bar listener if current Tile was changed
@@ -119,7 +115,7 @@ public class Bar {
             if(t != null){
                 this.currentTile = t;
                 this.currentTile.validated.addListener(tileChangeListener);
-                support.firePropertyChange("currentTile", null, this.currentTile); //Notify property listeners
+                currentTileProperty.firePropertyChange("currentTile", null, this.currentTile); //Notify property listeners
                 return true;
             } else {
                 return false;
@@ -137,8 +133,8 @@ public class Bar {
     }
 
     /**
-     * Return the first tile not validated from the list
-     * @return
+     * Search and return the first tile not validated from the list
+     * @return null if no tile not validated was found in the bar
      */
     private Tile getFirstNotValidated(){
         for(int i = 0; i < tileContained.size(); i++){
@@ -156,14 +152,14 @@ public class Bar {
     /**
      * The list of listeners
      */
-    private PropertyChangeSupport support;
+    private final PropertyChangeSupport currentTileProperty = new PropertyChangeSupport(this);
 
     public void addPropertyChangeListener(PropertyChangeListener pcl) {
-        support.addPropertyChangeListener(pcl);
+        currentTileProperty.addPropertyChangeListener(pcl);
     }
 
     public void removePropertyChangeListener(PropertyChangeListener pcl) {
-        support.removePropertyChangeListener(pcl);
+        currentTileProperty.removePropertyChangeListener(pcl);
     }
 
 
