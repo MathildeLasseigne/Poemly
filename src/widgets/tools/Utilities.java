@@ -1,5 +1,8 @@
 package widgets.tools;
 
+import javafx.geometry.Bounds;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.layout.Region;
 import javafx.scene.shape.Rectangle;
 
@@ -54,5 +57,16 @@ public class Utilities {
 
         }
         return randomValue;
+    }
+
+    /**
+     * Calculate the bounds in parent of the node to screen
+     * @param n the node from which the bounds are taken
+     * @return
+     */
+    public static Bounds parentToScreen(Node n){
+        Parent p = n.getParent();
+        Bounds b = n.getBoundsInParent();
+        return p.localToScreen(b);
     }
 }

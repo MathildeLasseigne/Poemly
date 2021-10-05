@@ -2,6 +2,7 @@ package prototypeGame.model;
 
 import javafx.beans.value.ChangeListener;
 import javafx.geometry.Bounds;
+import widgets.tools.Utilities;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -51,7 +52,7 @@ public class Bar {
      */
     public boolean tryAddTile(Tile tile){
         if(! tileContained.contains(tile)){
-            if(this.bounds.intersects(tile.getBoundsInParent())){
+            if(this.bounds.intersects(Utilities.parentToScreen(tile))){
                 this.tileContained.add(tile);
                 selectNewTile();
                 return true;
@@ -91,7 +92,7 @@ public class Bar {
         boolean mod = false;
         Tile tmp = null;
         for(int i = 0; i<this.tileContained.size(); i++){
-            if(! this.bounds.intersects(tileContained.get(i).getBoundsInParent())){
+            if(! this.bounds.intersects(Utilities.parentToScreen(tileContained.get(i)))){
                 tmp = tileContained.get(i);
                 this.removeTile(tileContained.get(i));
                 mod = true;
@@ -145,6 +146,14 @@ public class Bar {
         return null;
     }
 
+    /**
+     * Set the new bounds of the Bar.
+     * Must only be called to add a proper bounds in screen coordinates after abject was put in window
+     * @param bounds the new bounds in screen coordinates
+     */
+    public void setBounds(Bounds bounds) {
+        this.bounds = bounds;
+    }
 
 
     /*---------------Change listener---------------------*/

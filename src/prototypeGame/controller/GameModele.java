@@ -11,6 +11,7 @@ import javafx.util.Duration;
 import prototypeGame.model.Game;
 import prototypeGame.model.GameBoard;
 import prototypeGame.widgets.Karaoke.Karaoke;
+import widgets.tools.Utilities;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -22,7 +23,7 @@ public class GameModele  implements PropertyChangeListener {
     private GameBoard gameBoard;
 
     /**The time it takes between each new tile */
-    private Duration addingTileDuration = Duration.millis(1000);
+    private Duration addingTileDuration = Duration.seconds(10);
 
     /**
      * The timeLine responsible to add tile to the board every x time
@@ -43,8 +44,10 @@ public class GameModele  implements PropertyChangeListener {
      */
     public GameModele(Game game){
         this.game = game;
-        this.gameBoard = new GameBoard(this.game.getGameUI().gameUINodes.getBoard(), this.game.getGameUI().gameUINodes.getBar().getBoundsInParent());
-
+        this.gameBoard = new GameBoard(this.game.getGameUI().gameUINodes.getBoard(), Utilities.parentToScreen(this.game.getGameUI().gameUINodes.getBar()));//this.game.getGameUI().gameUINodes.getBar().getBoundsInParent());
+        if(Utilities.parentToScreen(this.game.getGameUI().gameUINodes.getBar()) == null){
+            System.out.println("break");
+        }
         setListeners();
         setTimers();
         this.valueTile = this.game.getGameUI().karaoke.getKaraokeController().getLengthForDifficulty()/(double) 100;
@@ -85,7 +88,6 @@ public class GameModele  implements PropertyChangeListener {
             //TODO with karaoke
             Karaoke karaoke = this.game.getGameUI().karaoke;
             if(! karaoke.getKaraokeController().isPreviewFinished().getValue()){
-                karaoke.getKaraokeController().nextSeparatorChar();
                 char newTileChar = 0;
                 try {
                     karaoke.getKaraokeController().nextPreviewChar();
@@ -109,6 +111,9 @@ public class GameModele  implements PropertyChangeListener {
      * Update all the game
      */
     private void update(){
+        if(this.gameBoard.isFirstCall()){
+            this.gameBoard.getBar().setBounds(Utilities.parentToScreen(this.game.getGameUI().gameUINodes.getBar()));
+        }
         this.gameBoard.update();
     }
 
