@@ -57,7 +57,7 @@ public class Tile extends Pane {
         this.tileController = new TileController();
         Parent tileUI = null;
         try {
-            tileUI = tileController.loadFXMLWithController(getClass().getResource(""));
+            tileUI = tileController.loadFXMLWithController(getClass().getResource("src/prototypeGame/view/TileUI.fxml"));
             this.getChildren().add(tileUI);
         } catch (IOException e) {
             System.out.println("\n Tile UI not loaded");

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="87.0" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-background-radius: 20; -fx-border-radius: 20;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Rectangle fx:id="tileBackground" arcHeight="25.0" arcWidth="25.0" fill="#00dac9" height="85.0" stroke="BLACK" strokeType="INSIDE" width="87.0">
+         <effect>
+            <InnerShadow />
+         </effect>
+      </Rectangle>
+      <Text fx:id="character" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="T" textAlignment="CENTER">
+         <font>
+            <Font name="Comic Sans MS" size="50.0" />
+         </font>
+      </Text>
+   </children>
+</StackPane>
