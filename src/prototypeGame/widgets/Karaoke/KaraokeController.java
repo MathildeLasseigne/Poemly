@@ -144,9 +144,8 @@ public class KaraokeController extends FXMLController {
      */
     public void nextPreviewChar(){
         if(! isPreviewFinished().get()){
-            this.karaokeColorizer.setSeparatorIdx(nextChar(this.karaokeColorizer.getSeparatorIdx(), isPreviewFinished()));
+            this.previewSeparatorIdx = nextChar(this.previewSeparatorIdx, isPreviewFinished());
         }
-        updateKaraoke();
     }
 
 
@@ -288,7 +287,7 @@ public class KaraokeController extends FXMLController {
         int proxySeparator = -1;
         int length = 0;
         while(! proxyFinished.getValue()){
-            nextChar(proxySeparator, proxyFinished);
+            proxySeparator = nextChar(proxySeparator, proxyFinished);
             length++;
         }
         return length;
