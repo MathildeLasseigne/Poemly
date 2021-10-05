@@ -198,7 +198,6 @@ public class KaraokeController extends FXMLController {
 
         int newSeparator = currentSeparator;
         boolean notFound = true;
-        //if(this.karaoke.difficulty == Difficulty.DifficultyLevel.Hard)
         newSeparator++;
 
         do {
@@ -278,5 +277,21 @@ public class KaraokeController extends FXMLController {
      */
     public BooleanProperty isPreviewFinished() {
         return previewFinished;
+    }
+
+    /**
+     * Return the length of the poem (number of valid characters) depending on the difficulty of the karaoke
+     * @return the length of the poem
+     */
+    public int getLengthForDifficulty(){
+        BooleanProperty proxyFinished = new SimpleBooleanProperty(false);
+        int proxySeparator = -1;
+        int length = 0;
+        while(! proxyFinished.getValue()){
+            nextChar(proxySeparator, proxyFinished);
+            length++;
+        }
+        return length;
+
     }
 }
