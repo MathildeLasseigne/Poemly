@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00dac9" height="530.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" style="-fx-arc-height: 30; -fx-arc-width: 30;" width="650.0" />
+      <ImageView fitHeight="664.0" fitWidth="658.0" layoutX="9.0" layoutY="78.0">
+         <image>
+            <Image url="@../../assets/images/Keyboard.png" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#eeeeef" height="70.0" layoutX="247.0" layoutY="283.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="155.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#eeeeef" height="70.0" layoutX="92.0" layoutY="283.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="120.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#eeeeef" height="70.0" layoutX="440.0" layoutY="280.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="113.0" />
+      <Button layoutX="194.0" layoutY="417.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="293.0" style="-fx-background-color: #AA9CCA; -fx-background-radius: 8;" text="Button" />
+      <Polygon fill="#00dac9" layoutX="345.0" layoutY="442.0" points="-50.0, 40.0, 50.0, 40.0, 36.66666793823242, 15.333333015441895, 0.0, -60.0" rotate="90.0" scaleX="0.2" scaleY="0.5" stroke="WHITE" strokeWidth="4.0" />
+      <Button layoutX="98.0" layoutY="284.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="105.0" style="-fx-background-color: #AA9CCA; -fx-background-radius: 10;" text="Difficulty" textFill="WHITE">
+         <font>
+            <Font name="Comic Sans MS" size="17.0" />
+         </font>
+      </Button>
+      <Button layoutX="269.0" layoutY="284.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="113.0" style="-fx-background-color: #AA9CCA; -fx-background-radius: 10;" text="Poem" textFill="WHITE">
+         <font>
+            <Font name="Comic Sans MS" size="17.0" />
+         </font>
+      </Button>
+      <Button layoutX="447.0" layoutY="284.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="105.0" style="-fx-background-color: #AA9CCA; -fx-background-radius: 10;" text="Song" textFill="WHITE">
+         <font>
+            <Font name="Comic Sans MS" size="17.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="155.0" fitWidth="579.0" layoutX="41.0" layoutY="46.0">
+         <image>
+            <Image url="@../../assets/images/logo.png" />
+         </image>
+      </ImageView>
+   </children>
+</Pane>
