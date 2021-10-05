@@ -22,7 +22,7 @@ public class GameBoard {
     private Pane boardPane;
 
     /**The duration of the tile translation to the bottom of the screen*/
-    private Duration translationDuration = Duration.millis(1000);
+    private Duration translationDuration = Duration.millis(10000);
 
     /**
      * Manage the game panel. Create the bar in the board

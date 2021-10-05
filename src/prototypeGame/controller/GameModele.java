@@ -43,7 +43,7 @@ public class GameModele  implements PropertyChangeListener {
      */
     public GameModele(Game game){
         this.game = game;
-        //this.gameBoard = new GameBoard(this.game.getGameUI().) //TODO get panes & bounds for board
+        this.gameBoard = new GameBoard(this.game.getGameUI().gameUINodes.getBoard(), this.game.getGameUI().gameUINodes.getBar().getBoundsInParent());
 
         setListeners();
         setTimers();
@@ -88,7 +88,9 @@ public class GameModele  implements PropertyChangeListener {
                 karaoke.getKaraokeController().nextSeparatorChar();
                 char newTileChar = 0;
                 try {
+                    karaoke.getKaraokeController().nextPreviewChar();
                     newTileChar = karaoke.getKaraokeController().getPreviewChar();
+                    System.out.println("new char : "+newTileChar);
                 } catch (Exception e) {
                     System.out.println("No new char in preview");
                     e.printStackTrace();

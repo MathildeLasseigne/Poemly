@@ -68,6 +68,10 @@ public class Game extends Pane {
         return song;
     }
 
+    public Difficulty.DifficultyLevel getDifficulty() {
+        return difficulty;
+    }
+
     /**
      * Return a random theme
      * @return

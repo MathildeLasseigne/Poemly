@@ -2,11 +2,16 @@ package prototypeGame;
 
 import javafx.animation.*;
 import javafx.application.Application;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import model.Difficulty;
+import model.Poem;
+import model.Song;
+import prototypeGame.model.Game;
 import prototypeGame.model.Tile;
 import prototypeGame.widgets.Karaoke.Karaoke;
 
@@ -23,14 +28,42 @@ public class MainPrototypeGame  extends Application {
         //root.prefWidth(275);
         primaryStage.setTitle("Test prototype");
 
-        Tile t = new Tile(100,100,'c');
+
+        Node test;
+
+        //test = testTiles();
+
+        test = testGame();
 
 
 
-        Scene scene = new Scene(t, 1000, 650);
+        Scene scene = new Scene((Parent) test, 1000, 650);
 
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        Game g = (Game) test;
+        g.getGameModel().start();
+
+
+    }
+
+
+
+    Node testGame(){
+        Poem poem = new Poem("Test Poem", "C:\\Users\\mathilde\\Documents\\Cours\\M1HCI\\Adv programmation of ISO\\Project\\Poemly\\src\\assets\\tests\\testReader.txt");
+        Song song = Song.createEmptySong();
+
+        Game game = new Game(poem, song, Difficulty.DifficultyLevel.Hard);
+
+
+        return game;
+    }
+
+
+    Node testTiles(){
+
+        Tile t = new Tile(100,100,'c');
 
         /*t.getTranslateTransition().setByY(200);
         t.getTranslateTransition().setDuration(Duration.seconds(5));
@@ -92,9 +125,9 @@ public class MainPrototypeGame  extends Application {
         tt.play();
 
  */
+
+        return t;
     }
-
-
 
 
     public static void main(String[] args){
