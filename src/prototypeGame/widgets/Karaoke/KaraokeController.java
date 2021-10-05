@@ -62,14 +62,14 @@ public class KaraokeController extends FXMLController {
         Utilities.clipChildren(poemContainer, 0); //Prevent poem from going out of the box
 
         this.poemName.setText(this.karaoke.poem.getName());
-        updateKaroke();//Initialize
+        updateKaraoke();//Initialize
     }
 
 
     /**
      * Add all text from the poem into poemContainer
      */
-    private void updateKaroke(){
+    private void updateKaraoke(){
 
         Platform.runLater(new Runnable() {
             @Override
@@ -82,7 +82,7 @@ public class KaraokeController extends FXMLController {
                 poemContainer.getChildren().add(poemTitlePane);
                 ArrayList<FlowPane> newPoem = karaokeColorizer.getRenderedText();
                 for(FlowPane line : newPoem){
-                    line.setPrefWidth(widthParagraph); //Set widt of new lines
+                    line.setPrefWidth(widthParagraph); //Set width of new lines
                     line.setMaxWidth(widthParagraph);
                     poemContainer.getChildren().add(line);
                 }
@@ -122,12 +122,12 @@ public class KaraokeController extends FXMLController {
         if(! isFinished().get()){
             this.karaokeColorizer.setSeparatorIdx(nextChar(this.karaokeColorizer.getSeparatorIdx(), isFinished()));
         }
-        updateKaroke();
+        updateKaraoke();
     }
 
 
     /**
-     * Return the current char of the parallele list
+     * Return the current char of the parallel list
      * @return
      * @throws Exception  Using this methode when the text is finished will throws an error
      */
@@ -140,13 +140,13 @@ public class KaraokeController extends FXMLController {
     }
 
     /**
-     * Return the next char of the parallele separator
+     * Return the next char of the parallel separator
      */
     public void nextPreviewChar(){
         if(! isPreviewFinished().get()){
             this.karaokeColorizer.setSeparatorIdx(nextChar(this.karaokeColorizer.getSeparatorIdx(), isPreviewFinished()));
         }
-        updateKaroke();
+        updateKaraoke();
     }
 
 
@@ -211,7 +211,7 @@ public class KaraokeController extends FXMLController {
                         case '.': case '!': case '?': case ':': case ';': case ',':  //List of punctuation
                             newSeparator++; //Skip the punctuation
                             break;
-                        default: //If 'a' for exemple
+                        default: //If 'a' for example
                             notFound = false; //Register the character as the new separator
                             break;
                     }
@@ -220,13 +220,13 @@ public class KaraokeController extends FXMLController {
 
             } else {//Check if next value is not punctuation. Never last of line because poem trim lines
                 char nextChar = getCharAt(newSeparator+1);
-                String combinaison = String.valueOf(newChar)+String.valueOf(nextChar);
+                String combination = String.valueOf(newChar)+String.valueOf(nextChar);
 
-                switch (combinaison) {
+                switch (combination) {
                     case " .": case " !": case " ?": case " :": case " ;":  //List of punctuation invalidating the space
                         newSeparator++; //Skip the space
                         break;
-                    default: //If " a" for exemple
+                    default: //If " a" for example
                         notFound = false; //Register the space as current separator
                         break;
                 }

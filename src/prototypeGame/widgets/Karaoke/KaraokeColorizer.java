@@ -135,26 +135,6 @@ public class KaraokeColorizer {
             }
             this.lineOutList.add(line);
         }
-            /*
-            //Todo: use regex to check for valid words
-            for (String word : wordList) {
-                String spaced = word + " ";
-                switch (word) {
-                    case "Hello": case "hello":
-                        textChunks.add(customize(spaced, "purple"));
-                        break;
-                    case "World": case "world":
-                        textChunks.add(customize(spaced, "blue"));
-                        break;
-                    case "Stack Overflow":
-                        textChunks.add(customize(spaced, "orange", "Arial Bold", 15));
-                    default:
-                        textChunks.add(customize(spaced, "black", "Arial",  13));
-                        break;
-                }
-            }
-
-             */
 
     }
 
