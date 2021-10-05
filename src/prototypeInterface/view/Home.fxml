@@ -27,7 +27,7 @@
       <Line endX="806.8333740234375" layoutX="206.0" layoutY="593.0" startX="-219.33331298828125" strokeWidth="2.0" />
       <Line endX="806.8333740234375" layoutX="204.0" layoutY="611.0" startX="-219.33331298828125" strokeWidth="2.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#eeeeef" height="104.0" layoutX="417.0" layoutY="367.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="165.0" />
-      <Button id="menuButton" alignment="CENTER" layoutX="418.0" layoutY="374.0" mnemonicParsing="false" prefHeight="91.0" prefWidth="160.0" style="-fx-background-color: #AA9CCA; -fx-background-radius: 20;">
+      <Button fx:id="menuButton" alignment="CENTER" layoutX="418.0" layoutY="374.0" mnemonicParsing="false" prefHeight="91.0" prefWidth="160.0" style="-fx-background-color: #AA9CCA; -fx-background-radius: 20;">
          <graphic>
             <Polygon fill="#00dac9" points="16.00010108947754, 10.333178520202637, 108.66668701171875, -23.000165939331055, 108.66668701171875, -23.000165939331055, 15.333394050598145, -57.666831970214844" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" />
          </graphic>
@@ -231,7 +231,7 @@
             <Image url="@../../assets/images/note.png" />
          </image>
       </ImageView>
-      <Button id="scoreButton" layoutX="864.0" layoutY="389.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0" style="-fx-background-radius: 50; -fx-background-color: #AA9CCA;" textFill="#aa9cca">
+      <Button fx:id="scoreButton" layoutX="864.0" layoutY="389.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0" style="-fx-background-radius: 50; -fx-background-color: #AA9CCA;" textFill="#aa9cca">
          <effect>
             <DropShadow blurType="ONE_PASS_BOX" height="0.0" offsetX="2.0" offsetY="5.0" radius="3.7625" width="17.05">
                <color>
@@ -247,7 +247,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button id="helpButton" layoutX="42.0" layoutY="389.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0" style="-fx-background-radius: 50; -fx-background-color: #AA9CCA;" text="?">
+      <Button fx:id="helpButton" layoutX="42.0" layoutY="389.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0" style="-fx-background-radius: 50; -fx-background-color: #AA9CCA;" text="?">
          <effect>
             <DropShadow blurType="ONE_PASS_BOX" height="0.0" offsetX="2.0" offsetY="5.0" radius="3.7625" width="17.05">
                <color>
@@ -264,7 +264,7 @@
             <Image url="@../../assets/images/logo.png" />
          </image>
       </ImageView>
-      <Button id="exitButton" layoutX="910.0" layoutY="8.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="52.0" style="-fx-background-color: #aa9cca; -fx-background-radius: 10;">
+      <Button fx:id="exitButton" layoutX="910.0" layoutY="8.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="52.0" style="-fx-background-color: #aa9cca; -fx-background-radius: 10;">
          <effect>
             <DropShadow blurType="ONE_PASS_BOX" height="32.86" offsetX="3.0" offsetY="3.0" radius="12.965">
                <color>
