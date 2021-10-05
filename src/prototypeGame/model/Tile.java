@@ -1,6 +1,8 @@
 package prototypeGame.model;
 
 import controller.FXMLController;
+import javafx.animation.FillTransition;
+import javafx.animation.TranslateTransition;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
@@ -19,6 +21,9 @@ import java.io.IOException;
  */
 public class Tile extends Pane {
 
+    /**The width and height of a tile*/
+    public final static int WIDTH = 67, HEIGHT = 65;
+
     /**The content of the char. Is final*/
     private final char contentChar;
 
@@ -36,10 +41,15 @@ public class Tile extends Pane {
     /**Duplicate validated to handle color change*/
     private BooleanProperty colorValidated = new SimpleBooleanProperty();
 
+    private FillTransition fillTransition = new FillTransition();
+
+    /**The translate transition of the tile. Manage automatic translations**/
+    private TranslateTransition translateTransition = new TranslateTransition();
+
     /**
      * Movement of the tile every frame
      */
-    private int jump = 10;
+    private int jump = 1;
 
     /**
      * A tile is an object containing a char and a {@link Tile#validated} state.
@@ -57,13 +67,14 @@ public class Tile extends Pane {
         this.tileController = new TileController();
         Parent tileUI = null;
         try {
-            tileUI = tileController.loadFXMLWithController(getClass().getResource("src/prototypeGame/view/TileUI.fxml"));
+            tileUI = tileController.loadFXMLWithController(getClass().getResource("../view/TileUI.fxml"));
             this.getChildren().add(tileUI);
         } catch (IOException e) {
             System.out.println("\n Tile UI not loaded");
             e.printStackTrace();
         }
 
+        setAnimation();
         setHandlers();
     }
 
@@ -88,9 +99,34 @@ public class Tile extends Pane {
     private void setHandlers(){
         this.colorValidated.addListener((observable, oldValue, newValue) -> {
             if (newValue) {
-                tileController.tileBackground.setFill(validColor);
+                //tileController.tileBackground.setFill(validColor);
+                this.fillTransition.play();
             }
         });
+    }
+
+
+    /**
+     * Define the animation for fill change
+     */
+    private void setAnimation(){
+        this.fillTransition.setFromValue((Color) this.tileController.tileBackground.getFill());
+        this.fillTransition.setToValue(this.validColor);
+        this.fillTransition.setShape(this.tileController.tileBackground);
+        this.fillTransition.autoReverseProperty().set(false);
+
+        this.translateTransition.setNode(this);
+        this.translateTransition.setAutoReverse(false);
+        this.translateTransition.setCycleCount(1);
+    }
+
+    /**
+     * Return the TranslateTransition animation of the node that move the node.
+     * Must be initialized
+     * @return
+     */
+    public TranslateTransition getTranslateTransition() {
+        return translateTransition;
     }
 
     private class TileController extends FXMLController {
