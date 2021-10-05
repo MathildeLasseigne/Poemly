@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="650.0" style="-fx-background-color: transparent" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="650.0" fx:controller="prototypeInterface.controller.Controller" style="-fx-background-color: transparent" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00dac9" height="530.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" style="-fx-arc-height: 30; -fx-arc-width: 30;" width="650.0" />
       <ImageView fitHeight="664.0" fitWidth="658.0" layoutX="9.0" layoutY="78.0">
@@ -21,7 +21,7 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#eeeeef" height="70.0" layoutX="247.0" layoutY="283.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="155.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#eeeeef" height="70.0" layoutX="92.0" layoutY="283.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="120.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#eeeeef" height="70.0" layoutX="440.0" layoutY="280.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="113.0" />
-      <Button layoutX="194.0" layoutY="417.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="293.0" style="-fx-background-color: #AA9CCA; -fx-background-radius: 8;">
+      <Button fx:id="playButton" layoutX="194.0" layoutY="417.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="293.0" style="-fx-background-color: #AA9CCA; -fx-background-radius: 8;">
          <graphic>
             <Polygon fill="#00dac9" points="2.42883038520813, -25.694915771484375, 94.95501708984375, -19.00833511352539, 98.28836059570312, -19.008346557617188, 2.4674768447875977, -10.936684608459473" stroke="WHITE" strokeWidth="2.0" />
          </graphic></Button>
@@ -30,29 +30,30 @@
             <Image url="@../../assets/images/logo.png" />
          </image>
       </ImageView>
-      <MenuButton id="difficultyButton" alignment="CENTER" layoutX="98.0" layoutY="284.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="105.0" style="-fx-background-color: #AA9CCA; -fx-background-radius: 10;" text="Difficulty" textFill="WHITE">
+      <MenuButton fx:id="difficultyButton" alignment="CENTER" layoutX="98.0" layoutY="284.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="105.0" style="-fx-background-color: #AA9CCA; -fx-background-radius: 10;" text="Difficulty" textFill="WHITE">
         <items>
-          <MenuItem id="easy" mnemonicParsing="false" style="-fx-background: #AA9CCA;" text="Easy" />
-          <MenuItem id="medium" mnemonicParsing="false" style="-fx-background: #AA9CCA;" text="Medium" />
-            <MenuItem id="hard" mnemonicParsing="false" style="-fx-background: #AA9CCA;" text="Hard" />
+          <MenuItem fx:id="easy" mnemonicParsing="false" style="-fx-background: #AA9CCA;" text="Easy" />
+          <MenuItem fx:id="medium" mnemonicParsing="false" style="-fx-background: #AA9CCA;" text="Medium" />
+            <MenuItem fx:id="hard" mnemonicParsing="false" style="-fx-background: #AA9CCA;" text="Hard" />
         </items>
          <font>
             <Font name="Comic Sans MS" size="14.0" />
          </font>
       </MenuButton>
-      <MenuButton id="difficultyButton" alignment="CENTER" layoutX="272.0" layoutY="284.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="105.0" style="-fx-background-color: #AA9CCA; -fx-background-radius: 10;" text="Poem" textFill="WHITE">
+      <MenuButton fx:id="poemButton" alignment="CENTER" layoutX="272.0" layoutY="284.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="105.0" style="-fx-background-color: #AA9CCA; -fx-background-radius: 10;" text="Poem" textFill="WHITE">
          <items>
-            <MenuItem mnemonicParsing="false" text="Action 1" />
-            <MenuItem mnemonicParsing="false" text="Action 2" />
+            <MenuItem fx:id="poem1" mnemonicParsing="false" text="Poem 1" />
+            <MenuItem fx:id="poem2" mnemonicParsing="false" text="Poem 2" />
+            <MenuItem fx:id="customPoem" mnemonicParsing="false" text="Enter my own poem!" />
          </items>
          <font>
             <Font name="Comic Sans MS" size="14.0" />
          </font>
       </MenuButton>
-      <MenuButton id="songButton" alignment="CENTER" layoutX="447.0" layoutY="284.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="105.0" style="-fx-background-color: #AA9CCA; -fx-background-radius: 10;" text="Song" textFill="WHITE">
+      <MenuButton fx:id="songButton" alignment="CENTER" layoutX="447.0" layoutY="284.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="105.0" style="-fx-background-color: #AA9CCA; -fx-background-radius: 10;" text="Song" textFill="WHITE">
          <items>
-            <MenuItem mnemonicParsing="false" text="Action 1" />
-            <MenuItem mnemonicParsing="false" text="Action 2" />
+            <MenuItem fx:id="song1" mnemonicParsing="false" text="Song 1" />
+            <MenuItem fx:id="song2" mnemonicParsing="false" text="Song 2" />
          </items>
          <font>
             <Font name="Comic Sans MS" size="14.0" />

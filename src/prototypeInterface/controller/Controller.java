@@ -15,6 +15,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -48,12 +49,16 @@ public class Controller extends FXMLController {
 
     @FXML
     private Button exitButton, homeButton, helpButton, scoreButton, menuButton, playButton, up, down;
+    @FXML
     private MenuButton difficultyButton, songButton, poemButton;
+    @FXML
     private MenuItem easy, medium, hard, song1, song2, poem1, poem2, customPoem;
     private Label song, poem, score, difficulty;
+    @FXML
     private ProgressBar progressBar;
     private Poem poemSelected;
-    private Panel textPanel;
+    @FXML
+    private AnchorPane textPanel;
 
     public Controller() throws IOException {
         setActions();
@@ -63,7 +68,7 @@ public class Controller extends FXMLController {
     public void setActions(){
         this.homeButton.setOnAction(e-> {
             try {
-                switchScene(e, "Windows/Home.fxml");
+                switchScene(e, "prototypeInterface/view/Home.fxml");
             } catch (IOException ex) {
                 ex.printStackTrace();
             }

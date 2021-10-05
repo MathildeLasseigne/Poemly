@@ -10,14 +10,14 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" style="-fx-background-color: #F7E756;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" fx:controller="prototypeInterface.controller.Controller" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" style="-fx-background-color: #F7E756;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="650.0" fitWidth="663.0" opacity="0.5">
          <image>
             <Image url="@../../assets/images/Beach.png" />
          </image>
       </ImageView>
-      <ImageView id="bar" fitHeight="57.0" fitWidth="661.0" layoutY="492.0">
+      <ImageView fx:id="bar" fitHeight="57.0" fitWidth="661.0" layoutY="492.0">
          <image>
             <Image url="@../../assets/images/Towel.png" />
          </image>
@@ -30,9 +30,9 @@
             <Image url="@../../assets/images/logo.png" />
          </image>
       </ImageView>
-      <Button id="exitButton" layoutX="950.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-radius: 50; -fx-background-color: #AA9CCA;" textFill="#aa9cca">
+      <Button fx:id="homeButton" layoutX="950.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-radius: 50; -fx-background-color: #AA9CCA;" textFill="#aa9cca">
          <graphic>
-            <ImageView id="exitButton" fitHeight="20.0" fitWidth="15.0">
+            <ImageView fitHeight="20.0" fitWidth="15.0">
                <image>
                   <Image url="@../../assets/images/home.png" />
                </image>
@@ -40,7 +40,7 @@
          </graphic>
       </Button>
       <Line endX="84.0" endY="-1.0000076293945312" layoutX="918.0" layoutY="51.0" startX="-918.0" startY="-1.0000076293945312" strokeWidth="3.0" />
-      <ProgressBar id="progressBar" layoutX="354.0" layoutY="12.0" prefHeight="23.0" prefWidth="260.0" progress="1.0" style="fx: F7E756;" />
-      <AnchorPane id="textPanel" layoutX="665.0" layoutY="52.0" prefHeight="600.0" prefWidth="335.0" />
+      <ProgressBar fx:id="progressBar" layoutX="354.0" layoutY="12.0" prefHeight="23.0" prefWidth="260.0" progress="1.0" style="fx: F7E756;" />
+      <AnchorPane fx:id="textPanel" layoutX="665.0" layoutY="52.0" prefHeight="600.0" prefWidth="335.0" />
    </children>
 </Pane>

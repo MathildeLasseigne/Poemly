@@ -23,9 +23,7 @@ public class MainPrototypeInterface extends Application{
     }
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Controller controller = new Controller();
         FXMLLoader loader= new FXMLLoader(getClass().getClassLoader().getResource("prototypeInterface/view/Menu.fxml"));
-        loader.setController(controller);
         Parent root = loader.load();
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
