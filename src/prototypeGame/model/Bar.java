@@ -42,9 +42,12 @@ public class Bar {
 
     /**
      * Try to add a tile to the list if it is not already in the list.
+     * A tile is added to the bar if it intersect the bar.
      * <br/>Select a new current tile if necessary
+     * <br/>Fire property change to Bar listener if current Tile changed
      * @param tile the Tile to add
      * @return false if the tile is already in the bar or do not intersect the bar
+     * @see Bar#selectNewTile()
      */
     public boolean tryAddTile(Tile tile){
         if(! tileContained.contains(tile)){
@@ -73,7 +76,7 @@ public class Bar {
 
     /**
      * Return the current active tile. Can be null if if last selected Tile is validated and no new tile is present
-     * @return the current tile
+     * @return the current tile - may be null
      */
     public Tile getCurrentTile(){
         return this.currentTile;
@@ -96,7 +99,7 @@ public class Bar {
             }
         }
         if(mod){
-            selectNewTile();
+            selectNewTile(); //If validated, automatically choose a new tile
         }
         return tmp;
     }
@@ -117,8 +120,6 @@ public class Bar {
                 this.currentTile.validated.addListener(tileChangeListener);
                 currentTileProperty.firePropertyChange("currentTile", null, this.currentTile); //Notify property listeners
                 return true;
-            } else {
-                return false;
             }
         } else {
             //If current tile validated, change it, if not keep it
@@ -126,10 +127,9 @@ public class Bar {
                 this.currentTile.validated.removeListener(tileChangeListener);
                 this.currentTile = null;
                 return selectNewTile();
-            } else {
-                return false;
             }
         }
+        return false;
     }
 
     /**
