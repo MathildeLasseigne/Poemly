@@ -172,7 +172,7 @@ public class KaraokeController extends FXMLController {
             if(this.karaoke.difficulty == Difficulty.DifficultyLevel.Easy){
                 return currentString.equalsIgnoreCase(keyString);
             } else {
-                return currentString == keyString;
+                return currentString.equals(keyString);
             }
         } catch (Exception e) {
             throw e;
