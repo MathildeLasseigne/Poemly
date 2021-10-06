@@ -23,7 +23,7 @@ public class GameModele  implements PropertyChangeListener {
     private GameBoard gameBoard;
 
     /**The time it takes between each new tile */
-    private Duration addingTileDuration = Duration.seconds(10);
+    private Duration addingTileDuration = Duration.seconds(1);
 
     /**
      * The timeLine responsible to add tile to the board every x time
@@ -45,9 +45,6 @@ public class GameModele  implements PropertyChangeListener {
     public GameModele(Game game){
         this.game = game;
         this.gameBoard = new GameBoard(this.game.getGameUI().gameUINodes.getBoard(), Utilities.parentToScreen(this.game.getGameUI().gameUINodes.getBar()));//this.game.getGameUI().gameUINodes.getBar().getBoundsInParent());
-        if(Utilities.parentToScreen(this.game.getGameUI().gameUINodes.getBar()) == null){
-            System.out.println("break");
-        }
         setListeners();
         setTimers();
         this.valueTile = this.game.getGameUI().karaoke.getKaraokeController().getLengthForDifficulty()/(double) 100;
@@ -60,6 +57,7 @@ public class GameModele  implements PropertyChangeListener {
         this.gameBoard.getBar().addPropertyChangeListener(this);
 
         this.game.setOnKeyTyped(event -> {
+            System.out.println("Key typed");
             if(! game.getGameUI().karaoke.isFinished().getValue()){
                 boolean good = false;
                 try {

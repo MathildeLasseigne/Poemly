@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
-
 
 <StackPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -30,28 +29,29 @@
                </image>
             </ImageView>
             <Pane fx:id="karaokeContainer" layoutX="665.0" layoutY="52.0" prefHeight="600.0" prefWidth="342.0" />
-            <Pane fx:id="board" layoutX="2.0" layoutY="52.0" prefHeight="600.0" prefWidth="661.0">
+            <Pane fx:id="board" layoutY="52.0" prefHeight="600.0" prefWidth="663.0">
                <children>
                   <Pane fx:id="bar" layoutY="439.0" prefHeight="61.0" prefWidth="661.0" />
                </children>
             </Pane>
             <Line endX="100.0" layoutX="663.0" layoutY="329.0" rotate="90.0" scaleX="3.25" startX="-100.0" strokeWidth="3.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00dac9" height="50.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="2.0" width="1002.0" />
-            <ImageView fitHeight="49.0" fitWidth="185.0" layoutX="438.0">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00dac9" height="50.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" width="1002.0" />
+            <ProgressBar layoutX="410.0" layoutY="14.0" prefHeight="18.0" prefWidth="253.0" progress="1.0" />
+            <ImageView fitHeight="31.0" fitWidth="99.0" layoutX="19.0" layoutY="10.0">
                <image>
                   <Image url="@../../assets/images/logo.png" />
                </image>
             </ImageView>
-            <Group layoutX="953.0" layoutY="10.0">
-               <children>
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-radius: 50; -fx-background-color: #AA9CCA;" textFill="#aa9cca" />
-                  <ImageView fitHeight="20.0" fitWidth="26.0" layoutX="2.0" layoutY="5.0">
+            <Button layoutX="952.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-radius: 50; -fx-background-color: #AA9CCA;" textFill="#aa9cca">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="18.0">
                      <image>
                         <Image url="@../../assets/images/home.png" />
                      </image>
                   </ImageView>
-               </children>
-            </Group>
+               </graphic>
+            </Button>
+            <Line endX="827.0" endY="0.9999961853027344" layoutX="173.0" layoutY="48.0" startX="-173.00001525878906" startY="0.9999961853027344" strokeWidth="3.0" />
          </children>
       </Pane>
    </children>

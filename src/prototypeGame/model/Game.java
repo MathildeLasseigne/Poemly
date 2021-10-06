@@ -33,6 +33,7 @@ public class Game extends Pane {
         this.poem = poem;
         this.song = song;
         this.theme = chooseRandomTheme();
+        //this.theme = ProjectDataManager.Theme.School;
         this.difficulty = difficultyLevel;
 
         this.gameUI = new GameUI(this);

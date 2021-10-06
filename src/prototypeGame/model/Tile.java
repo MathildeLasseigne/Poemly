@@ -22,7 +22,7 @@ import java.io.IOException;
 public class Tile extends Pane {
 
     /**The width and height of a tile*/
-    public final static int WIDTH = 67, HEIGHT = 65;
+    public final static int WIDTH = 67, HEIGHT = 67;
 
     /**The content of the char. Is final*/
     private final char contentChar;
@@ -99,8 +99,8 @@ public class Tile extends Pane {
     private void setHandlers(){
         this.colorValidated.addListener((observable, oldValue, newValue) -> {
             if (newValue) {
-                //tileController.tileBackground.setFill(validColor);
-                this.fillTransition.play();
+                tileController.tileBackground.setFill(validColor);
+                //this.fillTransition.play();
             }
         });
     }
