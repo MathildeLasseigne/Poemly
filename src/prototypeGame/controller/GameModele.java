@@ -6,6 +6,7 @@ import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.EventHandler;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
 import prototypeGame.model.Game;
@@ -36,6 +37,7 @@ public class GameModele  implements PropertyChangeListener {
     private AnimationTimer updateAll;
 
     private double score = 0;
+    /**The value of 1 tile in percentage*/
     private double valueTile = 0;
 
     /**
@@ -47,7 +49,7 @@ public class GameModele  implements PropertyChangeListener {
         this.gameBoard = new GameBoard(this.game.getGameUI().gameUINodes.getBoard(), Utilities.parentToScreen(this.game.getGameUI().gameUINodes.getBar()));//this.game.getGameUI().gameUINodes.getBar().getBoundsInParent());
         setListeners();
         setTimers();
-        this.valueTile = this.game.getGameUI().karaoke.getKaraokeController().getLengthForDifficulty()/(double) 100;
+        this.valueTile = ((double) 100/ (double) this.game.getGameUI().karaoke.getKaraokeController().getLengthForDifficulty());
     }
 
     /**
@@ -68,7 +70,9 @@ public class GameModele  implements PropertyChangeListener {
                 }
                 if(good){
                     gameBoard.getBar().getCurrentTile().validated.set(true);
-                    score += valueTile;
+                    //score += valueTile;
+                    ProgressBar gameScore = game.getGameUI().gameUINodes.getScoreBar();
+                    gameScore.setProgress(gameScore.getProgress() + (valueTile/100));
                 }
             }
         });
@@ -136,6 +140,5 @@ public class GameModele  implements PropertyChangeListener {
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         this.game.getGameUI().karaoke.next();
-        //TODO update karaoke & add score
     }
 }

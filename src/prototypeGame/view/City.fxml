@@ -36,7 +36,7 @@
             </Pane>
             <Line endX="100.0" layoutX="663.0" layoutY="329.0" rotate="90.0" scaleX="3.25" startX="-100.0" strokeWidth="3.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00dac9" height="50.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" width="1002.0" />
-            <ProgressBar layoutX="410.0" layoutY="14.0" prefHeight="18.0" prefWidth="253.0" progress="1.0" />
+            <ProgressBar fx:id="scoreBar" layoutX="410.0" layoutY="14.0" prefHeight="18.0" prefWidth="253.0" progress="0.0" />
             <ImageView fitHeight="31.0" fitWidth="99.0" layoutX="19.0" layoutY="10.0">
                <image>
                   <Image url="@../../assets/images/logo.png" />

@@ -28,7 +28,7 @@
                   <Image url="@../../assets/images/Paper.png" />
                </image>
             </ImageView>
-            <Pane fx:id="karaokeContainer" layoutX="661.0" layoutY="52.0" prefHeight="600.0" prefWidth="342.0" />
+            <Pane fx:id="karaokeContainer" layoutX="665.0" layoutY="51.0" prefHeight="600.0" prefWidth="342.0" />
             <Pane fx:id="board" layoutY="51.0" prefHeight="602.0" prefWidth="661.0">
                <children>
                   <Pane fx:id="bar" layoutY="440.0" prefHeight="60.0" prefWidth="661.0" />
@@ -41,8 +41,8 @@
                   <Image url="@../../assets/images/logo.png" />
                </image>
             </ImageView>
-            <Line endX="839.0000610351562" endY="0.9999885559082031" layoutX="165.0" layoutY="51.0" startX="-172.00001525878906" startY="0.9999885559082031" strokeWidth="3.0" />
-            <ProgressBar layoutX="407.0" layoutY="17.0" prefHeight="18.0" prefWidth="253.0" progress="1.0" />
+            <Line endX="839.0000610351562" endY="0.9999885559082031" layoutX="169.0" layoutY="50.0" startX="-172.00001525878906" startY="0.9999885559082031" strokeWidth="3.0" />
+            <ProgressBar fx:id="scoreBar" layoutX="407.0" layoutY="17.0" prefHeight="18.0" prefWidth="253.0" progress="0.0" />
             <Button layoutX="953.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-radius: 50; -fx-background-color: #AA9CCA;" textFill="#aa9cca">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="18.0">

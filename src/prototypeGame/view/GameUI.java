@@ -4,6 +4,7 @@ package prototypeGame.view;
 import controller.FXMLController;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import model.ProjectDataManager;
@@ -71,6 +72,9 @@ public class GameUI extends Pane {
         @FXML
         private Pane bar;
 
+        @FXML
+        private ProgressBar scoreBar;
+
         public GameFXMLController(URL fxmlPath){
             Parent gamePanel = null;
             try {
@@ -101,6 +105,10 @@ public class GameUI extends Pane {
 
         public Pane getBar() {
             return bar;
+        }
+
+        public ProgressBar getScoreBar() {
+            return scoreBar;
         }
     }
 

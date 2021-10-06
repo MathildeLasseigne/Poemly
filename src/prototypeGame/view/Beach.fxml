@@ -51,7 +51,7 @@
                   <Image url="@../../assets/images/logo.png" />
                </image>
             </ImageView>
-            <ProgressBar layoutX="411.0" layoutY="17.0" prefHeight="18.0" prefWidth="253.0" progress="1.0" />
+            <ProgressBar fx:id="scoreBar" layoutX="411.0" layoutY="17.0" prefHeight="18.0" prefWidth="253.0" progress="0.0" />
          </children>
       </Pane>
    </children>
