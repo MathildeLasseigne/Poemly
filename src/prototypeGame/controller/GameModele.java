@@ -117,6 +117,11 @@ public class GameModele  implements PropertyChangeListener {
             this.gameBoard.getBar().setBounds(Utilities.parentToScreen(this.game.getGameUI().gameUINodes.getBar()));
         }
         this.gameBoard.update();
+        if(this.game.getGameUI().karaoke.isFinished().getValue()){
+            closeGame();
+            ProgressBar gameScore = game.getGameUI().gameUINodes.getScoreBar();
+            this.game.getGameUI().showScorePanel(gameScore.getProgress()*100);
+        }
     }
 
     public void start(){

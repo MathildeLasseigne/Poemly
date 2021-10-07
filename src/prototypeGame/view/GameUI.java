@@ -2,11 +2,18 @@ package prototypeGame.view;
 
 
 import controller.FXMLController;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.effect.BoxBlur;
+import javafx.scene.effect.Effect;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import model.ProjectDataManager;
 import prototypeGame.model.Game;
 import prototypeGame.widgets.Karaoke.Karaoke;
@@ -20,6 +27,8 @@ public class GameUI extends Pane {
 
     public GameFXMLController gameUINodes;
 
+    public ScoreUIController scoreUI;
+
     public Karaoke karaoke;
 
     public GameUI(Game game){
@@ -31,6 +40,8 @@ public class GameUI extends Pane {
         this.karaoke = new Karaoke(this.game.getPoem(), this.game.getDifficulty());
 
         this.gameUINodes.karaokeContainer.getChildren().add(karaoke);
+
+        this.scoreUI = new ScoreUIController();
 
     }
 
@@ -53,6 +64,19 @@ public class GameUI extends Pane {
             System.out.println("URL gameUI null");
         }
         return url;
+    }
+
+    /**
+     * Show the score obtained in the panel.
+     * Blur the background pane
+     * @param score
+     */
+    public void showScorePanel(double score){
+        this.scoreUI.score.setText(String.valueOf(Math.round(score)));
+        Pane gamePanel = (Pane) this.gameUINodes.gamePanel.getChildren().get(0);
+        gamePanel.setEffect(new BoxBlur());
+        this.gameUINodes.gamePanel.getChildren().add(this.scoreUI.container);
+
     }
 
     /**
@@ -112,4 +136,39 @@ public class GameUI extends Pane {
         }
     }
 
+
+    public class ScoreUIController extends FXMLController{
+
+        public Node container;
+
+        @FXML
+        public Text score;
+
+        @FXML
+        public Button home;
+
+        public ScoreUIController(){
+            Parent gamePanel = null;
+            try {
+                gamePanel = this.loadFXMLWithController(getClass().getResource("StopGame.fxml"));
+                this.container = gamePanel;
+            } catch (IOException e) {
+                System.out.println("\n Score UI not loaded");
+                e.printStackTrace();
+            }
+        }
+
+        @FXML
+        public void initialize(){
+
+        }
+
+        /**
+         * Set the action to go home on the go home button.
+         * @param e
+         */
+        public void setActionHome(EventHandler e){
+            home.setOnAction(e);
+        }
+    }
 }
