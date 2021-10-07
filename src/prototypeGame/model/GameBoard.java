@@ -31,7 +31,7 @@ public class GameBoard {
     private boolean isFirstCall = true;
 
     /**The duration of the tile translation to the bottom of the screen*/
-    private Duration translationDuration = Duration.millis(10000);
+    public Duration translationDuration = Duration.millis(10000);
 
     private final ReentrantLock tileListMutex = new ReentrantLock();
 

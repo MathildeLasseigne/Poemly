@@ -234,7 +234,7 @@ public class KaraokeController extends FXMLController {
 
         } while (notFound);
 
-        if(newSeparator >= this.karaoke.poem.getLenght()-1){
+        if(newSeparator > this.karaoke.poem.getLenght()-1){
             textFinished.set(true);
         }
 

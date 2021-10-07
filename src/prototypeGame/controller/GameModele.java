@@ -19,12 +19,20 @@ import java.beans.PropertyChangeListener;
 
 public class GameModele  implements PropertyChangeListener {
 
+    /**
+     * The rate at which the game happen -> allow accelerating and decelerating of game.
+     * Default is 1
+     */
+    private double rate = 1;
+
     private Game game;
 
     private GameBoard gameBoard;
 
     /**The time it takes between each new tile */
-    private Duration addingTileDuration = Duration.seconds(1);
+    private Duration addingTileDuration = Duration.seconds(2);
+
+    private Duration spaceDuration = addingTileDuration.add(Duration.seconds(1));
 
     /**
      * The timeLine responsible to add tile to the board every x time
@@ -50,6 +58,10 @@ public class GameModele  implements PropertyChangeListener {
         setListeners();
         setTimers();
         this.valueTile = ((double) 100/ (double) this.game.getGameUI().karaoke.getKaraokeController().getLengthForDifficulty());
+        if(this.rate != 1 && this.rate != 0){
+            this.addingTileDuration.multiply(this.rate);
+            this.gameBoard.translationDuration.multiply(this.rate);
+        }
     }
 
     /**
@@ -86,8 +98,7 @@ public class GameModele  implements PropertyChangeListener {
             }
         };
 
-        this.addingTile.getKeyFrames().add(new KeyFrame(addingTileDuration, event -> {
-            //TODO with karaoke
+        this.addingTile.getKeyFrames().addAll(new KeyFrame(Duration.ZERO, event -> {
             Karaoke karaoke = this.game.getGameUI().karaoke;
             if(! karaoke.getKaraokeController().isPreviewFinished().getValue()){
                 char newTileChar = 0;
@@ -100,10 +111,15 @@ public class GameModele  implements PropertyChangeListener {
                     e.printStackTrace();
                 }
                 this.gameBoard.createTile(newTileChar);
-
+                if(newTileChar == ' '){ //Slow down next tile apparition if space
+                    double comp = addingTileDuration.toMillis() / this.spaceDuration.toMillis();
+                    this.addingTile.setRate(comp);
+                } else {
+                    this.addingTile.setRate(1);
+                }
             }
 
-        }));
+        }), new KeyFrame(addingTileDuration));
         this.addingTile.setCycleCount(Animation.INDEFINITE);
         this.addingTile.setAutoReverse(false);
         this.addingTile.setRate(1);
