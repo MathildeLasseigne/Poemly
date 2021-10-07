@@ -42,7 +42,7 @@
                   <Image url="@../../assets/images/logo.png" />
                </image>
             </ImageView>
-            <Button layoutX="952.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-radius: 50; -fx-background-color: #AA9CCA;" textFill="#aa9cca">
+            <Button fx:id="home" layoutX="952.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-radius: 50; -fx-background-color: #AA9CCA;" textFill="#aa9cca">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="18.0">
                      <image>

@@ -1,5 +1,6 @@
 package prototypeGame.model;
 
+import javafx.event.EventHandler;
 import javafx.scene.layout.Pane;
 import model.Difficulty;
 import model.Poem;
@@ -86,6 +87,14 @@ public class Game extends Pane {
         } else {
             return ProjectDataManager.Theme.School;
         }
+    }
+
+    /**
+     * Set the handler used to go back to home screen from the game menu.
+     * @param e
+     */
+    public void setExitHandler(EventHandler e){
+        this.getGameUI().setExitHandlers(e);
     }
 
 }

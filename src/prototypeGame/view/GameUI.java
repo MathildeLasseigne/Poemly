@@ -80,6 +80,15 @@ public class GameUI extends Pane {
     }
 
     /**
+     * Set the exit handlers on the buttons
+     * @param e
+     */
+    public void setExitHandlers(EventHandler e){
+        this.scoreUI.home.setOnAction(e);
+        this.gameUINodes.home.setOnAction(e);
+    }
+
+    /**
      * Contain all the nodes of the UI
      */
     public class GameFXMLController extends FXMLController {
@@ -98,6 +107,9 @@ public class GameUI extends Pane {
 
         @FXML
         private ProgressBar scoreBar;
+
+        @FXML
+        private Button home;
 
         public GameFXMLController(URL fxmlPath){
             Parent gamePanel = null;
@@ -163,12 +175,5 @@ public class GameUI extends Pane {
 
         }
 
-        /**
-         * Set the action to go home on the go home button.
-         * @param e
-         */
-        public void setActionHome(EventHandler e){
-            home.setOnAction(e);
-        }
     }
 }
