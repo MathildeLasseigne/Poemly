@@ -3,6 +3,7 @@ package prototypeGame.view;
 
 import controller.FXMLController;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -11,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.effect.Effect;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
@@ -84,8 +86,18 @@ public class GameUI extends Pane {
      * @param e
      */
     public void setExitHandlers(EventHandler e){
-        this.scoreUI.home.setOnAction(e);
-        this.gameUINodes.home.setOnAction(e);
+        //Close the game before coming back
+        EventHandler newEvent = event -> {
+            if(! (event.getSource() instanceof KeyEvent)){
+                game.getGameModel().closeGame();
+                e.handle(event);
+            }
+        };
+        this.scoreUI.home.setFocusTraversable(false);
+        this.scoreUI.home.setOnAction(newEvent);
+
+        this.gameUINodes.home.setFocusTraversable(false);
+        this.gameUINodes.home.setOnAction(newEvent);
     }
 
     /**

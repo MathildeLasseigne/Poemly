@@ -89,6 +89,11 @@ public class Game extends Pane {
         }
     }
 
+    /**Start the game. Call after {@link Game#setExitHandler(EventHandler)}*/
+    public void start(){
+        this.getGameModel().start();
+    }
+
     /**
      * Set the handler used to go back to home screen from the game menu.
      * @param e

@@ -43,7 +43,8 @@ public class MainPrototypeGame  extends Application {
         primaryStage.show();
 
         Game g = (Game) test;
-        g.getGameModel().start();
+        g.setExitHandler( e -> System.exit(0));
+        g.start();
 
 
     }

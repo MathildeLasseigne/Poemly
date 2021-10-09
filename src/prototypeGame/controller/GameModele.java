@@ -165,6 +165,7 @@ public class GameModele  implements PropertyChangeListener {
      * Reset all sounds and send Score to Score manager
      */
     public void closeGame(){
+        this.speedModifier.sleepTimeLine.stop();
         this.addingTile.stop();
         this.updateAll.stop();
     }
