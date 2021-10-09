@@ -55,7 +55,7 @@ public class MainPrototypeGame  extends Application {
         Poem poem = new Poem("Test Poem", "C:\\Users\\mathilde\\Documents\\Cours\\M1HCI\\Adv programmation of ISO\\Project\\Poemly\\src\\assets\\tests\\testReader.txt");
         Song song = Song.createEmptySong();
 
-        Game game = new Game(poem, song, Difficulty.DifficultyLevel.Hard);
+        Game game = new Game(poem, song, Difficulty.DifficultyLevel.Easy);
 
 
         return game;

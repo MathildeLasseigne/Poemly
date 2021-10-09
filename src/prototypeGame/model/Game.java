@@ -91,7 +91,7 @@ public class Game extends Pane {
 
     /**Start the game. Call after {@link Game#setExitHandler(EventHandler)}*/
     public void start(){
-        this.getGameModel().start();
+        this.getGameModel().countDown.start();
     }
 
     /**

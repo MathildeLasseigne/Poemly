@@ -2,21 +2,19 @@ package prototypeGame.view;
 
 
 import controller.FXMLController;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.effect.BoxBlur;
-import javafx.scene.effect.Effect;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import model.ProjectDataManager;
+import prototypeGame.controller.GameModele;
 import prototypeGame.model.Game;
 import prototypeGame.widgets.Karaoke.Karaoke;
 
@@ -91,11 +89,16 @@ public class GameUI extends Pane {
             game.getGameModel().closeGame();
             e.handle(event);
         };
-        this.scoreUI.home.setFocusTraversable(false);
-        this.scoreUI.home.setOnAction(newEvent);
 
-        this.gameUINodes.home.setFocusTraversable(false);
+        this.scoreUI.home.setOnAction(newEvent);
+        this.scoreUI.home.focusedProperty().addListener((observableValue, oldValue, newValue) -> {
+            if (newValue)  this.game.requestFocus();
+        });
+
         this.gameUINodes.home.setOnAction(newEvent);
+        this.gameUINodes.home.focusedProperty().addListener((observableValue, oldValue, newValue) -> {
+            if (newValue)  this.game.requestFocus();
+        });
     }
 
     /**

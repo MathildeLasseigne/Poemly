@@ -1,11 +1,12 @@
 package prototypeGame.controller;
 
 
-import javafx.animation.Animation;
-import javafx.animation.AnimationTimer;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
+import javafx.animation.*;
+import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.util.Duration;
 import model.Difficulty;
 import prototypeGame.model.Game;
@@ -36,6 +37,8 @@ public class GameModele  implements PropertyChangeListener {
     private Duration spaceDuration = addingTileDuration.add(Duration.seconds(1));
 
     private final SpeedModifier speedModifier;
+
+    public CountDown countDown;
 
     /**
      * The timeLine responsible to add tile to the board every x time
@@ -70,6 +73,7 @@ public class GameModele  implements PropertyChangeListener {
         this.nbTiles = this.game.getGameUI().karaoke.getKaraokeController().getLengthForDifficulty();
         this.valueTile = ((double) 100/ (double) this.nbTiles);
         this.speedModifier = new SpeedModifier(this);
+        this.countDown = new CountDown(this, 3);
     }
 
     /**
@@ -78,7 +82,9 @@ public class GameModele  implements PropertyChangeListener {
     private void setListeners(){
         this.gameBoard.getBar().addPropertyChangeListener(this);
 
-        this.game.setOnKeyTyped(event -> {
+        //this.game.addEventFilter(KeyEvent.KEY_TYPED,);
+        //this.game.setOnKeyTyped(event -> {
+        this.game.addEventFilter(KeyEvent.KEY_TYPED, event -> {
             System.out.println("Key typed");
             if(this.gameBoard.getBar().getCurrentTile() != null){
                 if(! game.getGameUI().karaoke.isFinished().getValue()){
@@ -188,7 +194,7 @@ public class GameModele  implements PropertyChangeListener {
         private GameModele gameModele;
 
         /**The speed will be maximal at maxAtPortion part of the poem for each difficulty (1 max)*/
-        private double maxAtPortionEasy = 1,maxAtPortionMedium = 1, maxAtPortionHard = 1;
+        private double maxAtPortionEasy = 1,maxAtPortionMedium = 8/10, maxAtPortionHard = 6/10;
         /**the speed at this separator will be the maximal*/
         private int maxAtSeparator = 0;
 
@@ -200,7 +206,7 @@ public class GameModele  implements PropertyChangeListener {
         private double rateIncrement = 0;
 
         /**The maximal rate the game can go to after acceleration*/
-        private final double maxRate = 4;
+        private final double maxRate = 2.5;
 
         private Timeline sleepTimeLine = new Timeline();
 
@@ -275,5 +281,64 @@ public class GameModele  implements PropertyChangeListener {
                 }
             }
         }
+    }
+
+    public class CountDown {
+
+        private GameModele gameModele;
+
+        private int maxValue;
+
+        private int currentValue;
+
+        private Label countDownDisplay = new Label();
+
+        private FadeTransition countDownFade = new FadeTransition();
+
+
+        /**
+         * Create a countdown and display it on the game panel.
+         * At the end of the countdown, begin the game.
+         * Add and remove itself from the game panel
+         * @param gameModele
+         * @param maxSec the max number of seconds for the countdown
+         */
+        CountDown(GameModele gameModele, int maxSec){
+            this.gameModele = gameModele;
+            this.maxValue = maxSec;
+            this.currentValue = this.maxValue;
+            this.countDownDisplay.setText(String.valueOf(maxSec));
+            this.countDownDisplay.setFont(Font.font("Comic Sans MS", FontWeight.EXTRA_BOLD, 200));
+
+            this.countDownFade.setNode(this.countDownDisplay);
+            this.countDownFade.setDuration(Duration.seconds(1));
+            this.countDownFade.setDelay(Duration.seconds(0.5));
+            this.countDownFade.setFromValue(1);
+            this.countDownFade.setToValue(0);
+            this.countDownFade.setOnFinished(e -> onFinished());
+        }
+
+        /**
+         * Begin the countdown and display it on the game panel
+         */
+        public void start(){
+            this.gameModele.game.getGameUI().gameUINodes.getGamePanel().getChildren()
+                    .add(this.countDownDisplay);
+            this.countDownFade.play();
+        }
+
+        private void onFinished(){
+            this.currentValue--;
+            if(this.currentValue == 0){
+                this.gameModele.game.getGameUI().gameUINodes.getGamePanel().getChildren()
+                        .remove(this.countDownDisplay);
+                this.gameModele.start();
+            } else {
+                this.countDownDisplay.setText(String.valueOf(this.currentValue));
+                this.countDownFade.playFromStart();
+            }
+        }
+
+
     }
 }
