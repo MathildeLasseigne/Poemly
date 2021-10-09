@@ -59,6 +59,9 @@ public class Song extends Encodable{
      * @return
      */
     public SoundPlayer getSoundPlayer() {
+        if(this.path == null){
+            return null;
+        }
         if(this.soundPlayer == null || this.soundPlayer.isClosed()){
             this.soundPlayer = new SoundPlayer(this.path);
             this.soundPlayer.setName(this.name);
@@ -74,6 +77,9 @@ public class Song extends Encodable{
      * @return
      */
     public SoundPlayer getLoopingSoundPlayer() {
+        if(this.path == null){
+            return null;
+        }
         if(this.loopingSoundPlayer == null || this.loopingSoundPlayer.isClosed()){
             this.loopingSoundPlayer = new SoundPlayer(this.path, true);
             this.loopingSoundPlayer.setName(this.name);
