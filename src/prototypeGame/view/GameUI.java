@@ -88,10 +88,8 @@ public class GameUI extends Pane {
     public void setExitHandlers(EventHandler e){
         //Close the game before coming back
         EventHandler newEvent = event -> {
-            if(! (event.getSource() instanceof KeyEvent)){
-                game.getGameModel().closeGame();
-                e.handle(event);
-            }
+            game.getGameModel().closeGame();
+            e.handle(event);
         };
         this.scoreUI.home.setFocusTraversable(false);
         this.scoreUI.home.setOnAction(newEvent);
