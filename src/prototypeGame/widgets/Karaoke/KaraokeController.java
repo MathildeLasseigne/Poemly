@@ -28,7 +28,7 @@ public class KaraokeController extends FXMLController {
     private BooleanProperty finished = new SimpleBooleanProperty(false);
 
 
-    //Preview separator -> Used to predict future character
+    /**Preview separator -> Used to predict future character*/
     private int previewSeparatorIdx = -1;
     private BooleanProperty previewFinished = new SimpleBooleanProperty(false);
 
@@ -147,6 +147,12 @@ public class KaraokeController extends FXMLController {
             this.previewSeparatorIdx = nextChar(this.previewSeparatorIdx, isPreviewFinished());
         }
     }
+
+    /**Return the separator idx of the current preview char*/
+    public int getPreviewSeparatorIdx() {
+        return previewSeparatorIdx;
+    }
+
 
 
     /**

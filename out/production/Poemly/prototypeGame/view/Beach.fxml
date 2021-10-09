@@ -36,7 +36,7 @@
             </Pane>
             <Line endX="100.0" layoutX="663.0" layoutY="329.0" rotate="90.0" scaleX="3.25" startX="-100.0" strokeWidth="3.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00dac9" height="55.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" width="1002.0" />
-            <Button layoutX="953.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-radius: 50; -fx-background-color: #AA9CCA;" textFill="#aa9cca">
+            <Button fx:id="home" layoutX="953.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-radius: 50; -fx-background-color: #AA9CCA;" textFill="#aa9cca">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="18.0">
                      <image>

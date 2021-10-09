@@ -30,6 +30,9 @@ public class GameBoard {
      * <br/>To use to get Bounds in screens*/
     private boolean isFirstCall = true;
 
+    /**The current rate applied to the translateTransition of the tiles*/
+    private double currentTileRate = 1;
+
     /**The duration of the tile translation to the bottom of the screen*/
     public Duration translationDuration = Duration.millis(10000);
 
@@ -62,6 +65,7 @@ public class GameBoard {
                 Tile t = new Tile(x, -offsetY, charTile);
                 t.getTranslateTransition().setByY(this.boardPane.getHeight() + offsetY + 100); //Margin of error of 100 px
                 t.getTranslateTransition().setDuration(translationDuration);
+                t.getTranslateTransition().setRate(this.currentTileRate);
 
                 this.tileList.add(t);
                 this.boardPane.getChildren().add(t);
@@ -88,6 +92,37 @@ public class GameBoard {
                 tile.validated.unbind();
             } finally {
                 this.tileListMutex.unlock();
+            }
+        }
+    }
+
+    /**
+     * Divide the duration of the tiles by
+     * @param modifier the modifier
+     */
+    public void setOriginalTileModifier(double modifier){
+        if(modifier != 0){
+            this.translationDuration = this.translationDuration.divide(modifier);
+        }
+    }
+
+    /**
+     * Set the rate for the tiles transition, for each new and existing tile
+     * @param rate the new rate
+     * @see javafx.animation.TranslateTransition#setRate(double)
+     */
+    public void setRate(double rate){
+        if(rate != 0){
+            synchronized (this.tileList){
+                try {
+                    this.tileListMutex.lock();
+                    this.currentTileRate = rate;
+                    for(int i = 0; i< this.tileList.size(); i++){
+                        this.tileList.get(i).getTranslateTransition().setRate(this.currentTileRate);
+                    }
+                } finally {
+                    this.tileListMutex.unlock();
+                }
             }
         }
     }
@@ -122,7 +157,6 @@ public class GameBoard {
             try {
                 this.tileListMutex.lock();
                 //for(Tile tile : this.tileList){
-                for(int i = 0; i < this.tileList.size(); i++){
                     //Bounds b = Utilities.parentToScreen(tile);
                     //Bounds b2 = this.originalBoundsGameBoard;
             /*if(this.boardPane.localToScreen(this.boardPane.getBoundsInLocal()).intersects(tile.localToScreen(tile.getBoundsInLocal()))){
@@ -140,6 +174,7 @@ public class GameBoard {
             }
 
              */
+                for(int i = 0; i < this.tileList.size(); i++){
                     //Prevent from being removed if just created
                     if( Utilities.parentToScreen(tileList.get(i)).getMinY() >= this.originalBoundsGameBoard.getMinY()){
                         if(! this.originalBoundsGameBoard.intersects(Utilities.parentToScreen(tileList.get(i)))){
