@@ -13,6 +13,7 @@ import javafx.scene.effect.BoxBlur;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
+import model.Audio;
 import model.ProjectDataManager;
 import prototypeGame.controller.GameModele;
 import prototypeGame.model.Game;
@@ -86,6 +87,7 @@ public class GameUI extends Pane {
     public void setExitHandlers(EventHandler e){
         //Close the game before coming back
         EventHandler newEvent = event -> {
+            Audio.buttonSound.play();
             game.getGameModel().closeGame();
             e.handle(event);
         };

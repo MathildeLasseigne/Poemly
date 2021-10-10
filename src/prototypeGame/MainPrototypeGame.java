@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import model.Audio;
 import model.Difficulty;
 import model.Poem;
 import model.Song;
@@ -28,6 +29,8 @@ public class MainPrototypeGame  extends Application {
         //root.prefWidth(275);
         primaryStage.setTitle("Test prototype");
 
+
+        Audio.load();
 
         Node test;
 

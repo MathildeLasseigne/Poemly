@@ -8,6 +8,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.util.Duration;
+import model.Audio;
 import model.Difficulty;
 import prototypeGame.model.Game;
 import prototypeGame.model.GameBoard;
@@ -100,6 +101,8 @@ public class GameModele  implements PropertyChangeListener {
                         //score += valueTile;
                         ProgressBar gameScore = game.getGameUI().gameUINodes.getScoreBar();
                         gameScore.setProgress(gameScore.getProgress() + (valueTile/100));
+                    } else {
+                        Audio.badTile.play();
                     }
                 }
             }
@@ -325,6 +328,7 @@ public class GameModele  implements PropertyChangeListener {
             this.gameModele.game.getGameUI().gameUINodes.getGamePanel().getChildren()
                     .add(this.countDownDisplay);
             this.countDownFade.play();
+            Audio.countDown.play();
         }
 
         private void onFinished(){
@@ -336,6 +340,7 @@ public class GameModele  implements PropertyChangeListener {
             } else {
                 this.countDownDisplay.setText(String.valueOf(this.currentValue));
                 this.countDownFade.playFromStart();
+                Audio.countDown.play();
             }
         }
 
