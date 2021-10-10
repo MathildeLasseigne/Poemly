@@ -10,9 +10,11 @@ import javafx.scene.text.FontWeight;
 import javafx.util.Duration;
 import model.Audio;
 import model.Difficulty;
+import model.Score;
 import prototypeGame.model.Game;
 import prototypeGame.model.GameBoard;
 import prototypeGame.widgets.Karaoke.Karaoke;
+import widgets.SoundPlayer;
 import widgets.tools.Utilities;
 
 import java.beans.PropertyChangeEvent;
@@ -125,20 +127,20 @@ public class GameModele  implements PropertyChangeListener {
                     karaoke.getKaraokeController().nextPreviewChar();
                     newTileChar = karaoke.getKaraokeController().getPreviewChar();
                     this.speedModifier.updateSpeed();
-                    System.out.println("new char : "+newTileChar);
+                    //System.out.println("new char : "+newTileChar);
+                    this.gameBoard.createTile(newTileChar);
+                    if(newTileChar == ' '){ //Slow down next tile apparition if space
+                        //double comp = addingTileDuration.toMillis() / this.spaceDuration.toMillis();
+                        //this.addingTile.setRate(comp);
+                        double comp = addingTileDuration.divide(this.speedModifier.getCurrentRate()).toMillis() / this.spaceDuration.divide(this.speedModifier.getCurrentRate()).toMillis();
+                        this.addingTile.setRate(comp);
+                    } else {
+                        //this.addingTile.setRate(1);
+                        this.addingTile.setRate(this.speedModifier.getCurrentRate());
+                    }
                 } catch (Exception e) {
                     System.out.println("No new char in preview");
-                    e.printStackTrace();
-                }
-                this.gameBoard.createTile(newTileChar);
-                if(newTileChar == ' '){ //Slow down next tile apparition if space
-                    //double comp = addingTileDuration.toMillis() / this.spaceDuration.toMillis();
-                    //this.addingTile.setRate(comp);
-                    double comp = addingTileDuration.divide(this.speedModifier.getCurrentRate()).toMillis() / this.spaceDuration.divide(this.speedModifier.getCurrentRate()).toMillis();
-                    this.addingTile.setRate(comp);
-                } else {
-                    //this.addingTile.setRate(1);
-                    this.addingTile.setRate(this.speedModifier.getCurrentRate());
+                    //e.printStackTrace();
                 }
             }
 
@@ -159,12 +161,16 @@ public class GameModele  implements PropertyChangeListener {
         if(this.game.getGameUI().karaoke.isFinished().getValue()){
             closeGame();
             ProgressBar gameScore = game.getGameUI().gameUINodes.getScoreBar();
-            this.game.getGameUI().showScorePanel(gameScore.getProgress()*100);
+            double score = gameScore.getProgress()*100;
+            setGameScore(score);
+            this.game.getGameUI().showScorePanel(score);
         }
     }
 
     public void start(){
-        //TODO Sounds ? Or with countdown ?
+        SoundPlayer song = this.game.getSong().getLoopingSoundPlayer();
+        if(song != null)
+            song.play();
         this.speedModifier.start();
         this.addingTile.playFromStart();
         this.updateAll.start();
@@ -177,6 +183,11 @@ public class GameModele  implements PropertyChangeListener {
         this.speedModifier.sleepTimeLine.stop();
         this.addingTile.stop();
         this.updateAll.stop();
+    }
+
+
+    private void setGameScore(double score){
+        this.game.score = new Score(this.game.getSong(), this.game.getPoem(), this.game.getDifficulty() , score);
     }
 
     /**

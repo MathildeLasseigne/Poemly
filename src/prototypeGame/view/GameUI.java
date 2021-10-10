@@ -14,10 +14,12 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import model.Audio;
+import model.DataHolder;
 import model.ProjectDataManager;
 import prototypeGame.controller.GameModele;
 import prototypeGame.model.Game;
 import prototypeGame.widgets.Karaoke.Karaoke;
+import widgets.SoundPlayer;
 
 import java.io.IOException;
 import java.net.URL;
@@ -77,6 +79,7 @@ public class GameUI extends Pane {
         Pane gamePanel = (Pane) this.gameUINodes.gamePanel.getChildren().get(0);
         gamePanel.setEffect(new BoxBlur());
         this.gameUINodes.gamePanel.getChildren().add(this.scoreUI.container);
+        DataHolder.scoreManager.addScore(this.game.score);
 
     }
 
@@ -87,8 +90,12 @@ public class GameUI extends Pane {
     public void setExitHandlers(EventHandler e){
         //Close the game before coming back
         EventHandler newEvent = event -> {
+            SoundPlayer song = this.game.getSong().getLoopingSoundPlayer();
+            if(song != null)
+                song.stop();
             Audio.buttonSound.play();
             game.getGameModel().closeGame();
+
             e.handle(event);
         };
 

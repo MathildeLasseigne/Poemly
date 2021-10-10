@@ -8,10 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import model.Audio;
-import model.Difficulty;
-import model.Poem;
-import model.Song;
+import model.*;
 import prototypeGame.model.Game;
 import prototypeGame.model.Tile;
 import prototypeGame.widgets.Karaoke.Karaoke;
@@ -30,7 +27,10 @@ public class MainPrototypeGame  extends Application {
         primaryStage.setTitle("Test prototype");
 
 
+        DataHolder.init();
+
         Audio.load();
+        Audio.loadSongs();
 
         Node test;
 
@@ -56,7 +56,8 @@ public class MainPrototypeGame  extends Application {
 
     Node testGame(){
         Poem poem = new Poem("Test Poem", "C:\\Users\\mathilde\\Documents\\Cours\\M1HCI\\Adv programmation of ISO\\Project\\Poemly\\src\\assets\\tests\\testReader.txt");
-        Song song = Song.createEmptySong();
+        //Song song = Song.createEmptySong();
+        Song song = Audio.maypole;
 
         Game game = new Game(poem, song, Difficulty.DifficultyLevel.Easy);
 

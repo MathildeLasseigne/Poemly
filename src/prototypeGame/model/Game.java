@@ -2,10 +2,8 @@ package prototypeGame.model;
 
 import javafx.event.EventHandler;
 import javafx.scene.layout.Pane;
-import model.Difficulty;
-import model.Poem;
+import model.*;
 import model.ProjectDataManager;
-import model.Song;
 import prototypeGame.controller.GameModele;
 import prototypeGame.view.GameUI;
 import widgets.tools.Utilities;
@@ -23,6 +21,8 @@ public class Game extends Pane {
     private Poem poem;
 
     private Song song;
+
+    public Score score;
 
     /**
      * A new game containing all data and controllers. Use as a widget
