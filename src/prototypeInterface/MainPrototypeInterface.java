@@ -15,23 +15,24 @@ import model.Song;
 import prototypeInterface.controller.Controller;
 import view.GameUI;
 
+import java.net.URL;
+
 
 public class MainPrototypeInterface extends Application{
 
     public MainPrototypeInterface(){
 
     }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader= new FXMLLoader(getClass().getClassLoader().getResource("prototypeInterface/view/Menu.fxml"));
-        Parent root = loader.load();
+        URL url = getClass().getResource("view/Home.fxml");
+        Parent root = FXMLLoader.load(url);
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.show();
     }
-
-
 
     public static void main(String[] args){
         launch(args);

@@ -12,21 +12,11 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" fx:controller="prototypeInterface.controller.Controller" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" style="-fx-background-color: #00DAC9;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" style="-fx-background-color: #00DAC9;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prototypeInterface.controller.Controller">
    <children>
-      <ImageView layoutX="471.0" layoutY="270.0">
+      <ImageView layoutX="476.0" layoutY="119.0">
          <image>
             <Image url="@../../assets/images/Score.png" />
-         </image>
-      </ImageView>
-      <ImageView layoutX="35.0" layoutY="355.0">
-         <image>
-            <Image url="@../../assets/images/note.png" />
-         </image>
-      </ImageView>
-      <ImageView layoutX="129.0" layoutY="258.0">
-         <image>
-            <Image url="@../../assets/images/note.png" />
          </image>
       </ImageView>
       <ImageView layoutX="28.0" layoutY="23.0">
@@ -34,17 +24,17 @@
             <Image url="@../../assets/images/note.png" />
          </image>
       </ImageView>
-      <ImageView layoutX="705.0" layoutY="243.0">
+      <ImageView layoutX="691.0" layoutY="133.0">
          <image>
             <Image url="@../../assets/images/note.png" />
          </image>
       </ImageView>
-      <ImageView layoutX="206.0" layoutY="152.0">
+      <ImageView layoutX="195.0" layoutY="109.0">
          <image>
             <Image url="@../../assets/images/note.png" />
          </image>
       </ImageView>
-      <ImageView layoutX="317.0" layoutY="32.0">
+      <ImageView layoutX="291.0" layoutY="26.0">
          <image>
             <Image url="@../../assets/images/note.png" />
          </image>
@@ -54,22 +44,12 @@
             <Image url="@../../assets/images/note.png" />
          </image>
       </ImageView>
-      <ImageView layoutX="958.0" layoutY="241.0">
+      <ImageView layoutX="667.0" layoutY="14.0">
          <image>
             <Image url="@../../assets/images/note.png" />
          </image>
       </ImageView>
-      <ImageView layoutX="509.0" layoutY="30.0">
-         <image>
-            <Image url="@../../assets/images/note.png" />
-         </image>
-      </ImageView>
-      <ImageView layoutX="713.0" layoutY="34.0">
-         <image>
-            <Image url="@../../assets/images/note.png" />
-         </image>
-      </ImageView>
-      <ImageView layoutX="170.0" layoutY="359.0">
+      <ImageView layoutX="779.0" layoutY="53.0">
          <image>
             <Image url="@../../assets/images/note.png" />
          </image>
@@ -84,10 +64,10 @@
             <Image url="@../../assets/images/note.png" />
          </image>
       </ImageView>
-      <Group layoutX="22.0" layoutY="322.0">
+      <Group layoutX="26.0" layoutY="209.0">
          <children>
-            <Label layoutX="3.0" layoutY="13.0" prefHeight="139.0" prefWidth="393.0" style="-fx-background-color: #F7E756; -fx-background-radius: 80;" />
-            <Line endX="44.111083984375" endY="-69.33334350585938" layoutX="217.0" layoutY="86.0" startX="-52.77777099609375" startY="60.4444580078125" stroke="WHITE" strokeLineCap="ROUND" strokeLineJoin="BEVEL" strokeWidth="5.0" />
+            <Label layoutX="3.0" layoutY="13.0" prefHeight="125.0" prefWidth="450.0" style="-fx-background-color: #F7E756; -fx-background-radius: 80;" />
+            <Line endX="44.111083984375" endY="-69.33334350585938" layoutX="217.0" layoutY="86.0" startX="-46.33332824707031" startY="48.0" stroke="WHITE" strokeLineCap="ROUND" strokeLineJoin="BEVEL" strokeWidth="5.0" />
             <TextField layoutX="25.0" layoutY="22.0" prefHeight="55.0" prefWidth="365.0" style="-fx-background-color: transparent; -fx-background-radius: 20;" text="Poem Name:                                                                                  ">
                <font>
                   <Font name="Comic Sans MS Bold" size="20.0" />
@@ -110,7 +90,7 @@
             </TextField>
          </children>
       </Group>
-      <Button layoutX="373.0" layoutY="511.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0" style="-fx-background-radius: 50; -fx-background-color: #AA9CCA;" textFill="#aa9cca">
+      <Button id="homeButton" fx:id="homeButton" layoutX="373.0" layoutY="545.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" style="-fx-background-radius: 50; -fx-background-color: #AA9CCA;" textFill="#aa9cca">
          <effect>
             <DropShadow blurType="ONE_PASS_BOX" height="0.0" offsetX="2.0" offsetY="5.0" radius="3.7625" width="17.05">
                <color>
@@ -126,7 +106,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button alignment="CENTER" layoutX="545.0" layoutY="508.0" mnemonicParsing="false" prefHeight="90.0" prefWidth="90.0" style="-fx-background-radius: 50; -fx-background-color: #AA9CCA;" textFill="#aa9cca">
+      <Button id="down" fx:id="down" alignment="CENTER" layoutX="545.0" layoutY="555.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="100.0" style="-fx-background-radius: 50; -fx-background-color: #AA9CCA;" textFill="#aa9cca">
          <effect>
             <DropShadow blurType="ONE_PASS_BOX" height="0.0" offsetX="2.0" offsetY="5.0" radius="3.7625" width="17.05">
                <color>
@@ -142,31 +122,20 @@
             </ImageView>
          </graphic>
       </Button>
-      <ImageView layoutX="840.0" layoutY="259.0">
+      <ImageView layoutX="78.0" layoutY="136.0">
          <image>
             <Image url="@../../assets/images/note.png" />
          </image>
       </ImageView>
-      <ImageView layoutX="80.0" layoutY="145.0">
+      <ImageView layoutX="306.0" layoutY="138.0">
          <image>
             <Image url="@../../assets/images/note.png" />
          </image>
       </ImageView>
-      <ImageView layoutX="307.0" layoutY="258.0">
-         <image>
-            <Image url="@../../assets/images/note.png" />
-         </image>
-      </ImageView>
-      <ImageView layoutX="1.0" layoutY="255.0">
-         <image>
-            <Image url="@../../assets/images/note.png" />
-         </image>
-      </ImageView>
-      <Group layoutX="586.0" layoutY="317.0" />
-      <Group layoutX="584.0" layoutY="325.0">
+      <Group layoutX="523.0" layoutY="207.0">
          <children>
-            <Label layoutY="12.0" prefHeight="139.0" prefWidth="393.0" style="-fx-background-color: #F7E756; -fx-background-radius: 80;" />
-            <Line endX="44.111083984375" endY="-69.33334350585938" layoutX="214.0" layoutY="86.0" startX="-52.77777099609375" startY="60.4444580078125" stroke="WHITE" strokeLineCap="ROUND" strokeLineJoin="BEVEL" strokeWidth="5.0" />
+            <Label layoutY="12.0" prefHeight="125.0" prefWidth="450.0" style="-fx-background-color: #F7E756; -fx-background-radius: 80;" />
+            <Line endX="43.66668701171875" endY="-66.66667175292969" layoutX="214.0" layoutY="82.0" startX="-49.33331298828125" startY="52.0" stroke="WHITE" strokeLineCap="ROUND" strokeLineJoin="BEVEL" strokeWidth="5.0" />
             <TextField layoutX="22.0" layoutY="22.0" prefHeight="55.0" prefWidth="365.0" style="-fx-background-color: transparent; -fx-background-radius: 20;" text="Poem Name:                                                                                  ">
                <font>
                   <Font name="Comic Sans MS Bold" size="20.0" />
@@ -189,15 +158,83 @@
             </TextField>
          </children>
       </Group>
-      <ImageView fitHeight="155.0" fitWidth="579.0" layoutX="223.0" layoutY="91.0">
+      <ImageView fitHeight="83.0" fitWidth="265.0" layoutX="366.0" layoutY="18.0">
          <image>
             <Image url="@../../assets/images/logo.png" />
          </image>
       </ImageView>
-      <ImageView layoutX="167.0" layoutY="45.0">
+      <ImageView layoutX="155.0" layoutY="32.0">
          <image>
             <Image url="@../../assets/images/note.png" />
          </image>
       </ImageView>
+      <Group layoutX="26.0" layoutY="358.0">
+         <children>
+            <Label layoutX="3.0" layoutY="13.0" prefHeight="125.0" prefWidth="450.0" style="-fx-background-color: #F7E756; -fx-background-radius: 80;" />
+            <Line endX="38.33331298828125" endY="-64.33334350585938" layoutX="217.0" layoutY="81.0" startX="-46.33332824707031" startY="48.0" stroke="WHITE" strokeLineCap="ROUND" strokeLineJoin="BEVEL" strokeWidth="5.0" />
+            <TextField layoutX="25.0" layoutY="22.0" prefHeight="55.0" prefWidth="365.0" style="-fx-background-color: transparent; -fx-background-radius: 20;" text="Poem Name:                                                                                  ">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="20.0" />
+               </font>
+            </TextField>
+            <TextField layoutX="25.0" layoutY="74.0" prefHeight="55.0" prefWidth="102.0" style="-fx-background-color: transparent; -fx-background-radius: 20;" text="Song Name:                                                                              ">
+               <font>
+                  <Font name="Comic Sans MS Italic" size="14.0" />
+               </font>
+            </TextField>
+            <TextField layoutX="209.0" layoutY="88.0" prefHeight="55.0" prefWidth="92.0" style="-fx-background-color: transparent; -fx-background-radius: 20;" text="Score:">
+               <font>
+                  <Font name="Comic Sans MS Italic" size="14.0" />
+               </font>
+            </TextField>
+            <TextField layoutX="249.0" layoutY="30.0" prefHeight="55.0" prefWidth="108.0" style="-fx-background-color: transparent; -fx-background-radius: 20;" text="Difficulty:">
+               <font>
+                  <Font name="Comic Sans MS" size="17.0" />
+               </font>
+            </TextField>
+         </children>
+      </Group>
+      <Button id="up" fx:id="up" alignment="CENTER" layoutX="660.0" layoutY="555.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="100.0" style="-fx-background-radius: 50; -fx-background-color: #AA9CCA;" textFill="#aa9cca">
+         <effect>
+            <DropShadow blurType="ONE_PASS_BOX" height="15.98" offsetX="2.0" offsetY="5.0" radius="7.7575" width="17.05">
+               <color>
+                  <Color red="0.17000000178813934" green="0.1462000012397766" blue="0.1462000012397766" opacity="0.4847261905670166" />
+               </color>
+            </DropShadow>
+         </effect>
+         <graphic>
+            <ImageView fitHeight="44.0" fitWidth="65.0" rotate="180.0">
+               <image>
+                  <Image url="@../../assets/images/down.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Group layoutX="526.0" layoutY="354.0">
+         <children>
+            <Label layoutY="12.0" prefHeight="125.0" prefWidth="450.0" style="-fx-background-color: #F7E756; -fx-background-radius: 80;" />
+            <Line endX="44.111083984375" endY="-69.33334350585938" layoutX="214.0" layoutY="84.0" startX="-41.3333740234375" startY="50.999969482421875" stroke="WHITE" strokeLineCap="ROUND" strokeLineJoin="BEVEL" strokeWidth="5.0" />
+            <TextField layoutX="22.0" layoutY="22.0" prefHeight="55.0" prefWidth="365.0" style="-fx-background-color: transparent; -fx-background-radius: 20;" text="Poem Name:                                                                                  ">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="20.0" />
+               </font>
+            </TextField>
+            <TextField layoutX="22.0" layoutY="74.0" prefHeight="55.0" prefWidth="102.0" style="-fx-background-color: transparent; -fx-background-radius: 20;" text="Song Name:                                                                              ">
+               <font>
+                  <Font name="Comic Sans MS Italic" size="14.0" />
+               </font>
+            </TextField>
+            <TextField layoutX="206.0" layoutY="88.0" prefHeight="55.0" prefWidth="92.0" style="-fx-background-color: transparent; -fx-background-radius: 20;" text="Score:">
+               <font>
+                  <Font name="Comic Sans MS Italic" size="14.0" />
+               </font>
+            </TextField>
+            <TextField layoutX="246.0" layoutY="30.0" prefHeight="55.0" prefWidth="108.0" style="-fx-background-color: transparent; -fx-background-radius: 20;" text="Difficulty:">
+               <font>
+                  <Font name="Comic Sans MS" size="17.0" />
+               </font>
+            </TextField>
+         </children>
+      </Group>
    </children>
 </Pane>

@@ -11,6 +11,8 @@ public class GameUI extends Pane {
 
     public GameUI(Game game){
         this.game = game;
+
+        //load fxml files + add it as children
     }
 
 }

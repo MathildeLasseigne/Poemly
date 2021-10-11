@@ -23,6 +23,7 @@ import javafx.stage.StageStyle;
 import model.Difficulty;
 import model.Poem;
 import model.Score;
+import model.Song;
 import prototypeGame.widgets.Karaoke.Karaoke;
 import prototypeGame.widgets.Karaoke.KaraokeColorizer;
 import view.GameUI;
@@ -31,6 +32,7 @@ import widgets.tools.Utilities;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
@@ -41,109 +43,189 @@ public class Controller extends FXMLController {
     private GameUI gameUI;
 
     private Stage stage;
+    private Stage smallStage;
     private Scene scene;
     private Parent root;
-
-    private String[] screens = {"Windows/School.fxml", "Windows/City.fxml", "Windows/Beach.fxml"};
-    int random = 	new Random().nextInt(3);
 
     @FXML
     private Button exitButton, homeButton, helpButton, scoreButton, menuButton, playButton, up, down;
     @FXML
-    private MenuButton difficultyButton, songButton, poemButton;
-    @FXML
     private MenuItem easy, medium, hard, song1, song2, poem1, poem2, customPoem;
+    @FXML
     private Label song, poem, score, difficulty;
-    @FXML
-    private ProgressBar progressBar;
-    private Poem poemSelected;
-    @FXML
-    private AnchorPane textPanel;
+
+
+    Difficulty.DifficultyLevel difficultyLevel = null;
+    private Poem poemType = null;
+    private Song songType = null;
 
     public Controller() throws IOException {
+
+    }
+
+    @FXML
+    public void initialize(){
         setActions();
 
     }
 
-    public void setActions(){
-        this.homeButton.setOnAction(e-> {
-            try {
-                switchScene(e, "prototypeInterface/view/Home.fxml");
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        });
+    public Scene setHome() throws IOException {
+        Parent homeScreen = FXMLLoader.load(getClass().getClassLoader().getResource("prototypeInterface/view/Home.fxml"));
+        Scene homeScene = new Scene(homeScreen);
+        return homeScene;
+    }
 
-        this.exitButton.setOnAction(e-> {
-            this.stage = (Stage) this.exitButton.getScene().getWindow();
-            this.stage.close();
-        });
+    public Scene setHelp() throws IOException {
+        Parent helpScreen = FXMLLoader.load(getClass().getClassLoader().getResource("prototypeInterface/view/Help.fxml"));
+        Scene helpScene = new Scene(helpScreen);
+        return helpScene;
+    }
 
-        this.scoreButton.setOnAction(e-> {
-            try {
-                switchScene(e, "prototypeInterface/view/Score.fxml");
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        });
+    public Scene setScore() throws IOException {
+        Parent scoreScreen = FXMLLoader.load(getClass().getClassLoader().getResource("prototypeInterface/view/Score.fxml"));
+        Scene scoreScene = new Scene(scoreScreen);
+        return scoreScene;
+    }
 
-        this.playButton.setOnAction(e-> {
-            try {
-                switchScene(e, screens[random]);
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        });
+    public void setActions() {
+        if (this.exitButton != null) {
+            this.exitButton.setOnAction(e -> {
+                this.stage = (Stage) this.exitButton.getScene().getWindow();
+                this.stage.close();
+            });
+        }
 
-        this.helpButton.setOnAction(e->{
-            try {
-                openStage(e, "prototypeInterface/view/Help.fxml");
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        });
+        if (this.homeButton != null) {
+            this.homeButton.setOnAction(e -> {
+                try {
+                    stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+                    stage.setScene(setHome());
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            });
+        }
 
-        this.menuButton.setOnAction(e->{
-            try {
-                openStage(e, "prototypeInterface/view/Menu.fxml");
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        });
+        if (this.helpButton != null) {
+            this.helpButton.setOnAction(e -> {
+                try {
+                  openStage(e, "prototypeInterface/view/Help.fxml");
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            });
+        }
 
-        this.easy.setOnAction(e -> {
-            Difficulty.fromString("easy");
-        });
+        if (this.scoreButton != null) {
+            this.scoreButton.setOnAction(e -> {
+                try {
+                    stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+                    stage.setScene(setScore());
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            });
+        }
 
-        this.medium.setOnAction(e -> {
-            Difficulty.fromString("medium");
-        });
+        if (this.playButton != null) {
+            this.playButton.setOnAction(e -> {
+                if(poemType!=null&&songType!=null&&difficultyLevel!=null) {
+                    try {
+                        Game newGame = new Game(poemType, songType, difficultyLevel);
+                        goToGame(e, newGame);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            });
+            poemType=null;
+            songType=null;
+            difficultyLevel=null;
+        }
 
-        this.hard.setOnAction(e -> {
-            Difficulty.fromString("hard");
-        });
+        if (this.menuButton != null) {
+            this.menuButton.setOnAction(e -> {
+                try {
+                    openStage(e, "prototypeInterface/view/Menu.fxml");
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            });
+        }
 
-        this.customPoem.setOnAction(e-> {
-            Poem.createEmptyPoem();
-        });
+        if (this.easy != null) {
+            this.easy.setOnAction(e -> {
+                difficultyLevel = Difficulty.fromString("Easy");
+            });
+        }
 
+        if (this.medium != null) {
+            this.medium.setOnAction(e -> {
+                difficultyLevel = Difficulty.fromString("Medium");
+            });
+        }
+
+        if (this.hard != null) {
+            this.hard.setOnAction(e -> {
+                difficultyLevel = Difficulty.fromString("Hard");
+            });
+        }
+
+        if (this.customPoem != null) {
+            this.customPoem.setOnAction(e -> {
+                Poem.createEmptyPoem();
+            });
+        }
+
+        if(this.poem1 != null){
+            this.poem1.setOnAction(e -> {
+                poemType = new Poem("poem1", "assets/poems/poem1.txt");
+            });
+        }
+        if(this.poem2 != null) {
+            this.poem2.setOnAction(e -> {
+                poemType = new Poem("poem2", "assets/poems/poem2.txt");
+            });
+        }
+
+        if(this.song1 != null) {
+            this.song1.setOnAction(e -> {
+                songType = new Song("song1", "assets/poems/poem2.txt");
+            });
+        }
+
+        if(this.song2 !=null) {
+            this.song2.setOnAction(e -> {
+                songType = new Song("song2", "assets/poems/poem2.txt");
+            });
+        }
+
+        if(this.up!=null) {
+            this.up.setOnAction(e -> {
+            });
+        }
+
+        if(this.down!=null) {
+            this.down.setOnAction(e -> {
+            });
+        }
     }
 
     public void openStage(ActionEvent e, String screen) throws IOException {
         root = FXMLLoader.load(getClass().getClassLoader().getResource(screen)); //Only home menu
-        stage = new Stage();
+        smallStage = new Stage();
 
-        Scene scene = new Scene(root) ;
+        scene = new Scene(root) ;
         scene.setFill(Color.TRANSPARENT);
 
-        stage.setScene(scene);
-        stage.initStyle(StageStyle.TRANSPARENT);
-        stage.show();
+        smallStage.setScene(scene);
+        smallStage.initStyle(StageStyle.TRANSPARENT);
+        smallStage.show();
     }
 
-    public void switchScene(ActionEvent e, String screen) throws IOException {
-        root = FXMLLoader.load(getClass().getClassLoader().getResource(screen));
-        stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+    public void goToGame(ActionEvent e, Node screen) throws IOException {
+        root = (Parent) screen;
+        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.initStyle(StageStyle.UNDECORATED);
