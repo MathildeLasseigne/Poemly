@@ -66,26 +66,8 @@ public class Controller extends FXMLController {
     @FXML
     public void initialize(){
         setActions();
-
     }
 
-    public Scene setHome() throws IOException {
-        Parent homeScreen = FXMLLoader.load(getClass().getClassLoader().getResource("prototypeInterface/view/Home.fxml"));
-        Scene homeScene = new Scene(homeScreen);
-        return homeScene;
-    }
-
-    public Scene setHelp() throws IOException {
-        Parent helpScreen = FXMLLoader.load(getClass().getClassLoader().getResource("prototypeInterface/view/Help.fxml"));
-        Scene helpScene = new Scene(helpScreen);
-        return helpScene;
-    }
-
-    public Scene setScore() throws IOException {
-        Parent scoreScreen = FXMLLoader.load(getClass().getClassLoader().getResource("prototypeInterface/view/Score.fxml"));
-        Scene scoreScene = new Scene(scoreScreen);
-        return scoreScene;
-    }
 
     public void setActions() {
         if (this.exitButton != null) {
@@ -99,7 +81,7 @@ public class Controller extends FXMLController {
             this.homeButton.setOnAction(e -> {
                 try {
                     stage = (Stage)((Node)e.getSource()).getScene().getWindow();
-                    stage.setScene(setHome());
+                    stage.setScene(gameUI.setHome());
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -120,7 +102,7 @@ public class Controller extends FXMLController {
             this.scoreButton.setOnAction(e -> {
                 try {
                     stage = (Stage)((Node)e.getSource()).getScene().getWindow();
-                    stage.setScene(setScore());
+                    stage.setScene(gameUI.setScore());
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }

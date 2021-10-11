@@ -23,6 +23,7 @@ public class Game extends Pane {
      * Return the game UI. All graphic modifications must happen on the gameUI
      * @return
      */
+
     public GameUI getGameUI() {
         return gameUI;
     }

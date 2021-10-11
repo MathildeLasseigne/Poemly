@@ -97,7 +97,7 @@
             <Font name="Comic Sans MS" size="25.0" />
          </font>
       </Button>
-      <Button layoutX="950.0" layoutY="229.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="52.0" style="-fx-background-color: #00DAC9; -fx-background-radius: 10;" text="K">
+      <Button layoutX="946.0" layoutY="229.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="52.0" style="-fx-background-color: #00DAC9; -fx-background-radius: 10;" text="K">
          <effect>
             <InnerShadow height="15.07" radius="7.035" width="15.07">
                <color>
@@ -264,7 +264,7 @@
             <Image url="@../../assets/images/logo.png" />
          </image>
       </ImageView>
-      <Button fx:id="exitButton" layoutX="910.0" layoutY="8.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="52.0" style="-fx-background-color: #aa9cca; -fx-background-radius: 10;">
+      <Button fx:id="exitButton" layoutX="911.0" layoutY="8.0" mnemonicParsing="false" prefHeight="55.0" prefWidth="52.0" style="-fx-background-color: #aa9cca; -fx-background-radius: 10;">
          <effect>
             <DropShadow blurType="ONE_PASS_BOX" height="32.86" offsetX="3.0" offsetY="3.0" radius="12.965">
                <color>
