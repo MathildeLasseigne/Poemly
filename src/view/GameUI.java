@@ -35,5 +35,29 @@ public class GameUI extends Pane {
         return scoreScene;
     }
 
-
+    public Scene setMenu() throws IOException {
+        Parent scoreScreen = FXMLLoader.load(getClass().getClassLoader().getResource("prototypeInterface/view/Menu.fxml"));
+        Scene scoreScene = new Scene(scoreScreen);
+        return scoreScene;
+    }
+    public Scene setSchool() throws IOException {
+        Parent scoreScreen = FXMLLoader.load(getClass().getClassLoader().getResource("prototypeInterface/view/School.fxml"));
+        Scene scoreScene = new Scene(scoreScreen);
+        return scoreScene;
+    }
+    public Scene setCity() throws IOException {
+        Parent scoreScreen = FXMLLoader.load(getClass().getClassLoader().getResource("prototypeInterface/view/City.fxml"));
+        Scene scoreScene = new Scene(scoreScreen);
+        return scoreScene;
+    }
+    public Scene setBeach() throws IOException {
+        Parent scoreScreen = FXMLLoader.load(getClass().getClassLoader().getResource("prototypeInterface/view/Beach.fxml"));
+        Scene scoreScene = new Scene(scoreScreen);
+        return scoreScene;
+    }
+    public Scene setGameOver() throws IOException {
+        Parent scoreScreen = FXMLLoader.load(getClass().getClassLoader().getResource("prototypeInterface/view/GameOver.fxml"));
+        Scene scoreScene = new Scene(scoreScreen);
+        return scoreScene;
+    }
 }

@@ -90,7 +90,7 @@
             </TextField>
          </children>
       </Group>
-      <Button id="homeButton" fx:id="homeButton" layoutX="373.0" layoutY="545.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" style="-fx-background-radius: 50; -fx-background-color: #AA9CCA;" textFill="#aa9cca">
+      <Button id="homeButton" fx:id="homeButton" layoutX="375.0" layoutY="545.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="80.0" style="-fx-background-radius: 50; -fx-background-color: #AA9CCA;" textFill="#aa9cca">
          <effect>
             <DropShadow blurType="ONE_PASS_BOX" height="0.0" offsetX="2.0" offsetY="5.0" radius="3.7625" width="17.05">
                <color>
@@ -158,7 +158,7 @@
             </TextField>
          </children>
       </Group>
-      <ImageView fitHeight="83.0" fitWidth="265.0" layoutX="366.0" layoutY="18.0">
+      <ImageView fitHeight="83.0" fitWidth="265.0" layoutX="369.0" layoutY="18.0">
          <image>
             <Image url="@../../assets/images/logo.png" />
          </image>
