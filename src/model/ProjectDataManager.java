@@ -145,4 +145,8 @@ public class ProjectDataManager {
 
     }
 
+    public Song mapNameToSong(String name){return null;}
+
+    public Poem mapNameToPoem(String name){return null;}
+
 }

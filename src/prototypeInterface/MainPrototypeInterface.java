@@ -9,10 +9,12 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import model.DataHolder;
 import model.Difficulty;
 import model.Poem;
 import model.Song;
 import prototypeInterface.controller.Controller;
+import prototypeInterface.model.InterfaceModel;
 import view.GameUI;
 
 import java.net.URL;
@@ -26,8 +28,14 @@ public class MainPrototypeInterface extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        URL url = getClass().getResource("view/Home.fxml");
-        Parent root = FXMLLoader.load(url);
+
+        DataHolder.init();
+
+        InterfaceModel root = new InterfaceModel();
+        root.createNewHome();
+
+        //URL url = getClass().getResource("view/Home.fxml");
+        //Parent root = FXMLLoader.load(url);
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.initStyle(StageStyle.UNDECORATED);

@@ -17,29 +17,22 @@ public class GameUI extends Pane {
         this.game = game;
     }
 
-    public Scene setHome() throws IOException {
-        Parent homeScreen = FXMLLoader.load(getClass().getClassLoader().getResource("prototypeInterface/view/Home.fxml"));
-        Scene homeScene = new Scene(homeScreen);
-        return homeScene;
+
+
+    public Parent setMenu()throws IOException  {
+        Parent menuPanel = null;
+            menuPanel = FXMLLoader.load((getClass().getResource("prototypeInterface/view/Menu.fxml")));
+            return menuPanel;
+        }
+
+    public Parent setHelp()throws IOException   {
+        Parent helpPanel = null;
+        helpPanel = FXMLLoader.load((getClass().getResource("prototypeInterface/view/Menu.fxml")));
+        return helpPanel;
     }
 
-    public Scene setHelp() throws IOException {
-        Parent helpScreen = FXMLLoader.load(getClass().getClassLoader().getResource("prototypeInterface/view/Help.fxml"));
-        Scene helpScene = new Scene(helpScreen);
-        return helpScene;
-    }
 
-    public Scene setScore() throws IOException {
-        Parent scoreScreen = FXMLLoader.load(getClass().getClassLoader().getResource("prototypeInterface/view/Score.fxml"));
-        Scene scoreScene = new Scene(scoreScreen);
-        return scoreScene;
-    }
 
-    public Scene setMenu() throws IOException {
-        Parent scoreScreen = FXMLLoader.load(getClass().getClassLoader().getResource("prototypeInterface/view/Menu.fxml"));
-        Scene scoreScene = new Scene(scoreScreen);
-        return scoreScene;
-    }
     public Scene setSchool() throws IOException {
         Parent scoreScreen = FXMLLoader.load(getClass().getClassLoader().getResource("prototypeInterface/view/School.fxml"));
         Scene scoreScene = new Scene(scoreScreen);

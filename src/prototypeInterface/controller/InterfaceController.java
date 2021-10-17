@@ -3,32 +3,33 @@ package prototypeInterface.controller;
 import controller.FXMLController;
 import controller.Game;
 import javafx.fxml.FXML;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
-import javafx.scene.Scene;
-import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import model.DataHolder;
 import model.Difficulty;
 import model.Poem;
 import model.Song;
-import view.GameUI;
+import prototypeInterface.model.InterfaceModel;
 
 import java.awt.*;
 import java.io.File;
-import java.io.IOException;
 
+public class InterfaceController  extends FXMLController {
 
-public class Controller extends FXMLController {
+    private InterfaceModel interfaceModel;
 
-    private GameUI gameUI;
+    /**The name indicating which kind of fxml file is loaded*/
+    public final String name;
+
+    private Node fxmlLoaded=null;
+    private boolean isFrontInterface;
 
     private Stage stage;
     private Stage smallStage;
@@ -47,16 +48,18 @@ public class Controller extends FXMLController {
     private MenuButton songButton, poemButton;
 
     Difficulty.DifficultyLevel difficultyLevel = null;
-    private Poem poemType = null;
+    private Poem currentPoem = null;
     private Song currentSong = null;
 
-    public Controller() throws IOException {
 
+    public InterfaceController(InterfaceModel interfaceModel, String name, boolean isFrontInterface){
+        this.name = name;
+        this.interfaceModel = interfaceModel;
+        this.isFrontInterface = isFrontInterface;
     }
 
     @FXML
     public void initialize(){
-
         setActions();
         setSongMenuItem();
         setCustomPoemButton();
@@ -75,7 +78,7 @@ public class Controller extends FXMLController {
 
         if (this.homeButton != null) {
             this.homeButton.setOnAction(e -> {
-                try {
+                /*try {
                     this.smallStage.close();
                     //stage = (Stage)((Node)e.getSource()).getScene().getWindow();
                     Scene homeScene = setHome();
@@ -84,52 +87,109 @@ public class Controller extends FXMLController {
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
+
+                 */
+                if(! interfaceModel.saveNode(name, fxmlLoaded)){
+                    System.out.println("Save "+name+" did not work !!!");
+                }
+                if(isFrontInterface){
+                    interfaceModel.setFrontInterface(null);
+                } else {
+                    Node homeNode = interfaceModel.retrieveSavedNode("Home");
+                    if( homeNode != null){
+                        interfaceModel.setBackInterface(homeNode);
+                    } else {
+                        interfaceModel.createNewHome();
+                    }
+                }
             });
         }
 
         if (this.helpButton != null) {
             this.helpButton.setOnAction(e -> {
-                try {
-                  openSmallStage(e, "prototypeInterface/view/Help.fxml");
+                /*try {
+                    openSmallStage(e, "prototypeInterface/view/Help.fxml");
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
+
+                 */
+                Node helpNode = interfaceModel.retrieveSavedNode("Help");
+                if( helpNode != null){
+                    interfaceModel.setFrontInterface(helpNode);
+                } else {
+                    interfaceModel.createNewHelp();
+                }
+
             });
         }
 
         if (this.scoreButton != null) {
             this.scoreButton.setOnAction(e -> {
+               /* if(! interfaceModel.saveNode(name, fxmlLoaded)){
+                    System.out.println("Save "+name+" did not work !!!");
+                }
                 try {
                     stage = (Stage)((Node)e.getSource()).getScene().getWindow();
                     stage.setScene(setScore());
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
+
+                */
+                if(! interfaceModel.saveNode(name, fxmlLoaded)){
+                    System.out.println("Save "+name+" did not work !!!");
+                }
+                if(isFrontInterface){
+                    interfaceModel.setFrontInterface(null);
+                } else {
+                    Node scoreNode = interfaceModel.retrieveSavedNode("Score");
+                    if (scoreNode != null) {
+                        interfaceModel.setBackInterface(scoreNode);
+                    } else {
+                        interfaceModel.createNewScore();
+                    }
+                }
             });
         }
 
+
         if (this.playButton != null) {
             this.playButton.setOnAction(e -> {
-                if(poemType!=null&& currentSong !=null&&difficultyLevel!=null) {
-                    try {
+                if(currentPoem !=null&& currentSong !=null&&difficultyLevel!=null) {
+                    /*try {
                         Game newGame = new Game(poemType, currentSong, difficultyLevel);
                         goToGame(e, newGame);
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
+
+                     */
+                    Game newGame = new Game(currentPoem, currentSong, difficultyLevel);
+                    //TODO set exit handler
+                    interfaceModel.setNewGame(newGame);
                 }
             });
-            poemType=null;
+            currentPoem =null;
             currentSong =null;
             difficultyLevel=null;
         }
 
         if (this.menuButton != null) {
             this.menuButton.setOnAction(e -> {
-                try {
+                /*try {
                     openSmallStage(e, "prototypeInterface/view/Menu.fxml");
                 } catch (IOException ex) {
                     ex.printStackTrace();
+                }
+            });
+                 */
+
+                Node menuNode = interfaceModel.retrieveSavedNode("Help");
+                if (menuNode != null) {
+                    interfaceModel.setFrontInterface(menuNode);
+                } else {
+                    interfaceModel.createNewMenu();
                 }
             });
         }
@@ -170,61 +230,25 @@ public class Controller extends FXMLController {
         }
     }
 
-    /**
-     * Open the little stage (show) and change the currentScene {@link Controller#stage} to the one used in the new stage.
-     * Old stage stay the same and is not closed
-     * @param e
-     * @param screen
-     * @throws IOException
-     */
-    public void openSmallStage(ActionEvent e, String screen) throws IOException {
-        root = FXMLLoader.load(getClass().getClassLoader().getResource(screen)); //Only home menu
-        smallStage = new Stage();
-
-        scene = new Scene(root) ;
-        scene.setFill(Color.TRANSPARENT);
-
-        smallStage.setScene(scene);
-        smallStage.initStyle(StageStyle.TRANSPARENT);
-        smallStage.show();
-    }
-
-    public void goToGame(ActionEvent e, Node screen) throws IOException {
-        root = (Parent) screen;
-        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.initStyle(StageStyle.UNDECORATED);
-    }
-
-    public Scene setHome() throws IOException {
-        Parent homeScreen = FXMLLoader.load(getClass().getClassLoader().getResource("prototypeInterface/view/Home.fxml"));
-        Scene homeScene = new Scene(homeScreen);
-        return homeScene;
-    }
-
-    public Scene setScore() throws IOException {
-        Parent scoreScreen = FXMLLoader.load(getClass().getClassLoader().getResource("prototypeInterface/view/Score.fxml"));
-        Scene scoreScene = new Scene(scoreScreen);
-        return scoreScene;
-    }
 
     private void setSongMenuItem(){
         if(songButton != null){
-            for( int i = 0; i< DataHolder.projectDataManager.songList.size(); i++){
+            for(int i = 0; i< DataHolder.projectDataManager.songList.size(); i++){
                 Song tmp = DataHolder.projectDataManager.songList.get(i);
                 MenuItem miTmp = new MenuItem(tmp.getName());
                 miTmp.setOnAction(e -> currentSong = DataHolder.projectDataManager.mapNameToSong(miTmp.getText()));
                 this.songButton.getItems().add(miTmp);
             }
         }
-
     }
 
     private void setPoemMenuItem(){
         if(this.poemButton != null){
             for( int i = 0; i< DataHolder.projectDataManager.poemList.size(); i++){
-                this.poemButton.getItems().add(new MenuItem(DataHolder.projectDataManager.poemList.get(i).getName()));
+                Poem poem = DataHolder.projectDataManager.poemList.get(i);
+                MenuItem miTmp = new MenuItem(poem.getName());
+                miTmp.setOnAction(e -> currentPoem = DataHolder.projectDataManager.mapNameToPoem(miTmp.getText()));
+                this.poemButton.getItems().add(miTmp);
             }
         }
 
@@ -249,24 +273,38 @@ public class Controller extends FXMLController {
 
                     } catch (Exception ex) {
                         String errorMessage = ex.getMessage();
-                        //TODO display error popup to user -> poem was not accepted
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Error");
+                        alert.setHeaderText(null);
+                        alert.setContentText(errorMessage);
+                        alert.showAndWait();
                     }
                     if(accepted){
-                        poemType = newPoem;
+                        currentPoem = newPoem;
                         //Set menu item for next time
                         MenuItem miTmp = new MenuItem(newPoem.getName());
-                        miTmp.setOnAction(event -> poemType = DataHolder.projectDataManager.mapNameToPoem(miTmp.getText()));
+                        miTmp.setOnAction(event -> currentPoem = DataHolder.projectDataManager.mapNameToPoem(miTmp.getText()));
                         this.poemButton.getItems().add(miTmp);
                     }
 
 
                 } else {
-                    //TODO error popup -> file was mot found
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText(null);
+                    alert.setContentText("File was not found");
+                    alert.showAndWait();
                 }
             });
             this.poemButton.getItems().add(customPoem);
         }
     }
 
+    /**
+     * Save the fxml file this controller loaded
+     * @param node
+     */
+    public void setFXMLLoaded(Node node){
+        this.fxmlLoaded = node;
+    }
 }
-
