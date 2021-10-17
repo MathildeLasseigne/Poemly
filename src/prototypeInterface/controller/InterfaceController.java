@@ -6,20 +6,18 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
-import javafx.scene.control.MenuButton;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import model.DataHolder;
-import model.Difficulty;
-import model.Poem;
-import model.Song;
+import model.*;
 import prototypeInterface.model.InterfaceModel;
 
 import java.awt.*;
 import java.io.File;
+import java.util.ArrayList;
 
 public class InterfaceController  extends FXMLController {
 
@@ -32,25 +30,31 @@ public class InterfaceController  extends FXMLController {
     private boolean isFrontInterface;
 
     private Stage stage;
-    private Stage smallStage;
-    private Scene scene;
-    private Parent root;
-    private Node container;
 
     @FXML
-    private Button exitButton, homeButton, helpButton, scoreButton, menuButton, playButton, up, down;
+    private Button exitButton, homeButton, helpButton, scoreButton, menuButton, playButton, scoreUp, scoreDown;
     @FXML
-    private MenuItem easy, medium, hard, customPoem;
-    @FXML
-    private Label song, poem, score, difficulty;
-
+    private RadioMenuItem easy, medium, hard, customPoem;
     @FXML
     private MenuButton songButton, poemButton;
+    @FXML
+    private Label scoreSong1, scoreSong2, scoreSong3, scoreSong4;
+    @FXML
+    private Label scorePoem1, scorePoem2, scorePoem3, scorePoem4;
+    @FXML
+    private Label scoreScore1, scoreScore2, scoreScore3, scoreScore4;
+    @FXML
+    private Label scoreDifficulty1, scoreDifficulty2, scoreDifficulty3, scoreDifficulty4;
+
+    private ToggleGroup songToggleGroup = new ToggleGroup(), poemToggleGroup = new ToggleGroup();
+
+    /**The idx of the first score displayed in the score panel*/
+    private int currentScoreDisplayIdx;
+
 
     Difficulty.DifficultyLevel difficultyLevel = null;
     private Poem currentPoem = null;
     private Song currentSong = null;
-
 
     public InterfaceController(InterfaceModel interfaceModel, String name, boolean isFrontInterface){
         this.name = name;
@@ -64,6 +68,7 @@ public class InterfaceController  extends FXMLController {
         setSongMenuItem();
         setCustomPoemButton();
         setPoemMenuItem();
+        initScore();
     }
 
 
@@ -78,17 +83,6 @@ public class InterfaceController  extends FXMLController {
 
         if (this.homeButton != null) {
             this.homeButton.setOnAction(e -> {
-                /*try {
-                    this.smallStage.close();
-                    //stage = (Stage)((Node)e.getSource()).getScene().getWindow();
-                    Scene homeScene = setHome();
-                    stage.setScene(homeScene);
-                    this.scene = homeScene;
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-
-                 */
                 if(! interfaceModel.saveNode(name, fxmlLoaded)){
                     System.out.println("Save "+name+" did not work !!!");
                 }
@@ -107,13 +101,6 @@ public class InterfaceController  extends FXMLController {
 
         if (this.helpButton != null) {
             this.helpButton.setOnAction(e -> {
-                /*try {
-                    openSmallStage(e, "prototypeInterface/view/Help.fxml");
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-
-                 */
                 Node helpNode = interfaceModel.retrieveSavedNode("Help");
                 if( helpNode != null){
                     interfaceModel.setFrontInterface(helpNode);
@@ -126,18 +113,7 @@ public class InterfaceController  extends FXMLController {
 
         if (this.scoreButton != null) {
             this.scoreButton.setOnAction(e -> {
-               /* if(! interfaceModel.saveNode(name, fxmlLoaded)){
-                    System.out.println("Save "+name+" did not work !!!");
-                }
-                try {
-                    stage = (Stage)((Node)e.getSource()).getScene().getWindow();
-                    stage.setScene(setScore());
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-
-                */
-                if(! interfaceModel.saveNode(name, fxmlLoaded)){
+                if(!interfaceModel.saveNode(name, fxmlLoaded)){
                     System.out.println("Save "+name+" did not work !!!");
                 }
                 if(isFrontInterface){
@@ -157,16 +133,9 @@ public class InterfaceController  extends FXMLController {
         if (this.playButton != null) {
             this.playButton.setOnAction(e -> {
                 if(currentPoem !=null&& currentSong !=null&&difficultyLevel!=null) {
-                    /*try {
-                        Game newGame = new Game(poemType, currentSong, difficultyLevel);
-                        goToGame(e, newGame);
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    }
-
-                     */
                     Game newGame = new Game(currentPoem, currentSong, difficultyLevel);
                     //TODO set exit handler
+                    System.out.println("start game");
                     interfaceModel.setNewGame(newGame);
                 }
             });
@@ -177,15 +146,8 @@ public class InterfaceController  extends FXMLController {
 
         if (this.menuButton != null) {
             this.menuButton.setOnAction(e -> {
-                /*try {
-                    openSmallStage(e, "prototypeInterface/view/Menu.fxml");
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-            });
-                 */
 
-                Node menuNode = interfaceModel.retrieveSavedNode("Help");
+                Node menuNode = interfaceModel.retrieveSavedNode("Menu");
                 if (menuNode != null) {
                     interfaceModel.setFrontInterface(menuNode);
                 } else {
@@ -219,13 +181,30 @@ public class InterfaceController  extends FXMLController {
         }
 
 
-        if(this.up!=null) {
-            this.up.setOnAction(e -> {
+        if(this.scoreUp!=null) {
+            this.scoreUp.setOnAction(e -> {
+                if(this.name == "Score"){
+                    int currentDisplay = this.currentScoreDisplayIdx-4;
+                    //Set every score
+                    if(currentDisplay >= 0){
+                        this.currentScoreDisplayIdx = currentDisplay;
+                        setScoreFrom(currentDisplay);
+                    }
+
+                }
             });
         }
 
-        if(this.down!=null) {
-            this.down.setOnAction(e -> {
+        if(this.scoreDown!=null) {
+            this.scoreDown.setOnAction(e -> {
+                if(this.name == "Score"){
+                    int currentDisplay = this.currentScoreDisplayIdx+4;
+                    if(currentDisplay < DataHolder.scoreManager.getScoreList().size()){ //TODO change to length in score manager
+                        this.currentScoreDisplayIdx = currentDisplay;
+                        setScoreFrom(currentDisplay);
+                    }
+
+                }
             });
         }
     }
@@ -235,7 +214,8 @@ public class InterfaceController  extends FXMLController {
         if(songButton != null){
             for(int i = 0; i< DataHolder.projectDataManager.songList.size(); i++){
                 Song tmp = DataHolder.projectDataManager.songList.get(i);
-                MenuItem miTmp = new MenuItem(tmp.getName());
+                RadioMenuItem miTmp = new RadioMenuItem(tmp.getName());
+                miTmp.setToggleGroup(this.songToggleGroup);
                 miTmp.setOnAction(e -> currentSong = DataHolder.projectDataManager.mapNameToSong(miTmp.getText()));
                 this.songButton.getItems().add(miTmp);
             }
@@ -246,7 +226,8 @@ public class InterfaceController  extends FXMLController {
         if(this.poemButton != null){
             for( int i = 0; i< DataHolder.projectDataManager.poemList.size(); i++){
                 Poem poem = DataHolder.projectDataManager.poemList.get(i);
-                MenuItem miTmp = new MenuItem(poem.getName());
+                RadioMenuItem miTmp = new RadioMenuItem(poem.getName());
+                miTmp.setToggleGroup(this.poemToggleGroup);
                 miTmp.setOnAction(e -> currentPoem = DataHolder.projectDataManager.mapNameToPoem(miTmp.getText()));
                 this.poemButton.getItems().add(miTmp);
             }
@@ -263,10 +244,9 @@ public class InterfaceController  extends FXMLController {
                 FileChooser filechooser = new FileChooser();
                 filechooser.setTitle("Choose a new poem");
                 filechooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Text Files", "*.txt"));
-                File fileSelection = filechooser.showOpenDialog(stage.getOwner());
+                File fileSelection = filechooser.showOpenDialog(this.poemButton.getScene().getWindow());
                 if(fileSelection != null){
                     newPoem = new Poem(fileSelection.getName(), fileSelection.getAbsolutePath());
-                    //TODO select the newly created poem
                     boolean accepted = false;
                     try {
                         accepted = DataHolder.projectDataManager.addNewPoem(newPoem);
@@ -282,9 +262,12 @@ public class InterfaceController  extends FXMLController {
                     if(accepted){
                         currentPoem = newPoem;
                         //Set menu item for next time
-                        MenuItem miTmp = new MenuItem(newPoem.getName());
+                        RadioMenuItem miTmp = new RadioMenuItem(newPoem.getName());
+                        miTmp.setToggleGroup(this.poemToggleGroup);
                         miTmp.setOnAction(event -> currentPoem = DataHolder.projectDataManager.mapNameToPoem(miTmp.getText()));
+
                         this.poemButton.getItems().add(miTmp);
+                        miTmp.setSelected(true);
                     }
 
 
@@ -300,11 +283,86 @@ public class InterfaceController  extends FXMLController {
         }
     }
 
+    private void initScore(){
+        if(this.name == "Score"){
+            this.currentScoreDisplayIdx = 0; //Init
+            int currentDisplay = this.currentScoreDisplayIdx;
+            setScoreFrom(currentDisplay);
+        }
+    }
+
     /**
      * Save the fxml file this controller loaded
      * @param node
      */
     public void setFXMLLoaded(Node node){
         this.fxmlLoaded = node;
+    }
+
+
+    public void setScoreFrom(int scoreDisplayIdx){
+        ArrayList<Score> scoreList = DataHolder.scoreManager.getScoreList();
+        int currentDisplayIdX = scoreDisplayIdx;
+        int currentScoreUIIdx = 0;
+        //Set every score
+        Score s = null;
+        if(scoreList.size()> this.currentScoreDisplayIdx + currentScoreUIIdx){
+            s = scoreList.get(currentDisplayIdX);
+            this.scorePoem1.setText(s.getPoem());
+            this.scoreSong1.setText(s.getSong());
+            this.scoreDifficulty1.setText(Difficulty.toString(s.getDifficulty()));
+            this.scoreScore1.setText("Score: " + Math.round(s.getScore())+"%");
+
+            currentDisplayIdX++;
+            currentScoreUIIdx++;
+        } else {
+            this.scorePoem1.setText("Poem Name");
+            this.scoreSong1.setText("Song Name");
+            this.scoreDifficulty1.setText("Difficulty");
+            this.scoreScore1.setText("Score");
+        }
+        if(scoreList.size()> this.currentScoreDisplayIdx + currentScoreUIIdx){
+            s = scoreList.get(currentDisplayIdX);
+            this.scorePoem2.setText(s.getPoem());
+            this.scoreSong2.setText(s.getSong());
+            this.scoreDifficulty2.setText(Difficulty.toString(s.getDifficulty()));
+            this.scoreScore2.setText("Score: " + Math.round(s.getScore())+"%");
+
+            currentDisplayIdX++;
+            currentScoreUIIdx++;
+        } else {
+            this.scorePoem2.setText("Poem Name");
+            this.scoreSong2.setText("Song Name");
+            this.scoreDifficulty2.setText("Difficulty");
+            this.scoreScore2.setText("Score");
+        }
+        if(scoreList.size()> this.currentScoreDisplayIdx + currentScoreUIIdx){
+            s = scoreList.get(currentDisplayIdX);
+            this.scorePoem3.setText(s.getPoem());
+            this.scoreSong3.setText(s.getSong());
+            this.scoreDifficulty3.setText(Difficulty.toString(s.getDifficulty()));
+            this.scoreScore3.setText("Score: " + Math.round(s.getScore())+"%");
+
+            currentDisplayIdX++;
+            currentScoreUIIdx++;
+        } else {
+            this.scorePoem3.setText("Poem Name");
+            this.scoreSong3.setText("Song Name");
+            this.scoreDifficulty3.setText("Difficulty");
+            this.scoreScore3.setText("Score");
+        }
+        if(scoreList.size()> this.currentScoreDisplayIdx + currentScoreUIIdx){
+            s = scoreList.get(currentDisplayIdX);
+            this.scorePoem4.setText(s.getPoem());
+            this.scoreSong4.setText(s.getSong());
+            this.scoreDifficulty4.setText(Difficulty.toString(s.getDifficulty()));
+            this.scoreScore4.setText("Score: " + Math.round(s.getScore())+"%");
+            currentScoreUIIdx++;
+        } else {
+            this.scorePoem4.setText("Poem Name");
+            this.scoreSong4.setText("Song Name");
+            this.scoreDifficulty4.setText("Difficulty");
+            this.scoreScore4.setText("Score");
+        }
     }
 }

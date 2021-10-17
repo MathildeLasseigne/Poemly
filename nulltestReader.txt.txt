@@ -1,0 +1,21 @@
+
+Lorem Ipsum
+This is a sentence followed by a virgule, then by a point virgule; then a go back to line
+New line
+Followed by 5 empty lines
+
+
+
+
+
+Above are 5 empty lines
+Lorem Ipsum
+This is a sentence followed by a virgule, then by a point virgule; then a go back to line
+New line
+Followed by 5 empty lines
+
+
+
+
+
+Above are 5 empty lines

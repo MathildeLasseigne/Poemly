@@ -17,7 +17,7 @@ public class InterfaceModel extends StackPane{
 
     public Pane backInterface;
 
-    private HashMap<String, Node> savedNode = null;
+    private HashMap<String, Node> savedNode = new HashMap<>();
 
     /**
      * This class is used to manage the display of the differents intefaces
@@ -92,11 +92,11 @@ public class InterfaceModel extends StackPane{
         }
     }
     public void createNewMenu(){
-        InterfaceController controller = new InterfaceController(this, "Help", true);
+        InterfaceController controller = new InterfaceController(this, "Menu", true);
 
         Node menuContainer = null;
         try {
-            menuContainer = controller.loadFXMLWithController(getClass().getClassLoader().getResource("prototypeInterface/view/Help.fxml"));
+            menuContainer = controller.loadFXMLWithController(getClass().getClassLoader().getResource("prototypeInterface/view/Menu.fxml"));
             setFrontInterface(menuContainer);
             controller.setFXMLLoaded(menuContainer);
 

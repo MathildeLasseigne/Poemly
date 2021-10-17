@@ -50,7 +50,11 @@ public class ProjectDataManager {
      * Load all the data into the class from the dataFile
      */
     private void loadData(){
-        List<String> data = FileListManager.readFileInList(this.projectDataPath);
+        List<String> data = new ArrayList<>();
+        if(! this.projectDataPath.isBlank()){
+            data = FileListManager.readFileInList(this.projectDataPath);
+        }
+
 
         for(String dataLine : data){
 
