@@ -148,6 +148,12 @@ public class ProjectDataManager {
         }
 
     }
+/*
+    public Song mapNameToSong(String name){
+        for(int i = 0)
+    }
+
+ */
 
     public Song mapNameToSong(String name){return null;}
 

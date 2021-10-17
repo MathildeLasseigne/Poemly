@@ -52,10 +52,12 @@ public class Karaoke extends AnchorPane {
 
     /**
      * Check if the key is the same as the current character depending on difficulty
-     * @param keyEvent
+     * @param keyEvent the event off the current key to check
+     * @return If the current separator idx is -1 or the text is finished return false
+     * @throws Exception  Using this methode when the text is finished will throws an error
      */
-    public void checkKey(KeyEvent keyEvent){
-        //TODO
+    public boolean checkKey(KeyEvent keyEvent) throws Exception {
+        return this.karaokeController.checkKeyEvent(keyEvent);
     }
 
     /**

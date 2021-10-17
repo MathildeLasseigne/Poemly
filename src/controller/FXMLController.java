@@ -29,7 +29,7 @@ public abstract class FXMLController implements Serializable {
      */
     public Parent loadFXMLWithController(URL fxmlPath) throws IOException {
         FXMLLoader loader = new FXMLLoader(fxmlPath);
-        System.out.println(fxmlPath);
+        System.out.println("fxml path : " + fxmlPath);
         loader.setController(this);
         Parent fxmlContent = null;
         fxmlContent = loader.load();

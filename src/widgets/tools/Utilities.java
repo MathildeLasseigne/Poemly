@@ -1,7 +1,12 @@
 package widgets.tools;
 
+import javafx.geometry.Bounds;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.layout.Region;
 import javafx.scene.shape.Rectangle;
+
+import java.util.Random;
 
 public class Utilities {
 
@@ -29,5 +34,39 @@ public class Utilities {
             outputClip.setWidth(newValue.getWidth());
             outputClip.setHeight(newValue.getHeight());
         });
+    }
+
+
+    /**
+     * Create random int in range [rangeMin, rangeMax]
+     * @param rangeMin Minimal range
+     * @param rangeMax Maximal range (must be positive !)
+     * @return the value of the random int
+     */
+    public static int rangedRandomInt(int rangeMin, int rangeMax) {
+        int randomValue;
+        if(rangeMin<0 ||rangeMax<=0||(rangeMax-rangeMin<=0)){
+            System.out.println("Argument for random must be positive !!");
+            if(rangeMin<0){
+                System.out.println(rangeMin+" is negative");
+            }
+            return rangeMin;
+        } else {
+            Random r = new Random();
+            randomValue = rangeMin + r.nextInt(rangeMax - rangeMin);
+
+        }
+        return randomValue;
+    }
+
+    /**
+     * Calculate the bounds in parent of the node to screen
+     * @param n the node from which the bounds are taken
+     * @return
+     */
+    public static Bounds parentToScreen(Node n){
+        Parent p = n.getParent();
+        Bounds b = n.getBoundsInParent();
+        return p.localToScreen(b);
     }
 }
