@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="650.0" style="-fx-background-color: transparent" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prototypeInterface.controller.Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="650.0" style="-fx-background-color: transparent" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" >
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00dac9" height="530.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" style="-fx-arc-height: 30; -fx-arc-width: 30;" width="650.0" />
       <ImageView fitHeight="664.0" fitWidth="658.0" layoutX="9.0" layoutY="78.0">

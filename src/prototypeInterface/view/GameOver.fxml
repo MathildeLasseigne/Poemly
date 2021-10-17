@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="650.0" style="-fx-background-color: &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;?import javafx.scene.shape.Rectangle?&gt;&lt;Rectangle arcHeight=&quot;5.0&quot; arcWidth=&quot;5.0&quot; fill=&quot;#00dac9&quot; height=&quot;530.0&quot; stroke=&quot;BLACK&quot; strokeType=&quot;INSIDE&quot; strokeWidth=&quot;3.0&quot; style=&quot;-fx-arc-height: 30; -fx-arc-width: 30;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prototypeInterface.controller.Controller">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="650.0" style="-fx-background-color: &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;?import javafx.scene.shape.Rectangle?&gt;&lt;Rectangle arcHeight=&quot;5.0&quot; arcWidth=&quot;5.0&quot; fill=&quot;#00dac9&quot; height=&quot;530.0&quot; stroke=&quot;BLACK&quot; strokeType=&quot;INSIDE&quot; strokeWidth=&quot;3.0&quot; style=&quot;-fx-arc-height: 30; -fx-arc-width: 30;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00dac9" height="530.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" style="-fx-arc-height: 30; -fx-arc-width: 30;" width="650.0" />
       <Button id="homeButton" fx:id="homeButton" layoutX="264.0" layoutY="365.0" mnemonicParsing="false" prefHeight="117.0" prefWidth="123.0" style="-fx-background-radius: 50; -fx-background-color: #AA9CCA;" textFill="#aa9cca">
