@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.RadioMenuItem?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="650.0" style="-fx-background-color: transparent" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00dac9" height="530.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" style="-fx-arc-height: 30; -fx-arc-width: 30;" width="650.0" />
+      <ImageView fitHeight="664.0" fitWidth="658.0" layoutX="9.0" layoutY="78.0">
+         <image>
+            <Image url="@../../assets/images/Keyboard.png" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#eeeeef" height="70.0" layoutX="247.0" layoutY="283.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="155.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#eeeeef" height="70.0" layoutX="92.0" layoutY="283.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="120.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#eeeeef" height="70.0" layoutX="440.0" layoutY="280.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="113.0" />
+      <Button fx:id="playButton" layoutX="194.0" layoutY="417.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="293.0" style="-fx-background-color: #AA9CCA; -fx-background-radius: 8;">
+         <graphic>
+            <Polygon fill="#00dac9" points="2.42883038520813, -25.694915771484375, 94.95501708984375, -19.00833511352539, 98.28836059570312, -19.008346557617188, 2.4674768447875977, -10.936684608459473" stroke="WHITE" strokeWidth="2.0" />
+         </graphic></Button>
+      <ImageView fitHeight="150.0" fitWidth="507.0" layoutX="72.0" layoutY="43.0">
+         <image>
+            <Image url="@../../assets/images/logo.png" />
+         </image>
+      </ImageView>
+      <MenuButton fx:id="difficultyButton" alignment="CENTER" layoutX="98.0" layoutY="284.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="105.0" style="-fx-background-color: #AA9CCA; -fx-background-radius: 10;" text="Difficulty" textFill="WHITE">
+        <items>
+          <RadioMenuItem fx:id="easy" mnemonicParsing="false" style="-fx-background: #AA9CCA;" text="Easy">
+               <toggleGroup>
+                  <ToggleGroup fx:id="difficultyToggleGroup" />
+               </toggleGroup></RadioMenuItem>
+          <RadioMenuItem fx:id="medium" mnemonicParsing="false" style="-fx-background: #AA9CCA;" text="Medium" toggleGroup="$difficultyToggleGroup" />
+            <RadioMenuItem fx:id="hard" mnemonicParsing="false" style="-fx-background: #AA9CCA;" text="Hard" toggleGroup="$difficultyToggleGroup" />
+        </items>
+         <font>
+            <Font name="Comic Sans MS" size="14.0" />
+         </font>
+      </MenuButton>
+      <MenuButton fx:id="poemButton" alignment="CENTER" layoutX="272.0" layoutY="284.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="105.0" style="-fx-background-color: #AA9CCA; -fx-background-radius: 10;" text="Poem" textFill="WHITE">
+
+         <font>
+            <Font name="Comic Sans MS" size="14.0" />
+         </font>
+      </MenuButton>
+      <MenuButton fx:id="songButton" alignment="CENTER" layoutX="447.0" layoutY="284.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="105.0" style="-fx-background-color: #AA9CCA; -fx-background-radius: 10;" text="Song" textFill="WHITE">
+
+         <font>
+            <Font name="Comic Sans MS" size="14.0" />
+         </font>
+      </MenuButton>
+      <Button id="homeButton" fx:id="homeButton" layoutX="585.0" layoutY="15.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="47.0" style="-fx-background-radius: 50; -fx-background-color: #AA9CCA;" textFill="#aa9cca">
+         <effect>
+            <DropShadow blurType="ONE_PASS_BOX" height="0.0" offsetX="2.0" offsetY="5.0" radius="3.7625" width="17.05">
+               <color>
+                  <Color red="0.17000000178813934" green="0.1462000012397766" blue="0.1462000012397766" opacity="0.4847261905670166" />
+               </color>
+            </DropShadow>
+         </effect>
+         <graphic>
+            <ImageView fitHeight="36.0" fitWidth="32.0">
+               <image>
+                  <Image url="@../../assets/images/home.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+</Pane>
