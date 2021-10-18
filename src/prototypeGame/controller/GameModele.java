@@ -208,7 +208,7 @@ public class GameModele  implements PropertyChangeListener {
         private GameModele gameModele;
 
         /**The speed will be maximal at maxAtPortion part of the poem for each difficulty (1 max)*/
-        private double maxAtPortionEasy = 1,maxAtPortionMedium = 8/10, maxAtPortionHard = 6/10;
+        private double maxAtPortionEasy = 1,maxAtPortionMedium = 8/10.0, maxAtPortionHard = 6/10.0;
         /**the speed at this separator will be the maximal*/
         private int maxAtSeparator = 0;
 

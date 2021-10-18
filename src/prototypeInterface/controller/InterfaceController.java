@@ -1,7 +1,6 @@
 package prototypeInterface.controller;
 
 import controller.FXMLController;
-import controller.Game;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -13,6 +12,7 @@ import javafx.scene.control.MenuItem;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.*;
+import prototypeGame.model.Game;
 import prototypeInterface.model.InterfaceModel;
 
 import java.awt.*;
@@ -132,11 +132,14 @@ public class InterfaceController  extends FXMLController {
 
         if (this.playButton != null) {
             this.playButton.setOnAction(e -> {
+                System.out.println("play button selected");
                 if(currentPoem !=null&& currentSong !=null&&difficultyLevel!=null) {
                     Game newGame = new Game(currentPoem, currentSong, difficultyLevel);
-                    //TODO set exit handler
+                    newGame.setExitHandler(event -> interfaceModel.createNewHome());
                     System.out.println("start game");
                     interfaceModel.setNewGame(newGame);
+                } else {
+                    Toolkit.getDefaultToolkit().beep();
                 }
             });
             currentPoem =null;
@@ -216,7 +219,14 @@ public class InterfaceController  extends FXMLController {
                 Song tmp = DataHolder.projectDataManager.songList.get(i);
                 RadioMenuItem miTmp = new RadioMenuItem(tmp.getName());
                 miTmp.setToggleGroup(this.songToggleGroup);
-                miTmp.setOnAction(e -> currentSong = DataHolder.projectDataManager.mapNameToSong(miTmp.getText()));
+                miTmp.setOnAction(e ->
+                        {
+                            currentSong = DataHolder.projectDataManager.mapNameToSong(miTmp.getText());
+                            if(currentPoem == null){
+                                Toolkit.getDefaultToolkit().beep();
+                            }
+                        });
+
                 this.songButton.getItems().add(miTmp);
             }
         }
@@ -228,7 +238,13 @@ public class InterfaceController  extends FXMLController {
                 Poem poem = DataHolder.projectDataManager.poemList.get(i);
                 RadioMenuItem miTmp = new RadioMenuItem(poem.getName());
                 miTmp.setToggleGroup(this.poemToggleGroup);
-                miTmp.setOnAction(e -> currentPoem = DataHolder.projectDataManager.mapNameToPoem(miTmp.getText()));
+                miTmp.setOnAction(e -> {
+                    currentPoem = DataHolder.projectDataManager.mapNameToPoem(miTmp.getText());
+                    if(currentPoem == null){
+                        Toolkit.getDefaultToolkit().beep();
+                    }
+                        }
+                );
                 this.poemButton.getItems().add(miTmp);
             }
         }

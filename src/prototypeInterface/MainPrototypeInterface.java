@@ -18,11 +18,22 @@ public class MainPrototypeInterface extends Application{
     public void start(Stage primaryStage) throws Exception {
 
         DataHolder.init();
+        Audio.load();
+        Audio.loadSongs();
+
         DataHolder.scoreManager.addScore(new Score(Song.createEmptySong(), Poem.createEmptyPoem(), Difficulty.DifficultyLevel.Easy, 100));
         DataHolder.scoreManager.addScore(new Score(Song.createEmptySong(), Poem.createEmptyPoem(), Difficulty.DifficultyLevel.Medium, 100));
         DataHolder.scoreManager.addScore(new Score(Song.createEmptySong(), Poem.createEmptyPoem(), Difficulty.DifficultyLevel.Easy, 80));
         DataHolder.scoreManager.addScore(new Score(Song.createEmptySong(), Poem.createEmptyPoem(), Difficulty.DifficultyLevel.Easy, 100));
         DataHolder.scoreManager.addScore(new Score(Song.createEmptySong(), Poem.createEmptyPoem(), Difficulty.DifficultyLevel.Hard, 50));
+
+        DataHolder.projectDataManager.poemList.add(new Poem("The Fat Cat", "src/assets/poems/The_Fat_Cat.txt"));
+        DataHolder.projectDataManager.poemList.add(new Poem("A Little Seed", "src/assets/poems/A_Little_Seed.txt"));
+        DataHolder.projectDataManager.poemList.add(new Poem("I look in the mirror", "src/assets/poems/I_look_in_the_mirror.txt"));
+
+        DataHolder.projectDataManager.songList.add(Audio.maypole);
+        DataHolder.projectDataManager.songList.add(Audio.greenMouse);
+
 
         InterfaceModel root = new InterfaceModel();
         root.createNewHome();
