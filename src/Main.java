@@ -13,7 +13,7 @@ public class Main  extends Application {
         DataHolder.init();
         Audio.load();
         Audio.loadSongs();
-
+        manuallyAddAssets();
 
 
 
@@ -26,6 +26,9 @@ public class Main  extends Application {
         primaryStage.show();
     }
 
+    /**
+     * For test purpose
+     */
     void manuallyAddAssets(){
         DataHolder.scoreManager.addScore(new Score(Song.createEmptySong(), Poem.createEmptyPoem(), Difficulty.DifficultyLevel.Easy, 100));
         DataHolder.scoreManager.addScore(new Score(Song.createEmptySong(), Poem.createEmptyPoem(), Difficulty.DifficultyLevel.Medium, 100));
