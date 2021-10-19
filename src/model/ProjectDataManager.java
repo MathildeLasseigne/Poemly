@@ -155,8 +155,22 @@ public class ProjectDataManager {
 
  */
 
-    public Song mapNameToSong(String name){return null;}
+    public Song mapNameToSong(String name){
+        for(Song song : songList){
+            if(song.getName().equals(name)){
+                return song;
+            }
+        }
+        return null;
+    }
 
-    public Poem mapNameToPoem(String name){return null;}
+    public Poem mapNameToPoem(String name){
+        for(Poem poem : poemList){
+            if(poem.getName().equals(name)){
+                return poem;
+            }
+        }
+        return null;
+    }
 
 }

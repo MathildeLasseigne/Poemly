@@ -1,9 +1,8 @@
 package prototypeInterface.model;
-
-import controller.Game;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import prototypeGame.model.Game;
 import prototypeInterface.controller.InterfaceController;
 
 import java.io.IOException;
@@ -70,8 +69,9 @@ public class InterfaceModel extends StackPane{
 
     public void setNewGame(Game game){
         clearSavedNodes();
+        setFrontInterface(null);
         setBackInterface(game);
-        //TODO game.start();
+        game.start();
     }
 
     /**
