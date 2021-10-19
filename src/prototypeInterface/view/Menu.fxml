@@ -26,7 +26,7 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#eeeeef" height="70.0" layoutX="440.0" layoutY="280.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="113.0" />
       <Button fx:id="playButton" layoutX="194.0" layoutY="417.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="293.0" style="-fx-background-color: #AA9CCA; -fx-background-radius: 8;">
          <graphic>
-            <Polygon fill="#00dac9" points="2.42883038520813, -25.694915771484375, 94.95501708984375, -19.00833511352539, 98.28836059570312, -19.008346557617188, 2.4674768447875977, -10.936684608459473" stroke="WHITE" strokeWidth="2.0" />
+            <Polygon fill="#00dac9" points="2.42883038520813, -25.694915771484375, 42.592350006103516, -18.455541610717773, 40.592369079589844, -18.4555721282959, 2.4674768447875977, -10.936684608459473" stroke="WHITE" strokeWidth="2.0" />
          </graphic></Button>
       <ImageView fitHeight="150.0" fitWidth="507.0" layoutX="72.0" layoutY="43.0">
          <image>

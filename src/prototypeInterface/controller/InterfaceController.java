@@ -84,6 +84,7 @@ public class InterfaceController  extends FXMLController {
 
         if (this.homeButton != null) {
             this.homeButton.setOnAction(e -> {
+                Audio.buttonSound.play();
                 if(! interfaceModel.saveNode(name, fxmlLoaded)){
                     System.out.println("Save "+name+" did not work !!!");
                 }
@@ -102,6 +103,7 @@ public class InterfaceController  extends FXMLController {
 
         if (this.helpButton != null) {
             this.helpButton.setOnAction(e -> {
+                Audio.buttonSound.play();
                 Node helpNode = interfaceModel.retrieveSavedNode("Help");
                 if( helpNode != null){
                     interfaceModel.setFrontInterface(helpNode);
@@ -114,6 +116,7 @@ public class InterfaceController  extends FXMLController {
 
         if (this.scoreButton != null) {
             this.scoreButton.setOnAction(e -> {
+                Audio.buttonSound.play();
                 if(!interfaceModel.saveNode(name, fxmlLoaded)){
                     System.out.println("Save "+name+" did not work !!!");
                 }
@@ -133,6 +136,7 @@ public class InterfaceController  extends FXMLController {
 
         if (this.playButton != null) {
             this.playButton.setOnAction(e -> {
+                Audio.buttonSound.play();
                 System.out.println("play button selected");
                 if(currentPoem !=null&& currentSong !=null&&difficultyLevel!=null) {
                     Game newGame = new Game(currentPoem, currentSong, difficultyLevel);
@@ -150,7 +154,7 @@ public class InterfaceController  extends FXMLController {
 
         if (this.menuButton != null) {
             this.menuButton.setOnAction(e -> {
-
+                Audio.buttonSound.play();
                 Node menuNode = interfaceModel.retrieveSavedNode("Menu");
                 if (menuNode != null) {
                     interfaceModel.setFrontInterface(menuNode);
@@ -162,24 +166,28 @@ public class InterfaceController  extends FXMLController {
 
         if (this.easy != null) {
             this.easy.setOnAction(e -> {
+                Audio.buttonSound.play();
                 difficultyLevel = Difficulty.fromString("Easy");
             });
         }
 
         if (this.medium != null) {
             this.medium.setOnAction(e -> {
+                Audio.buttonSound.play();
                 difficultyLevel = Difficulty.fromString("Medium");
             });
         }
 
         if (this.hard != null) {
             this.hard.setOnAction(e -> {
+                Audio.buttonSound.play();
                 difficultyLevel = Difficulty.fromString("Hard");
             });
         }
 
         if (this.customPoem != null) {
             this.customPoem.setOnAction(e -> {
+                Audio.buttonSound.play();
                 Poem.createEmptyPoem();
             });
         }
@@ -187,6 +195,7 @@ public class InterfaceController  extends FXMLController {
 
         if(this.scoreUp!=null) {
             this.scoreUp.setOnAction(e -> {
+                Audio.buttonSound.play();
                 if(this.name == "Score"){
                     int currentDisplay = this.currentScoreDisplayIdx-4;
                     //Set every score
@@ -201,6 +210,7 @@ public class InterfaceController  extends FXMLController {
 
         if(this.scoreDown!=null) {
             this.scoreDown.setOnAction(e -> {
+                Audio.buttonSound.play();
                 if(this.name == "Score"){
                     int currentDisplay = this.currentScoreDisplayIdx+4;
                     if(currentDisplay < DataHolder.scoreManager.getScoreList().size()){ //TODO change to length in score manager
@@ -225,6 +235,8 @@ public class InterfaceController  extends FXMLController {
                             currentSong = DataHolder.projectDataManager.mapNameToSong(miTmp.getText());
                             if(currentPoem == null){
                                 Toolkit.getDefaultToolkit().beep();
+                            } else {
+                                Audio.buttonSound.play();
                             }
                         });
 
@@ -243,6 +255,8 @@ public class InterfaceController  extends FXMLController {
                     currentPoem = DataHolder.projectDataManager.mapNameToPoem(miTmp.getText());
                     if(currentPoem == null){
                         Toolkit.getDefaultToolkit().beep();
+                    } else {
+                        Audio.buttonSound.play();
                     }
                         }
                 );
@@ -257,6 +271,7 @@ public class InterfaceController  extends FXMLController {
             MenuItem customPoem = new MenuItem("Add custom Poem");
             customPoem.setOnAction(e ->
             {
+                Audio.buttonSound.play();
                 Poem newPoem;
                 FileChooser filechooser = new FileChooser();
                 filechooser.setTitle("Choose a new poem");
@@ -281,7 +296,14 @@ public class InterfaceController  extends FXMLController {
                         //Set menu item for next time
                         RadioMenuItem miTmp = new RadioMenuItem(newPoem.getName());
                         miTmp.setToggleGroup(this.poemToggleGroup);
-                        miTmp.setOnAction(event -> currentPoem = DataHolder.projectDataManager.mapNameToPoem(miTmp.getText()));
+                        miTmp.setOnAction(event -> {
+                            currentPoem = DataHolder.projectDataManager.mapNameToPoem(miTmp.getText());
+                            if(currentPoem == null){
+                                Toolkit.getDefaultToolkit().beep();
+                            } else {
+                                Audio.buttonSound.play();
+                            }
+                        });
 
                         this.poemButton.getItems().add(miTmp);
                         miTmp.setSelected(true);
