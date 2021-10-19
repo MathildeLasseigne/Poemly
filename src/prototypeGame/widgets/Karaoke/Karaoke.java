@@ -2,8 +2,12 @@ package prototypeGame.widgets.Karaoke;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import model.Difficulty;
 import model.Poem;
 
@@ -69,7 +73,15 @@ public class Karaoke extends AnchorPane {
     }
 
     public boolean isClippingNecessary(){
-        return this.karaokeController.isClippingNecessary;
+        Scene scene = new Scene(this, 1000, 650);
+        Stage tmpStage = new Stage();
+        tmpStage.initStyle(StageStyle.TRANSPARENT);
+        scene.setFill(Color.TRANSPARENT);
+        tmpStage.setScene(scene);
+        //tmpStage.show();
+        boolean res = this.karaokeController.checkClip(tmpStage);
+        tmpStage.close();
+        return res;
     }
 
 }

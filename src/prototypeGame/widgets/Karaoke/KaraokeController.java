@@ -5,6 +5,8 @@ import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.FlowPane;
@@ -13,6 +15,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 import model.Difficulty;
 import widgets.tools.Utilities;
 
@@ -66,7 +69,7 @@ public class KaraokeController extends FXMLController {
 
         updateKaraoke();//Initialize
         Utilities.clipChildren(poemContainer, 0); //Prevent poem from going out of the box
-        checkClip();
+        //checkClip();
 
     }
 
@@ -106,20 +109,28 @@ public class KaraokeController extends FXMLController {
     /**
      * Check if clipping is necessary
      */
-    void checkClip(){
+    boolean checkClip(Stage s){
         double childrenHeight = 0;
 
         int widthParagraph = 285;
+
+        poemContainer.getChildren().clear();
+
+
+        poemContainer.getChildren().add(poemTitlePane);
         childrenHeight += poemTitlePane.getHeight();
         ArrayList<FlowPane> newPoem = karaokeColorizer.getRenderedText();
         for(FlowPane line : newPoem){
             line.setPrefWidth(widthParagraph); //Set width of new lines
             line.setMaxWidth(widthParagraph);
+            poemContainer.getChildren().add(line);
             childrenHeight += line.getHeight();
         }
-        if(childrenHeight >= poemContainer.getPrefHeight()){
-            isClippingNecessary = true;
+        s.show();
+        for(Node n : poemContainer.getChildren()){
+            childrenHeight += n.getBoundsInParent().getHeight();
         }
+        return childrenHeight >= poemContainer.getPrefHeight();
     }
 
     /**
