@@ -28,7 +28,7 @@ public class GameModele  implements PropertyChangeListener {
      * <br/>Is not a rate per ce, modify the duration of the keyFrames
      * Default is 1
      */
-    private double initialDurationRate = 1;
+    private double initialDurationRate = 4;
 
     private Game game;
 
@@ -67,6 +67,7 @@ public class GameModele  implements PropertyChangeListener {
     public GameModele(Game game){
         this.game = game;
         this.gameBoard = new GameBoard(this.game.getGameUI().gameUINodes.getBoard(), Utilities.parentToScreen(this.game.getGameUI().gameUINodes.getBar()));//this.game.getGameUI().gameUINodes.getBar().getBoundsInParent());
+        this.gameBoard.addPropertyChangeListener(this);
         if(this.initialDurationRate != 1 && this.initialDurationRate != 0){
             this.addingTileDuration = this.addingTileDuration.divide(this.initialDurationRate);
             this.gameBoard.setOriginalTileModifier(this.initialDurationRate);
@@ -140,6 +141,7 @@ public class GameModele  implements PropertyChangeListener {
                     }
                 } catch (Exception e) {
                     System.out.println("No new char in preview");
+                    this.gameBoard.noticeEndText();
                     //e.printStackTrace();
                 }
             }
@@ -158,15 +160,17 @@ public class GameModele  implements PropertyChangeListener {
             this.gameBoard.getBar().setBounds(Utilities.parentToScreen(this.game.getGameUI().gameUINodes.getBar()));
         }
         this.gameBoard.update();
+        if(this.game.getGameUI().karaoke.getKaraokeController().isPreviewFinished().getValue()){
+            System.out.println("Preview finished");
+        }
         if(this.game.getGameUI().karaoke.isFinished().getValue()){
-            closeGame();
-            ProgressBar gameScore = game.getGameUI().gameUINodes.getScoreBar();
-            double score = gameScore.getProgress()*100;
-            setGameScore(score);
-            this.game.getGameUI().showScorePanel(score);
+            endGame();
         }
     }
 
+    /**
+     * Start the game itself without countdown
+     */
     public void start(){
         SoundPlayer song = this.game.getSong().getLoopingSoundPlayer();
         if(song != null)
@@ -174,6 +178,18 @@ public class GameModele  implements PropertyChangeListener {
         this.speedModifier.start();
         this.addingTile.playFromStart();
         this.updateAll.start();
+    }
+
+    /**
+     * End game with score panel
+     */
+    public void endGame(){
+        System.out.println("Game finished");
+        closeGame();
+        ProgressBar gameScore = game.getGameUI().gameUINodes.getScoreBar();
+        double score = gameScore.getProgress()*100;
+        setGameScore(score);
+        this.game.getGameUI().showScorePanel(score);
     }
 
     /**
@@ -196,7 +212,12 @@ public class GameModele  implements PropertyChangeListener {
      */
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        this.game.getGameUI().karaoke.next();
+        if(evt.getPropertyName() == "changed currentTile Bar"){
+            this.game.getGameUI().karaoke.next();
+        } else if(evt.getPropertyName() == "Tiles finished"){
+            endGame();
+        }
+
     }
 
 

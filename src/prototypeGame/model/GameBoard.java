@@ -1,12 +1,12 @@
 package prototypeGame.model;
 
 import javafx.geometry.Bounds;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import widgets.tools.Utilities;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -37,6 +37,9 @@ public class GameBoard {
     public Duration translationDuration = Duration.millis(10000);
 
     private final ReentrantLock tileListMutex = new ReentrantLock();
+
+    /**Is the stream of incoming tiles finished ?*/
+    private boolean isInputTileFinished = false;
 
     /**
      * Manage the game panel. Create the bar in the board
@@ -135,6 +138,13 @@ public class GameBoard {
         return bar;
     }
 
+    /**
+     * Notice the board that no more tiles will get created
+     */
+    public void noticeEndText(){
+        this.isInputTileFinished = true;
+    }
+
     /**Detect if it is the first time an access was made after putting the game in a window.
      * <br/>To use to get Bounds in screens*/
     public boolean isFirstCall() {
@@ -187,11 +197,29 @@ public class GameBoard {
                     }
                 }
                 this.bar.update();
+                if(this.isInputTileFinished && this.tileList.size() == 0){
+                    this.endTileChangeListenerSupport.firePropertyChange("Tiles finished", null, true); //Notify property listeners
+                    System.out.println("tiles lenght : "+ this.tileList.size());
+                }
+
             } finally {
                 this.tileListMutex.unlock();
             }
         }
     }
 
+    /*---------------Change listener---------------------*/
 
+    /**
+     * The list of listeners
+     */
+    private final PropertyChangeSupport endTileChangeListenerSupport = new PropertyChangeSupport(this);
+
+    public void addPropertyChangeListener(PropertyChangeListener pcl) {
+        endTileChangeListenerSupport.addPropertyChangeListener(pcl);
+    }
+
+    public void removePropertyChangeListener(PropertyChangeListener pcl) {
+        endTileChangeListenerSupport.removePropertyChangeListener(pcl);
+    }
 }

@@ -119,7 +119,7 @@ public class Bar {
             if(t != null){
                 this.currentTile = t;
                 this.currentTile.validated.addListener(tileChangeListener);
-                currentTileProperty.firePropertyChange("currentTile", null, this.currentTile); //Notify property listeners
+                currentTileProperty.firePropertyChange("changed currentTile Bar", null, this.currentTile); //Notify property listeners
                 return true;
             }
         } else {
