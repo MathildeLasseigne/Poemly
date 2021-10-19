@@ -56,7 +56,8 @@ public class MainPrototypeGame  extends Application {
 
     Node testGame(){
         //Poem poem = new Poem("Test Poem", "C:\\Users\\mathilde\\Documents\\Cours\\M1HCI\\Adv programmation of ISO\\Project\\Poemly\\src\\assets\\tests\\testReader.txt");
-        Poem poem = new Poem("Short test", "src/assets/tests/shortTest.txt");
+        //Poem poem = new Poem("Short test", "src/assets/tests/shortTest.txt");
+        Poem poem = new Poem("Length test", "src/assets/tests/lenghtTest.txt");
         //Poem poem = new Poem("The Fat Cat", "src/assets/poems/The_Fat_Cat.txt");
         //Song song = Song.createEmptySong();
         Song song = Audio.maypole;

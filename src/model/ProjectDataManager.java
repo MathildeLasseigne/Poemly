@@ -1,5 +1,6 @@
 package model;
 
+import prototypeGame.widgets.Karaoke.Karaoke;
 import widgets.SoundPlayer;
 import widgets.tools.FileListManager;
 
@@ -142,9 +143,19 @@ public class ProjectDataManager {
     class PoemChecker{
 
         public boolean checkConditions(Poem poem) throws Exception {
+            boolean haveProblem = false;
             if(! isPoemNameAvailable(poem.getName())){
+                haveProblem = true;
                 throw new Exception("Poem name not available");
             }
+            if(! haveProblem){
+                Karaoke testKaraoke = new Karaoke(poem, Difficulty.DifficultyLevel.Easy);
+                if(testKaraoke.isClippingNecessary()){
+                    haveProblem = true;
+                    throw new Exception("Poem is too long");
+                }
+            }
+
             return true;
         }
 

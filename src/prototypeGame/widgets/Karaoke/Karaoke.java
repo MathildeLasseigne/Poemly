@@ -68,4 +68,8 @@ public class Karaoke extends AnchorPane {
         return karaokeController;
     }
 
+    public boolean isClippingNecessary(){
+        return this.karaokeController.isClippingNecessary;
+    }
+
 }
