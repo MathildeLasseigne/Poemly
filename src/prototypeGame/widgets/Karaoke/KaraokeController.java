@@ -62,11 +62,12 @@ public class KaraokeController extends FXMLController {
 
     @FXML
     public void initialize(){
-        Utilities.clipChildren(poemContainer, 0); //Prevent poem from going out of the box
-
         this.poemName.setText(this.karaoke.poem.getName());
-        checkClip();
+
         updateKaraoke();//Initialize
+        Utilities.clipChildren(poemContainer, 0); //Prevent poem from going out of the box
+        checkClip();
+
     }
 
 
@@ -95,10 +96,6 @@ public class KaraokeController extends FXMLController {
                     poemContainer.getChildren().add(line);
                     childrenHeight += line.getHeight();
                 }
-                Rectangle clip = (Rectangle) poemContainer.getClip();
-                if(childrenHeight >= clip.getHeight()){
-                    isClippingNecessary = true;
-                }
 
             }
 
@@ -120,8 +117,7 @@ public class KaraokeController extends FXMLController {
             line.setMaxWidth(widthParagraph);
             childrenHeight += line.getHeight();
         }
-        Rectangle clip = (Rectangle) poemContainer.getClip();
-        if(childrenHeight >= clip.getHeight()){
+        if(childrenHeight >= poemContainer.getPrefHeight()){
             isClippingNecessary = true;
         }
     }
