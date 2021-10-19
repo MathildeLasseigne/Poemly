@@ -2,13 +2,10 @@
 #Score#src/assets/data/Scores.txt
 #Poem#A little Seed;src/assets/poems/A_Little_Seed.txt
 #Poem#The Fat Cat;src/assets/poems/The_Fat_Cat.txt
-#Poem#From a railway;src/assets/poems/From_A_Railway_Carriage.txt
 #Poem#Het Ruizen Van De Wind;src/assets/poems/Het_Ruizen_Van_De_Wind.txt
 #Poem#I'm a little teapot;src/assets/poems/I'm_A_Little_Teapot.txt
 #Poem#I look in the mirror;src/assets/poems/I_look_in_the_mirror.txt
-#Poem#Janvier;src/assets/poems/Janvier.txt
 #Poem#Lui;src/assets/poems/Lui.txt
-#Poem#Sur le chemin de l'école;src/assets/poems/Sur_Le_Chemin_De_L'école.txt
 #Song#Christmas;src/assets/audio/songs/christmas.mp3.mp3
 #Song#Cheerful bouncy and happy;src/assets/audio/songs/cheerful_bouncy_and_happy.mp3.mp3
 #Song#Good friend;src/assets/audio/songs/good_friends.mp3.mp3

@@ -144,6 +144,11 @@ public class InterfaceController  extends FXMLController {
                     System.out.println("start game");
                     interfaceModel.setNewGame(newGame);
                 } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText(null);
+                    alert.setContentText("You have to select a Difficulty, Poem and Song! ");
+                    alert.showAndWait();
                     Toolkit.getDefaultToolkit().beep();
                 }
             });

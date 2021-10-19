@@ -41,7 +41,7 @@
             <Image url="@../../assets/images/Towel.png" />
          </image>
       </ImageView>
-      <Text layoutX="147.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You have to click on the corresponding key on your keyboard before the tile has crossed the bar on the bottom of your screen" wrappingWidth="431.47007942199707">
+      <Text layoutX="147.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You have to click on the corresponding key on your keyboard as soon as the tiles cross the bar on the bottom of your screen" wrappingWidth="431.47007942199707">
          <font>
             <Font name="Comic Sans MS" size="12.0" />
          </font>
@@ -51,7 +51,7 @@
             <Image url="@../../assets/images/Paper.png" />
          </image>
       </ImageView>
-      <Text layoutX="147.0" layoutY="378.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The goal is reach a perfect score by clicking on the right keys as fast as you can. " wrappingWidth="431.47007942199707">
+      <Text layoutX="147.0" layoutY="378.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The goal is reach a perfect score by clicking on the right keys as before the tile passes the bar. " wrappingWidth="431.47007942199707">
          <font>
             <Font name="Comic Sans MS" size="12.0" />
          </font>
