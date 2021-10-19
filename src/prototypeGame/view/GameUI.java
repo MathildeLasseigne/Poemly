@@ -90,11 +90,12 @@ public class GameUI extends Pane {
     public void setExitHandlers(EventHandler e){
         //Close the game before coming back
         EventHandler newEvent = event -> {
-            SoundPlayer song = this.game.getSong().getLoopingSoundPlayer();
-            if(song != null)
-                song.stop();
-            Audio.buttonSound.play();
             game.getGameModel().closeGame();
+            SoundPlayer song = this.game.getSong().getLoopingSoundPlayer();
+            if(song != null) {
+                song.stop();
+            }
+            Audio.buttonSound.play();
 
             e.handle(event);
         };

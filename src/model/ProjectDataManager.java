@@ -32,7 +32,7 @@ public class ProjectDataManager {
     /**The list of poems not yet saved in the data*/
     private ArrayList<Poem> newPoemsList = new ArrayList<>();
 
-    final private String projectDataPath = "";
+    final private String projectDataPath = "src/assets/data/ProjectData.txt";
 
     String poemsDirectoryPath = null;
 
@@ -80,8 +80,9 @@ public class ProjectDataManager {
         for(Poem p : this.newPoemsList){
             toSave.add(p.generateDataLine());
         }
-
-        FileListManager.writeFileFromList(this.projectDataPath, true, toSave);
+        if(! toSave.isEmpty()){
+            FileListManager.writeFileFromList(this.projectDataPath, true, toSave);
+        }
     }
 
 
@@ -108,7 +109,7 @@ public class ProjectDataManager {
      */
     public boolean isSongNameAvailable(String songName){
         for (Song s : songList) {
-            if(songName == s.getName()){
+            if(songName.equals(s.getName())){
                 return false;
             }
         }
@@ -122,7 +123,7 @@ public class ProjectDataManager {
      */
     public boolean isPoemNameAvailable(String poemName){
         for (Poem p : poemList) {
-            if(poemName == p.getName()){
+            if(poemName.equals(p.getName())){
                 return false;
             }
         }
@@ -148,12 +149,6 @@ public class ProjectDataManager {
         }
 
     }
-/*
-    public Song mapNameToSong(String name){
-        for(int i = 0)
-    }
-
- */
 
     public Song mapNameToSong(String name){
         for(Song song : songList){

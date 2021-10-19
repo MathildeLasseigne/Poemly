@@ -25,7 +25,7 @@ public class Poem extends Encodable {
     public Poem(String name, String path){
         super("#Poem#");
         this.path = path;
-        this.name = name;
+        this.name = name.replaceAll(".txt", "");
         if(! path.isBlank()){
             setText();
         }
@@ -106,7 +106,7 @@ public class Poem extends Encodable {
      */
     protected void createNewFile(String newDirectoryPath){
         String path = newDirectoryPath + this.name + ".txt";
-        this.path = newDirectoryPath;
+        this.path = path;
         FileListManager.writeFileFromList(path, true, this.getText());
     }
 

@@ -77,6 +77,7 @@ public class InterfaceController  extends FXMLController {
             this.exitButton.setOnAction(e -> {
                 this.stage = (Stage) this.exitButton.getScene().getWindow();
                 this.stage.close();
+                DataHolder.saveAllNewData();
                 System.exit(0);
             });
         }

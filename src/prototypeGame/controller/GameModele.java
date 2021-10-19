@@ -28,7 +28,7 @@ public class GameModele  implements PropertyChangeListener {
      * <br/>Is not a rate per ce, modify the duration of the keyFrames
      * Default is 1
      */
-    private double initialDurationRate = 4;
+    private double initialDurationRate = 1;
 
     private Game game;
 
@@ -196,6 +196,7 @@ public class GameModele  implements PropertyChangeListener {
      * Reset all sounds and send Score to Score manager
      */
     public void closeGame(){
+        this.countDown.stop();
         this.speedModifier.sleepTimeLine.stop();
         this.addingTile.stop();
         this.updateAll.stop();
@@ -326,6 +327,8 @@ public class GameModele  implements PropertyChangeListener {
 
         private int currentValue;
 
+        boolean stopped = false;
+
         private Label countDownDisplay = new Label();
 
         private FadeTransition countDownFade = new FadeTransition();
@@ -364,16 +367,24 @@ public class GameModele  implements PropertyChangeListener {
         }
 
         private void onFinished(){
-            this.currentValue--;
-            if(this.currentValue == 0){
-                this.gameModele.game.getGameUI().gameUINodes.getGamePanel().getChildren()
-                        .remove(this.countDownDisplay);
-                this.gameModele.start();
-            } else {
-                this.countDownDisplay.setText(String.valueOf(this.currentValue));
-                this.countDownFade.playFromStart();
-                Audio.countDown.play();
+            if(! this.stopped){
+                this.currentValue--;
+                if(this.currentValue == 0){
+                    this.gameModele.game.getGameUI().gameUINodes.getGamePanel().getChildren()
+                            .remove(this.countDownDisplay);
+                    this.gameModele.start();
+                } else {
+                    this.countDownDisplay.setText(String.valueOf(this.currentValue));
+                    this.countDownFade.playFromStart();
+                    Audio.countDown.play();
+                }
             }
+
+        }
+
+        private void stop(){
+            this.countDownFade.stop();
+            this.stopped = true;
         }
 
 

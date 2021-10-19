@@ -42,7 +42,9 @@ public class ScoreManager {
         List<String> data = FileListManager.readFileInList(this.path);
 
         for(String dataLine : data){
-            this.scoreList.add(new Score(dataLine));
+            if(! dataLine.isBlank()){
+                this.scoreList.add(new Score(dataLine));
+            }
         }
     }
 
@@ -65,8 +67,9 @@ public class ScoreManager {
         for(Score s : this.newScoreList){
             toSave.add(s.generateDataLine());
         }
-
-        FileListManager.writeFileFromList(this.path, true, toSave);
+        if(! toSave.isEmpty()){
+            FileListManager.writeFileFromList(this.path, true, toSave);
+        }
     }
 
     /**
