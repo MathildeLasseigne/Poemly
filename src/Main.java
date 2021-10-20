@@ -29,7 +29,6 @@ public class Main  extends Application {
      * For test purpose
      */
     void manuallyAddAssets(){
-        Audio.loadSongs();
 
         DataHolder.scoreManager.addScore(new Score(Song.createEmptySong(), Poem.createEmptyPoem(), Difficulty.DifficultyLevel.Easy, 100));
         DataHolder.scoreManager.addScore(new Score(Song.createEmptySong(), Poem.createEmptyPoem(), Difficulty.DifficultyLevel.Medium, 100));
@@ -41,8 +40,6 @@ public class Main  extends Application {
         DataHolder.projectDataManager.poemList.add(new Poem("A Little Seed", "src/assets/poems/A_Little_Seed.txt"));
         DataHolder.projectDataManager.poemList.add(new Poem("I look in the mirror", "src/assets/poems/I_look_in_the_mirror.txt"));
 
-        DataHolder.projectDataManager.songList.add(Audio.maypole);
-        DataHolder.projectDataManager.songList.add(Audio.greenMouse);
     }
 
     public static void main(String[] args){

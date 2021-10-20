@@ -30,7 +30,6 @@ public class MainPrototypeGame  extends Application {
         DataHolder.init();
 
         Audio.load();
-        Audio.loadSongs();
 
         Node test;
 
@@ -59,8 +58,7 @@ public class MainPrototypeGame  extends Application {
         //Poem poem = new Poem("Short test", "src/assets/tests/shortTest.txt");
         Poem poem = new Poem("Length test", "src/assets/tests/lenghtTest.txt");
         //Poem poem = new Poem("The Fat Cat", "src/assets/poems/The_Fat_Cat.txt");
-        //Song song = Song.createEmptySong();
-        Song song = Audio.maypole;
+        Song song = Song.createEmptySong();
 
         Game game = new Game(poem, song, Difficulty.DifficultyLevel.Easy);
 
