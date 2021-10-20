@@ -1,0 +1,12 @@
+
+Happy upbeat;The Fat Cat;Easy;87.71929824561423
+Happy children;The Fat Cat;Easy;20.175438596491226
+Morning;A little Seed;Medium;95.48022598870017
+Sunny summer;I look in the mirror;Hard;29.279279279279308
+Sunny summer;New Poem;Hard;83.33333333333336
+Good friend;The Fat Cat;Easy;14.035087719298245
+Cheerful bouncy and happy;New Poem;Hard;94.44444444444447
+Good friend;New Poem;Easy;17.647058823529413
+Wonderful days;New Poem;Hard;0.0
+Wonderful days;New Poem;Hard;77.7777777777778
+Happy upbeat;I look in the mirror;Easy;96.20853080568762

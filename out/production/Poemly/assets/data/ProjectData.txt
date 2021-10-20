@@ -17,3 +17,5 @@
 #Song#Morning;src/assets/audio/songs/morning_funny_beat.mp3.mp3
 #Song#Sunny summer;src/assets/audio/songs/sunny_summer.mp3.mp3
 #Song#Wonderful days;src/assets/audio/songs/wonderful_days.mp3.mp3
+
+#Poem#New Poem;src/assets/poems/New Poem.txt
