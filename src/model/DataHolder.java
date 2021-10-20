@@ -1,5 +1,8 @@
 package model;
 
+/**
+ * Access to all data managers
+ */
 public class DataHolder {
 
     public static ProjectDataManager projectDataManager;

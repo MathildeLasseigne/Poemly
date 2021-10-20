@@ -28,7 +28,7 @@ public class KaraokeColorizer {
      */
     private int separatorIdx = -1;
 
-
+    /**The color, font and style of this portion of the text*/
     private final TextRender renderBefore, renderSeparator, renderAfter;
 
     /**

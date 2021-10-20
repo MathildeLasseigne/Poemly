@@ -151,13 +151,10 @@ public class GameBoard {
         return isFirstCall;
     }
 
-    int i = 0;
-
     /**
      * Move all tiles, remove tiles that are out of the screen and update the bar
      */
     public void update(){
-        //- Move all tiles- Replaced with TranslateTransition
 
         if(this.isFirstCall){
             this.originalBoundsGameBoard = Utilities.parentToScreen(this.boardPane);
@@ -166,24 +163,6 @@ public class GameBoard {
         synchronized (this.tileList){
             try {
                 this.tileListMutex.lock();
-                //for(Tile tile : this.tileList){
-                    //Bounds b = Utilities.parentToScreen(tile);
-                    //Bounds b2 = this.originalBoundsGameBoard;
-            /*if(this.boardPane.localToScreen(this.boardPane.getBoundsInLocal()).intersects(tile.localToScreen(tile.getBoundsInLocal()))){
-                System.out.println("In bounds");
-            }
-             */
-            /*if( Utilities.parentToScreen(tile).getMinY() >= this.originalBoundsGameBoard.getMinY()){
-                if(this.originalBoundsGameBoard.intersects(Utilities.parentToScreen(tile))){
-                    System.out.println("In bounds" + i++);
-                } else {
-                    System.out.println("Not in bounds");
-                }
-            } else {
-                System.out.println("test in bounds");
-            }
-
-             */
                 for(int i = 0; i < this.tileList.size(); i++){
                     //Prevent from being removed if just created
                     if( Utilities.parentToScreen(tileList.get(i)).getMinY() >= this.originalBoundsGameBoard.getMinY()){
@@ -197,7 +176,7 @@ public class GameBoard {
                     }
                 }
                 this.bar.update();
-                if(this.isInputTileFinished && this.tileList.size() == 0){
+                if(this.isInputTileFinished && this.tileList.size() == 0){ //Test if the game is finished (no new tiles comming and current tiles empty)
                     this.endTileChangeListenerSupport.firePropertyChange("Tiles finished", null, true); //Notify property listeners
                     System.out.println("tiles lenght : "+ this.tileList.size());
                 }
@@ -211,7 +190,7 @@ public class GameBoard {
     /*---------------Change listener---------------------*/
 
     /**
-     * The list of listeners
+     * The list of listeners. Listen if the game is finished
      */
     private final PropertyChangeSupport endTileChangeListenerSupport = new PropertyChangeSupport(this);
 

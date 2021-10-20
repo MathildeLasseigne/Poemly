@@ -1,12 +1,9 @@
 package model;
 
 import prototypeGame.widgets.Karaoke.Karaoke;
-import widgets.SoundPlayer;
 import widgets.tools.FileListManager;
 
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 
@@ -18,8 +15,6 @@ import java.util.List;
  *     <li>#Poem#name;path</li>
  *     <li>#Song#name;path</li>
  * </ul>
- *
- *
  */
 public class ProjectDataManager {
 
@@ -140,6 +135,9 @@ public class ProjectDataManager {
         return scorePath;
     }
 
+    /**
+     * Check if the poem passed the conditions
+     */
     class PoemChecker{
 
         public boolean checkConditions(Poem poem) throws Exception {

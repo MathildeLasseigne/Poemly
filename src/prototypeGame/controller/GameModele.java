@@ -86,8 +86,6 @@ public class GameModele  implements PropertyChangeListener {
     private void setListeners(){
         this.gameBoard.getBar().addPropertyChangeListener(this);
 
-        //this.game.addEventFilter(KeyEvent.KEY_TYPED,);
-        //this.game.setOnKeyTyped(event -> {
         this.game.addEventFilter(KeyEvent.KEY_TYPED, event -> {
             System.out.println("Key typed");
             if(this.gameBoard.getBar().getCurrentTile() != null){
@@ -131,8 +129,6 @@ public class GameModele  implements PropertyChangeListener {
                     //System.out.println("new char : "+newTileChar);
                     this.gameBoard.createTile(newTileChar);
                     if(newTileChar == ' '){ //Slow down next tile apparition if space
-                        //double comp = addingTileDuration.toMillis() / this.spaceDuration.toMillis();
-                        //this.addingTile.setRate(comp);
                         double comp = addingTileDuration.divide(this.speedModifier.getCurrentRate()).toMillis() / this.spaceDuration.divide(this.speedModifier.getCurrentRate()).toMillis();
                         this.addingTile.setRate(comp);
                     } else {

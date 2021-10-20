@@ -72,13 +72,19 @@ public class Karaoke extends AnchorPane {
         return karaokeController;
     }
 
+    /**
+     * Check if clipping is necessary for the poem.
+     * If return yes, the poem do not fit in the karaoke.
+     * This method has to create a new stage in order to compute the size of the
+     * karaoke and the lines. Said stage disappear almost immediately and is transparent.
+     * @return
+     */
     public boolean isClippingNecessary(){
         Scene scene = new Scene(this, 1000, 650);
         Stage tmpStage = new Stage();
         tmpStage.initStyle(StageStyle.TRANSPARENT);
         scene.setFill(Color.TRANSPARENT);
         tmpStage.setScene(scene);
-        //tmpStage.show();
         boolean res = this.karaokeController.checkClip(tmpStage);
         tmpStage.close();
         return res;
