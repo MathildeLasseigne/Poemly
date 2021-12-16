@@ -9,6 +9,12 @@ For the poem, you have the option to choose one of the poems of the game or impo
 
 Once the game begins, your goal is to press the correct key on your keyboard as tiles with letters appear on the screen and fall onto the bar. When the tile touches the bar, you have to click on the corresponding key on your keyboard. Every time you click on the right key, your score increase. Getting all the keys right when the tile is on the bar will get you a score of 100%. Clicking the wrong key will play a distorted sound.
 
+## Demo :
+
+
+https://user-images.githubusercontent.com/50111436/146368394-f06748d4-6cf2-4851-82ec-926ea1fb383d.mp4
+
+
 ### Authors :
 
 Mathilde Lasseigne & Cateau Oonk
